@@ -18,11 +18,17 @@
   MathJax = {
     tex: {
       displayMath: [['\\[', '\\]'], ['$$', '$$']],  
-      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+      inlineMath: [['\\(', '\\)'], ['$', '$']] , 
+      tags: 'ams'
     }
   };
 </script>
   
+  <script>
+window.addEventListener("hashchange", function () {
+    window.scrollTo(window.scrollX, window.scrollY - 100);
+});
+</script>
 </head>
 <body>
     

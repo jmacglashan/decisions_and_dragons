@@ -5,6 +5,7 @@
   {{ if .Param "math" }}
     {{ partialCached "math.html" . }}
   {{ end }}
+  {{ partialCached "anchor_jump.html" . }}
 </head>
 <body>
     {{ block "headb" . }}{{ end }}
