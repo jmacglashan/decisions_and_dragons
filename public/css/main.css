@@ -74,8 +74,9 @@ body {
   color: rgb(238, 206, 145);
   background: linear-gradient(180deg, rgba(119,43,43,1) 0%, rgba(109,33,33,1) 39%, rgba(89,13,13,1) 100%);
   font-family: Caudex;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
 #splash h1 {
@@ -113,34 +114,40 @@ h1, h2, h3, h4, h5, h6 {
   /* font-family: Lato; */
 }
 
-
-#content_container {
-  height: 100%;
-  display: flex;
-  padding: 0;
-  margin: 0;
+#content_no_toc {
+  max-width: 800px;
+  background-color: rgb(46, 37, 30);
+  margin:auto;
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-top: 6rem;
+  padding-bottom: 4em;
+  line-height: 1.6;
 }
+
+#content_with_toc {
+  max-width: 800px;
+  margin-left: 300px;
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-top: 6rem;
+  line-height: 1.6;
+}
+
 
 #toc {
-  float: left;
-  width: 300px;
-  background-color: rgb(33, 30, 25);
-  padding: 0em;
+  position: fixed;
+  top: 0;
+  height: 100vh;
   margin: 0;
-  /* position: sticky; */
-  /* top: 0; */
+  overflow-y: auto;
+  user-select: none;
+  width: 300px;
+  padding-top: 4rem;
+  background-color: rgb(33, 30, 25);
 }
 
-#content_left {
-  float: left;
-  width: 900px;
-  height: 100%;
-  /* padding: 2em 4em 2em 2em; */
-  padding: 2em; 
-  line-height: 1.6;
-  /* border-right: 0.5rem solid; */
-  /* border-color: rgb(36, 27, 20); */
-}
+
 
 
 a {

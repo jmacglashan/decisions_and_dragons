@@ -10,9 +10,10 @@
 {{ end }}
 
 {{ define "main" }}
-  <div id="content_no_toc">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-    <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->
-  </div>
+    <div id="content_no_toc">
+      <h1>{{ .Title }}</h1>
+
+      {{ .Content }}
+      <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->
+    </div>
 {{ end }}

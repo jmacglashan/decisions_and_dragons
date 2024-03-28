@@ -2,6 +2,7 @@
 title = 'Temp_post'
 date = 2024-03-27T00:20:42-04:00
 draft = false
+layout = 'single'
 +++
 
 ## About the site
@@ -33,6 +34,57 @@ But I'm not sure yet. We'll see how it goes.
 ## About me
 I'm James MacGlashan. If you want to talk to me (or ask me RL questions), the best place is either on [Twitter](https://twitter.com/jmac_ai), or 
 on the [Reinforcement Learning Discord server](https://discord.gg/rn7J7W4F).
+
+I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I 
+worked on reinforcement learning. I then moved on to do a postdoc at Brown University, continuing to work on reinforcement learning.
+Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and 
+continual learning as a service. Cogitai was eventually acquired by Sony to form the game AI team at Sony AI, where I 
+currently reside and continue to work on reinforcement learning.
+
+Despite all these years working on reinforcement learning, I have surprisingly failed to solve it. But I will continue to work
+on it until I do or until I run out of time. 
+
+Fortunately, it hasn't all been bad news. The community has made numerous advancements,
+and I've played a role in bringining reinforcement learning to production with 
+[GT Sophy](https://www.gran-turismo.com/us/gran-turismo-sophy/) -- an RL agent that outraced the best racers in the game Gran Turismo Sport and which was subsequent adapted to be a racing opponent in Gran Turismo 7.
+
+We're continuing to work on exciting reinforcement learning applications and problems at Sony AI and I hope we can help
+turn reinforcement learning into a robust technology that can be broadly used by more people. Perhaps one that is less
+fraught with dragons.
+
+I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I 
+worked on reinforcement learning. I then moved on to do a postdoc at Brown University, continuing to work on reinforcement learning.
+Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and 
+continual learning as a service. Cogitai was eventually acquired by Sony to form the game AI team at Sony AI, where I 
+currently reside and continue to work on reinforcement learning.
+
+Despite all these years working on reinforcement learning, I have surprisingly failed to solve it. But I will continue to work
+on it until I do or until I run out of time. 
+
+Fortunately, it hasn't all been bad news. The community has made numerous advancements,
+and I've played a role in bringining reinforcement learning to production with 
+[GT Sophy](https://www.gran-turismo.com/us/gran-turismo-sophy/) -- an RL agent that outraced the best racers in the game Gran Turismo Sport and which was subsequent adapted to be a racing opponent in Gran Turismo 7.
+
+We're continuing to work on exciting reinforcement learning applications and problems at Sony AI and I hope we can help
+turn reinforcement learning into a robust technology that can be broadly used by more people. Perhaps one that is less
+fraught with dragons.
+
+I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I 
+worked on reinforcement learning. I then moved on to do a postdoc at Brown University, continuing to work on reinforcement learning.
+Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and 
+continual learning as a service. Cogitai was eventually acquired by Sony to form the game AI team at Sony AI, where I 
+currently reside and continue to work on reinforcement learning.
+
+Despite all these years working on reinforcement learning, I have surprisingly failed to solve it. But I will continue to work
+on it until I do or until I run out of time. 
+
+Fortunately, it hasn't all been bad news. The community has made numerous advancements,
+and I've played a role in bringining reinforcement learning to production with 
+[GT Sophy](https://www.gran-turismo.com/us/gran-turismo-sophy/) -- an RL agent that outraced the best racers in the game Gran Turismo Sport and which was subsequent adapted to be a racing opponent in Gran Turismo 7.
+
+We're continuing to work on exciting reinforcement learning applications and problems at Sony AI and I hope we can help
+turn reinforcement learning into a robust technology that can be broadly used by more people. Perhaps one that is less
+fraught with dragons.
 
 I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I 
 worked on reinforcement learning. I then moved on to do a postdoc at Brown University, continuing to work on reinforcement learning.

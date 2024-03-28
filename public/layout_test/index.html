@@ -30,19 +30,13 @@
   </span>
 </div>
 
-  <main>
     
-  <div id="content_container">
     <div id="toc">
       <span style="text-align: center;"><h4>Table of Contents</h4></span>
       
     </div>
-    <div id="content_left">
+    <div id="content_with_toc">
       <h1></h1>
-
-      
-      
-      <time datetime="0001-01-01T00:00:00&#43;00:00">January 1, 1</time>
 
       <html>
     <head>
@@ -65,9 +59,26 @@
             .toc {
                 position: sticky;
                 top: 0;
+                height: 100vh;
+                margin: 0;
+                overflow-y: auto;
+                user-select: none;
                 width: 400px;
-                background-color: blue;
                 padding-top: 100px;
+                background-color: blue;
+            }
+
+            #main {
+                display: flex;
+            }
+
+            #content{
+                width: 100%;
+                flex-grow: 0;
+                flex-shrink: 1;
+                /* overflow-x: auto;
+                overflow-y: clip; */
+                /* box-sizing: border-box; */
             }
 
         </style>
@@ -77,7 +88,7 @@
         Stuff
     </div>
     <div id="main">
-        <div class="toc">A line</div>
+        <nav class="toc">A line</nav>
         <div id="content">
 
 <h2> Head 1</h2>
@@ -134,9 +145,7 @@ fraught with dragons.
 </html>
       
     </div>
-  </div>
 
-  </main>
   <footer>
     <div style="text-align: center;">
 
