@@ -48,8 +48,6 @@ html body {
 
 body {
   margin: 0;
-  /* padding: 0; */
-  /* background-color: rgb(33, 30, 25); */
   background-color: rgb(46, 37, 30);
   color: #dddddd;
   font-size: larger;
@@ -66,7 +64,6 @@ body {
 }
 
 #small_splash {
-  /* box-sizing: border-box; */
   background-color: rgb(119, 43, 43);
   padding-left: 1em;
   padding-top: 0.5em;
@@ -80,10 +77,7 @@ body {
 }
 
 #splash h1 {
-  /* -webkit-text-stroke: 1px black; */
   font-size: 250%;
-  /* font-family: EBGaramond; */
-  /* font-family: Caudex; */
   font-family: CinzelDecorative, Caudex;
 
 }
@@ -101,25 +95,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content_center {
-  /* box-sizing: border-box; */
-  width: 900px;
+  max-width: 800px;
   background-color: rgb(46, 37, 30);
-  /* margin-top: 0; */
   margin:auto;
   padding-left: 5em;
   padding-right: 5em;
   padding-top: 2em;
   padding-bottom: 4em;
   line-height: 1.6;
-  /* font-family: Lato; */
 }
 
 #content_no_toc {
   max-width: 800px;
   background-color: rgb(46, 37, 30);
   margin:auto;
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 5rem;
+  padding-right: 5rem;
   padding-top: 6rem;
   padding-bottom: 4em;
   line-height: 1.6;
@@ -128,8 +119,8 @@ h1, h2, h3, h4, h5, h6 {
 #content_with_toc {
   max-width: 800px;
   margin-left: 300px;
-  padding-left: 4em;
-  padding-right: 4em;
+  padding-left: 6em;
+  padding-right: 6em;
   padding-top: 6rem;
   line-height: 1.6;
 }
@@ -190,4 +181,16 @@ a {
 .nav a {
   color: rgb(238, 206, 145);
   margin-right: 1em;
+}
+
+#TableOfContents ul {
+  font-family: Caudex;
+  list-style-type:disc;
+  color: rgb(238, 206, 145);
+}
+
+#TableOfContents ul li a {
+  font-family: Caudex;
+  color: rgb(238, 206, 145);
+  text-decoration: none;
 }
