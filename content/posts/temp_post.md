@@ -13,6 +13,26 @@ mathematical details and consistenting of many moving parts. The area is much mo
 learning and other subfields of AI. It took me quite sometime, even past my PhD program, to feel comfortable with it
 and even today there is still much more for me to learn.
 
+$$
+    a^2=x-b^2
+$$
+
+Here is an inline \\( x^2 \\). And here is another: $x^3 + 2 - \frac{1}{2}$.
+
+And here is a numbered eq?
+$$
+\begin{equation}
+f(x) = mx + b
+\end{equation}
+$$
+
+And another that is incremented?
+$$
+\begin{equation}
+f(x) = mx^2 + b
+\end{equation}
+$$
+
 Because of its difficulty, I've answered many different questions about the field over the years. But my answers to these
 questions are dispersed across many different social media sites such as Quora and conversations on Discord servers.
 That makes it difficult to find these answers and the mediums are not always the best fit for communicating the ideas.

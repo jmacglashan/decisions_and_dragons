@@ -16,7 +16,7 @@
     </div>
     {{ .Content }}
     <h2>Recent posts</h2>
-    {{ range site.RegularPages }}
+    {{ range where .Site.RegularPages "Type" "posts" }}
       <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
       {{ .Summary }}
     {{ end }}
