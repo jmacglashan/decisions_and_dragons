@@ -1,0 +1,18 @@
+{{ define "headb" }}
+<div id="small_splash">
+  <span class="small_logo">{{ site.Title }}</span>
+  <span class="nav">
+      {{ range .Site.Menus.nav }} 
+          <a href=" {{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+  </span>
+</div>
+{{ end }}
+
+{{ define "main" }}
+  <div id="content_center">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->
+  </div>
+{{ end }}

@@ -1,0 +1,29 @@
+{{ define "headb" }}
+<div id="small_splash">
+  <span class="small_logo">{{ site.Title }}</span>
+  <span class="nav">
+      {{ range .Site.Menus.nav }} 
+          <a href=" {{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+  </span>
+</div>
+{{ end }}
+
+{{ define "main" }}
+  <div id="content_container">
+    <div id="toc">
+      <span style="text-align: center;"><h4>Table of Contents</h4></span>
+      {{ .TableOfContents }}
+    </div>
+    <div id="content_left">
+      <h1>{{ .Title }}</h1>
+
+      {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $dateHuman := .Date | time.Format ":date_long" }}
+      <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+
+      {{ .Content }}
+      <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->
+    </div>
+  </div>
+{{ end }}
