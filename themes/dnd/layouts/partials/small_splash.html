@@ -1,0 +1,8 @@
+<div id="small_splash">
+    <span><a class="logo_link" href="/">{{ site.Title }}</a></span>
+    <span class="nav">
+        {{ range .Site.Menus.nav }} 
+            <a href=" {{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+    </span>
+  </div>

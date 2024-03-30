@@ -1,12 +1,5 @@
 {{ define "headb" }}
-<div id="small_splash">
-  <span class="small_logo">{{ site.Title }}</span>
-  <span class="nav">
-      {{ range .Site.Menus.nav }} 
-          <a href=" {{ .URL }}">{{ .Name }}</a>
-      {{ end }}
-  </span>
-</div>
+{{ partial "small_splash.html" . }}
 {{ end }}
 
 {{ define "main" }}

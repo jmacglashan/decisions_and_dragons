@@ -6,8 +6,15 @@
     <description>Recent content in Home on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Mar 2024 19:50:17 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2024 20:07:54 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why does the policy gradient include a log probobability term?</title>
+      <link>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</link>
+      <pubDate>Fri, 29 Mar 2024 20:07:54 -0400</pubDate>
+      <guid>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</guid>
+      <description>Actually, it doesn&amp;rsquo;t! What you&amp;rsquo;re probably thinking of is the REINFORCE esitmate of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&amp;rsquo;re familiar with and why we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!&#xA;The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work.</description>
+    </item>
     <item>
       <title>What is the difference between model-based and model-free RL?</title>
       <link>http://localhost:1313/posts/model_free_vs_model_based/</link>
