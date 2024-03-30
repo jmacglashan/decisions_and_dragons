@@ -6,14 +6,14 @@
     <description>Recent content in Home on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Mar 2024 00:20:42 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2024 19:50:17 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Temp_post</title>
-      <link>http://localhost:1313/posts/temp_post/</link>
-      <pubDate>Wed, 27 Mar 2024 00:20:42 -0400</pubDate>
-      <guid>http://localhost:1313/posts/temp_post/</guid>
-      <description>About the site Reinforcement learning is an elegant and simple problem definition for autonomous decision-making agents that learn from their own experience. It elegantly subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple, filled with important mathematical details and consistenting of many moving parts. The area is much more difficult to learn than supervised learning and other subfields of AI.</description>
+      <title>What is the difference between model-based and model-free RL?</title>
+      <link>http://localhost:1313/posts/model_free_vs_model_based/</link>
+      <pubDate>Fri, 29 Mar 2024 19:50:17 -0400</pubDate>
+      <guid>http://localhost:1313/posts/model_free_vs_model_based/</guid>
+      <description>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</description>
     </item>
     <item>
       <title>About</title>
