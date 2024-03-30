@@ -27,7 +27,7 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>Reinforcement learning is an elegant and simple problem definition for autonomous decision-making agents that learn from their own experience. It elegantly subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple, filled with important mathematical details and consistenting of many moving parts. The area is much more difficult to learn than supervised learning and other subfields of AI.</description>
+      <description>Reinforcement learning is an elegant and simple problem definition for autonomous decision-making agents that learn from their own experience. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem are not so simple. The algorithm deriviations require understanding many important mathematical details and the methods in practice have many moving parts. The area is much more difficult to learn than supervised learning and other subfields of AI.</description>
     </item>
     <item>
       <title>Post 3</title>
