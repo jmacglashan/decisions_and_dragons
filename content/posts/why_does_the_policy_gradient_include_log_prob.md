@@ -16,7 +16,7 @@ J(\pi) = \sum_s d^\pi(s) \sum_a \pi(a | s) Q^\pi(s, a)
 \end{equation}
 $$
 where
-* $d^\pi(s)$ defines the (discounted[^1]) probability of being in state $s$ when following policy $pi$,
+* $d^\pi(s)$ defines the (discounted[^1]) probability of being in state $s$ when following policy $\pi$,
 * $\pi(a | s)$ defines the probability of selecting action $a$ from state $s$ when following policy $\pi$,
 * $Q^\pi(s, a)$ is our usual Q-function defining the expected future return when taking action $a$ from state $s$ and then following policy $\pi$ for all subsequent time steps.
 
