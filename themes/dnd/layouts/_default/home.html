@@ -17,7 +17,7 @@
     {{ .Content }}
     <h2>Recent posts</h2>
     {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
-      <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+      <h3><a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
       {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
     {{ end }}
   </div>

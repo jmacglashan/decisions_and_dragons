@@ -96,6 +96,10 @@ hr {
   font-size: small;
 }
 
+.post_link {
+  color: rgb(238, 206, 145);
+}
+
 
 .logo_link {
   font-size: 160%;
