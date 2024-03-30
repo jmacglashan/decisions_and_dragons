@@ -16,9 +16,11 @@ J(\pi) = \sum_s d^\pi(s) \sum_a \pi(a | s) Q^\pi(s, a)
 \end{equation}
 $$
 where
-* $d^\pi(s)$ defines the (discounted) probability of being in state $s$ when following policy $pi$,
+* $d^\pi(s)$ defines the (discounted[^1]) probability of being in state $s$ when following policy $pi$,
 * $\pi(a | s)$ defines the probability of selecting action $a$ from state $s$ when following policy $\pi$,
-* $Q^\pi(s, a)$ is our usual Q-function defining the expected future return when taking action $a$ from state $s$ and then following policy $pi$ for all subsequent time steps.
+* $Q^\pi(s, a)$ is our usual Q-function defining the expected future return when taking action $a$ from state $s$ and then following policy $\pi$ for all subsequent time steps.
+
+[^1]: When solving discounted future reward problems -- the most common case in RL -- the state distribution is a little funny. In this case, it's *not* just the probability (density) of being in a state. It's the *discounted* probability. Without going into too much detail, this discounts the probability by how long it takes to reach a state and averages over all the different lengths of time it could take. One way to think about discounted probability is by noting an equivalence between solving a discounted MDP and solving a modified undiscounted MDP where there is a probability of $1 - \gamma$ of transitioning to an absorbing state at any time. In practice, algorithms often ignore this fact, but to be mathematically precise, the policy gradient for discounted MDPs use discounted state probability distributions. A more complete discussion of this topic is left for another time.
 
 This math might feel a bit scary, but in words, the objective is the average Q-value (across all states action) when following your policy. Adjusting your policy to maximize this objective means the average Q-value goes up, which in turn means the averaged expected future return is higher, which is of course the objective of RL!
 

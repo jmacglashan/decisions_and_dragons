@@ -74,9 +74,9 @@ J(\pi) = \sum_s d^\pi(s) \sum_a \pi(a | s) Q^\pi(s, a)
 $$
 where</p>
 <ul>
-<li>$d^\pi(s)$ defines the (discounted) probability of being in state $s$ when following policy $pi$,</li>
+<li>$d^\pi(s)$ defines the (discounted<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>) probability of being in state $s$ when following policy $pi$,</li>
 <li>$\pi(a | s)$ defines the probability of selecting action $a$ from state $s$ when following policy $\pi$,</li>
-<li>$Q^\pi(s, a)$ is our usual Q-function defining the expected future return when taking action $a$ from state $s$ and then following policy $pi$ for all subsequent time steps.</li>
+<li>$Q^\pi(s, a)$ is our usual Q-function defining the expected future return when taking action $a$ from state $s$ and then following policy $\pi$ for all subsequent time steps.</li>
 </ul>
 <p>This math might feel a bit scary, but in words, the objective is the average Q-value (across all states action) when following your policy. Adjusting your policy to maximize this objective means the average Q-value goes up, which in turn means the averaged expected future return is higher, which is of course the objective of RL!</p>
 <p>The quesiton is <em>how</em> do we optimize this objective? If we are defining our policy with a neural net or some other differentiable function approximation, we can compute gradients of the objective with respect to the policy neural net parameters $\theta$ and use something like stochastic gradient descent (SGD) to improve the policy. (Note: to use gradient <em>descent</em> we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient <em>ascent</em>.)</p>
@@ -130,6 +130,14 @@ E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\the
 $$
 In addition to simplifying the expression, using the log probabiltiy is usually preferable because it tends to be more numerically
 stable for floating-point math on computers, so it&rsquo;s what we almost always use.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>When solving discounted future reward problems &ndash; the most common case in RL &ndash; the state distribution is a little funny. In this case, it&rsquo;s <em>not</em> just the probability (density) of being in a state. It&rsquo;s the <em>discounted</em> probability. Without going into too much detail, this discounts the probability by how long it takes to reach a state and averages over all the different lengths of time it could take. One way to think about discounted probability is by noting an equivalence between solving a discounted MDP and solving a modified undiscounted MDP where there is a probability of $1 - \gamma$ of transitioning to an absorbing state at any time. In practice, algorithms often ignore this fact, but to be mathematically precise, the policy gradient for discounted MDPs use discounted state probability distributions. A more complete discussion of this topic is left for another time.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
       
     </div>
