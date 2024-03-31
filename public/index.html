@@ -53,10 +53,9 @@ window.addEventListener("hashchange", function () {
         
       </ul>
     </div>
-    <p>This site is a collection of various answers I&rsquo;ve given to question about
-reinforcement learning over the years from various social media sites.
-It also includes an occasional unsolicited elaboration
-on a topic and opinion pieces of the state of AI in general.</p>
+    <p>This site is a collection of answers to question about
+reinforcement learning that I&rsquo;ve given over the years on various social media sites.
+It also includes occasional opinion pieces of AI in general.</p>
 <p>You can learn more about
 me and why I created this site in the <a href="/about/">about section</a>. You can find
 a list of all posts in the <a href="/posts/">posts section</a>.</p>
@@ -64,15 +63,13 @@ a list of all posts in the <a href="/posts/">posts section</a>.</p>
     <h2>Recent posts</h2>
     
       <h3><a class="post_link" href="/posts/q_vs_v/">What is the difference between V(s) and Q(s,a)?</a></h3>
-      State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.
-A more precise definition Before making that more precise, let&rsquo;s first add a point of clarity. Value functions (either V or Q) are always with respect to some policy $\pi$. <a href="/posts/q_vs_v/">[See more]</a>
+      <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p> <a href="/posts/q_vs_v/">[See more]</a>
     
       <h3><a class="post_link" href="/posts/why_does_the_policy_gradient_include_log_prob/">Why does the policy gradient include a log probobability term?</a></h3>
-      Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the REINFORCE esitmate of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and why we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!
-The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. <a href="/posts/why_does_the_policy_gradient_include_log_prob/">[See more]</a>
+      <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p> <a href="/posts/why_does_the_policy_gradient_include_log_prob/">[See more]</a>
     
       <h3><a class="post_link" href="/posts/model_free_vs_model_based/">What is the difference between model-based and model-free RL?</a></h3>
-      In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions. <a href="/posts/model_free_vs_model_based/">[See more]</a>
+      <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p> <a href="/posts/model_free_vs_model_based/">[See more]</a>
     
   </div>
 

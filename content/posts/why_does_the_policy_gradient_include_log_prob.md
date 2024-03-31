@@ -4,7 +4,7 @@ date = 2024-03-29T20:07:54-04:00
 draft = true
 +++
 
-Actually, it doesn't! What you're probably thinking of is the [REINFORCE](https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf) *esitmate* of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you're familiar with and *why* we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!
+Actually, it doesn't! What you're probably thinking of is the [REINFORCE](https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf) *esitmate* of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you're familiar with and *why* we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!<!--more-->
 
 The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. We use this trick because we'd like to use the samples the agent takes from each state to estimate the gradient, but computing regular gradient without REINFORCE would require us to observe the outcome of each aciton in each state, including the ones we didn't take. A lot of that might not make much sense yet. Let's remedy that.
 

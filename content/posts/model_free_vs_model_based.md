@@ -4,7 +4,7 @@ date = 2024-03-29T19:50:17-04:00
 draft = false
 +++
 
-In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions. 
+In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions. <!--more-->
 
 To understand these two paradigms more completely, it is helpful to revisit the definition of an MDP, how to solve it, and how RL specifically makes this problem harder.
 

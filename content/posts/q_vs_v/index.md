@@ -4,6 +4,7 @@ date = 2024-03-30T23:24:52-04:00
 draft = false
 +++
 State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.
+<!--more-->
 
 ## A more precise definition
 Before making that more precise, let's first add a point of clarity. Value functions (either V or Q) are always with respect to some policy $\pi$.
