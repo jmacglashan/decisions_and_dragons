@@ -210,3 +210,15 @@ a {
   color: rgb(238, 206, 145);
   text-decoration: none;
 }
+
+.center {
+  text-align: center;
+}
+
+figure {
+  text-align: center;
+}
+
+figcaption {
+  font-size: small;
+}

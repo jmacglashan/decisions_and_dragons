@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>What is the difference between V(s) and Q(s,a)? | Decisions &amp; Dragons</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']] , 
+      tags: 'ams'
+    }
+  };
+</script>
+  
+  <script>
+window.addEventListener("hashchange", function () {
+    window.scrollTo(window.scrollX, window.scrollY - 70);
+});
+</script>
+</head>
+<body>
+    
+<div id="small_splash">
+    <span><a class="logo_link" href="/">Decisions &amp; Dragons</a></span>
+    <span class="nav">
+         
+            <a href=" /">Home</a>
+         
+            <a href=" /about/">About</a>
+         
+            <a href=" /posts/">All posts</a>
+         
+            <a href=" https://twitter.com/jmac_ai">Twitter</a>
+        
+    </span>
+  </div>
+
+    
+    <div id="toc">
+      <span style="text-align: center;"><h4>Table of Contents</h4></span>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-more-precise-definition">A more precise definition</a></li>
+    <li><a href="#an-example">An example</a></li>
+    <li><a href="#why-q-is-useful">Why Q is useful</a></li>
+  </ul>
+</nav>
+    </div>
+    <div id="content_with_toc">
+      <h1>What is the difference between V(s) and Q(s,a)?</h1>
+
+      <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p>
+<h2 id="a-more-precise-definition">A more precise definition</h2>
+<p>Before making that more precise, let&rsquo;s first add a point of clarity. Value functions (either V or Q) are always with respect to some policy $\pi$.
+To emphasize this fact, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
+In the case when we’re talking about the value functions for the optimal policy $\pi^*$, we often use the shorthand $V^*(s)$ and $Q^*(s, a)$. Sometimes in literature we leave off the $\pi$ or $*$ and just refer to $V$ and $Q$, because it’s implicit in the context. Regardless, every value function is always with respect to some policy.</p>
+<p>With that in mind, let&rsquo;s give the more prescie definitions.</p>
+<ul>
+<li>$V^\pi(s)$ expresses the expected value of the (discounted) future return when following policy $\pi$ forever from state $s$.</li>
+<li>$Q^\pi(s, a)$ expresses the expected value of the (discounted) future return when first taking action $a$ from state $s$ and then following policy $\pi$ forever after that first step.</li>
+</ul>
+<p>The main difference is the Q-value lets you play a hypothetical of potentially taking a different action in the first time step than what the policy might prescribe and then following the policy from the state the agent winds up in.</p>
+<h2 id="an-example">An example</h2>
+<p>To illustrate this difference, consider the below three-state MDP where the agent can go left or right, receives -1 reward until it reaches the terminating goal on the right. The straight blue arrows indicate the optimal policy always going to the right.</p>
+<figure><img src="/posts/q_vs_v/3state.png"><figcaption>
+      <h4>A Three-state MDP to illustrate the difference between Q and V</h4>
+    </figcaption>
+</figure>
+
+<p>The value for the value function of the policy for any of the states can be easily determined by counting the number of blue arrows until the goal is reached. E.g., $V^\pi(B) = -1\ $ because it is just one step away from the goal. However, the Q-value at $Q^\pi(B, \mathrm{left}) = -3\ $ because first the agent will go left (following the off-policy orange arc) to state $A$, and then after that step it will follow the blue arcs of our policy back to state $B$ and then to final state $C$, resulting in a total of 3 steps.</p>
+<h2 id="why-q-is-useful">Why Q is useful</h2>
+<p>The above example illustrates the difference between Q and V, but in that example knowing the Q-value for a bad action wasn&rsquo;t especially useful and you may be wondering why we care about it. The reason, of course, is that when the agent starts learning, it will not know the optimal policy, and some of those counterfactual off-policy action will have higher Q-values then the value of the current suboptimal policy. When that is the case, knowing which actions have higher Q-values let&rsquo;s you identify how you can improve you policy.</p>
+
+      
+    </div>
+
+  <footer>
+    <div style="text-align: center;">
+
+</div>
+  </footer>
+</body>
+</html>
