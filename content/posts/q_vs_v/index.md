@@ -25,4 +25,12 @@ To illustrate this difference, consider the below three-state MDP where the agen
 The value for the value function of the policy for any of the states can be easily determined by counting the number of blue arrows until the goal is reached. E.g., $V^\pi(B) = -1\ $ because it is just one step away from the goal. However, the Q-value at $Q^\pi(B, \mathrm{left}) = -3\ $ because first the agent will go left (following the off-policy orange arc) to state $A$, and then after that step it will follow the blue arcs of our policy back to state $B$ and then to final state $C$, resulting in a total of 3 steps.
 
 ## Why Q is useful
-The above example illustrates the difference between Q and V, but in that example knowing the Q-value for a bad action wasn't especially useful and you may be wondering why we care about it. The reason, of course, is that when the agent starts learning, it will not know the optimal policy, and some of those counterfactual off-policy action will have higher Q-values then the value of the current suboptimal policy. When that is the case, knowing which actions have higher Q-values let's you identify how you can improve you policy.
+The above example illustrates the difference between Q and V, but in that example, knowing the Q-value for a bad action wasn't especially useful and you may be wondering why we care about it. The reason, of course, is that when the agent starts learning, it will not know the optimal policy. When the policy is suboptimal some of those counterfactual off-policy action will have higher Q-values then the state value of the suboptimal policy. When that is the case, knowing which actions have higher Q-values let's you identify how you can improve you policy.
+
+To illustrate that, let's have a slightly more complex MDP with a suboptimal policy shown below.
+
+{{< figure src="6state.png" title="A six-state MDP to illustrate how the Q-function can be used to improve the policy." >}}
+
+In this case, the policy is near optimal except at state A where it goes up to B instead of right to C. Consequently, we have $V(A) = -4\ $. However, the Q-function for counterfactual action "right" shows a better expected return with $Q(A, \mathrm{right}) = -2\ $. This differences indicates that we can improve our policy by setting $\pi(A) = \mathrm{right}$.
+
+There are of course other ways to improve your policy without learning a Q-function, but it s a common a good way to do it!
