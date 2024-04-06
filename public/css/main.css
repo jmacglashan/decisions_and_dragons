@@ -151,6 +151,7 @@ hr {
   user-select: none;
   width: 300px;
   padding-top: 4rem;
+  padding-right: 1em;
   background-color: rgb(33, 30, 25);
 }
 
@@ -205,6 +206,10 @@ a {
   color: rgb(238, 206, 145);
 }
 
+#TableOfContents ul li {
+  padding-top: 10px;
+}
+
 #TableOfContents ul li a {
   font-family: Caudex;
   color: rgb(238, 206, 145);
@@ -221,4 +226,16 @@ figure {
 
 figcaption {
   font-size: small;
+}
+
+blockquote {
+  background-color: rgb(33, 30, 25);
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-width: 0 0 0 10px;
+  border-color: #2e2e2e;
+  border-style: solid;
+  font-size: medium;
 }

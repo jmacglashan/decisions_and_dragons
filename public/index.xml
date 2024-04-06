@@ -6,8 +6,15 @@
     <description>Recent content in Home on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Mar 2024 23:24:52 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2024 23:43:37 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</title>
+      <link>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</link>
+      <pubDate>Tue, 02 Apr 2024 23:43:37 -0400</pubDate>
+      <guid>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</guid>
+      <description>&lt;p&gt;In off-policy learning, we are evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference many actor-critic methods use importance sampling. However, Q-learning, perhaps the most famous off-policy method that evaluates the optimal policy, does not. There is a simple reason for that: In Q-learning, samples are only used to average over the transition dynamics, not the policy. Still confused? Let&amp;rsquo;s make that more concrete with a simple example and derive different ways to solve it.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>What is the difference between V(s) and Q(s,a)?</title>
       <link>http://localhost:1313/posts/q_vs_v/</link>

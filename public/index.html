@@ -62,14 +62,14 @@ a list of all posts in the <a href="/posts/">posts section</a>.</p>
 
     <h2>Recent posts</h2>
     
+      <h3><a class="post_link" href="/posts/q_learning_doesnt_need_importance_sampling/">If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</a></h3>
+      <p>In off-policy learning, we are evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference many actor-critic methods use importance sampling. However, Q-learning, perhaps the most famous off-policy method that evaluates the optimal policy, does not. There is a simple reason for that: In Q-learning, samples are only used to average over the transition dynamics, not the policy. Still confused? Let&rsquo;s make that more concrete with a simple example and derive different ways to solve it.</p> <a href="/posts/q_learning_doesnt_need_importance_sampling/">[See more]</a>
+    
       <h3><a class="post_link" href="/posts/q_vs_v/">What is the difference between V(s) and Q(s,a)?</a></h3>
       <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p> <a href="/posts/q_vs_v/">[See more]</a>
     
       <h3><a class="post_link" href="/posts/why_does_the_policy_gradient_include_log_prob/">Why does the policy gradient include a log probobability term?</a></h3>
       <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p> <a href="/posts/why_does_the_policy_gradient_include_log_prob/">[See more]</a>
-    
-      <h3><a class="post_link" href="/posts/model_free_vs_model_based/">What is the difference between model-based and model-free RL?</a></h3>
-      <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p> <a href="/posts/model_free_vs_model_based/">[See more]</a>
     
   </div>
 
