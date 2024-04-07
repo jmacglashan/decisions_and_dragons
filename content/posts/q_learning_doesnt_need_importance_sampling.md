@@ -11,7 +11,7 @@ Importance sampling is a method for estimating an expected value under one distr
 
 [^1]: Being able to get a better estimate using an alternative distribution turns out to be quite useful for estimating integrals, but that's another topic.
 
-To turn that into a concrete but problem that is more related to reinforcement learning, let's imagine we're looking at two slot machines, which are more typically referred to as "bandits" in RL literature. Each bandit has a different payout rate that we don't know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he's going to play from from the left bandit 10% of the time and the right one 90% of the time. Let's call Alice's 50-50 strategy $\eta$ and Bob's biased strategy $\pi$. We denote their probabilities of picking the left or right as $\eta(l) = \eta(r) = \frac{1}{2}$ and $\pi(l) = \frac{1}{10}, \pi(r) = \frac{9}{10}$, respectively.
+To turn that into a concrete but problem that is more related to reinforcement learning, let's imagine we're looking at two slot machines, which are more typically referred to as "bandits" in RL literature. Each bandit has a different payout rate that we don't know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he's going to play from from the left bandit 10% of the time and the right one 90% of the time. Let's call Alice's 50-50 strategy $\mu$ and Bob's biased strategy $\pi$. We denote their probabilities of picking the left or right as $\mu(l) = \mu(r) = \frac{1}{2}$ and $\pi(l) = \frac{1}{10}, \pi(r) = \frac{9}{10}$, respectively.
 
 Can we use our observations of Alice to predict Bob's average payout? Yes, and there are multiple ways to do this (what a surprise, there are multiple ways to do this in RL too!). 
 
@@ -24,8 +24,6 @@ Q(r) = \frac{1}{N_r} \sum_i^{N_r} r_{ri}.
 \end{align*}
 $$
 where $N_l, N_r$ are the number of times the left and right bandit were played, respectively and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.  
-
-Not sure why I chose the letter $Q$. Just felt right.
 
 After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weight average of those values, where the weights are the probability Bob woud pick each bandit:
 $$
@@ -47,7 +45,7 @@ In RL, and ML more broadly, this style of estimating expected values is often pr
 At this point it should be clear to that if you simplified Q-learning to the bandit setting where there are no states, this iterative approach to estimating separate expected values for each arm/action is what Q-learning would become. And from it, we could compute the expected value for any policy by simply taking the weighted sum of the Q-values for the policy we're evaluating.
 
 ## Importance sampling
-In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify our average over our data with some weights. Spoiler, we correct it by weighting them by $\frac{\pi(i)}{\eta(i)}$ where $i$ is either $l$ or $r$, depending on which bandit arm was pulled.
+In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify our average over our data with some weights. Spoiler, we correct it by weighting them by $\frac{\pi(i)}{\mu(i)}$ where $i$ is either $l$ or $r$, depending on which bandit arm was pulled.
 
 To show how we determine those weights let's start with how we would exactly compute Bob's expected payout. We'd ideally compute
 $$
@@ -62,17 +60,17 @@ If we were directly observing Bob play, this wouldn't be so bad. We would estima
 But now comes the counter-intuitie importance sampling trick. Let's modify that expression without changing its value and then do some algebra:
 $$
 \begin{align*}
-\sum_{i \in \\{l, r\\}} \pi(i) \sum_{r\in R} p_i(r) r &= \sum_{i \in \\{l, r\\}} \frac{\eta(i)}{\eta(i)} \pi(i) \sum_{r\in R} p_i(r) r \\\
-&= \sum_{i \in \\{l, r\\}} \eta(i) \frac{\pi(i)}{\eta(i)} \sum_{r\in R} p_i(r) r \\\
-&= \sum_{i \in \\{l, r\\}} \eta(i) \sum_{r\in R} p_i(r) \frac{\pi(i)}{\eta(i)} r \\\ 
-&= E_{i \sim \eta} \left [ \sum_{r\in R} p_i(r) \frac{\pi(i)}{\eta(i)} r \right] \\\
-&= E_{i \sim \eta} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\eta(i)} r \right] \right] \\\
+\sum_{i \in \\{l, r\\}} \pi(i) \sum_{r\in R} p_i(r) r &= \sum_{i \in \\{l, r\\}} \frac{\mu(i)}{\mu(i)} \pi(i) \sum_{r\in R} p_i(r) r \\\
+&= \sum_{i \in \\{l, r\\}} \mu(i) \frac{\pi(i)}{\mu(i)} \sum_{r\in R} p_i(r) r \\\
+&= \sum_{i \in \\{l, r\\}} \mu(i) \sum_{r\in R} p_i(r) \frac{\pi(i)}{\mu(i)} r \\\ 
+&= E_{i \sim \mu} \left [ \sum_{r\in R} p_i(r) \frac{\pi(i)}{\mu(i)} r \right] \\\
+&= E_{i \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\mu(i)} r \right] \right] \\\
 \end{align*}
 $$
-Ahah! Now we turned our expected value from being of Bob's distribution $\pi$ into an expected value of Alice's distribution $\eta$! We just had to weight our payout values $r$ by $\frac{\pi(i)}{\eta(i)}$. Now we're back to a expected values of a joint distribution and we can approximate it with samples:
+Ahah! Now we turned our expected value from being of Bob's distribution $\pi$ into an expected value of Alice's distribution $\mu$! We just had to weight our payout values $r$ by $\frac{\pi(i)}{\mu(i)}$. Now we're back to a expected values of a joint distribution and we can approximate it with samples:
 $$
-E_{i \sim \eta} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\eta(i)} r \right] \right] 
-    \approx \frac{1}{N} \sum_i^N \frac{\pi(a_i)}{\eta(a_i)} r_i 
+E_{i \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\mu(i)} r \right] \right] 
+    \approx \frac{1}{N} \sum_i^N \frac{\pi(a_i)}{\mu(a_i)} r_i 
 $$
 where $N$ is the total number of arm pulls Alice made between both bandits, $a_i$ indicates the bandit arm she pulled on the $ith$ try (either the left or right one), and $r_i$ is the payout she received.
 
@@ -103,7 +101,7 @@ With that in mind, it follows that we can simplify the more general expression $
 
 Now we see that our recursive definition of the Q-funciton includes an expectation over the policy we're evaluating and it's estimating it using the weighted average of the Q-function that we've become familiar with.
 
-## Q-learing: importance sampling free
+## Q-learning: importance sampling free
 Things should be getting clearer, but a recursive definition is not an algorithm and you might wonder if something is going to trip us up as move to algorithms for estimating Q. It won't, but let's be sure of that.
 
 The recursive definition of the Q-function is neat on its own, but there is a really cool property that if you replace $Q^\*(s, a)$ with estimates and iteratively update the estimates using the recursive relationship, the values will converge to $Q^\*$! That is, using the update rule
