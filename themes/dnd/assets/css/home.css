@@ -1,0 +1,50 @@
+/* CSS specific to the home page styling */
+
+#splash {
+    text-align: center;
+    background: var(--banner-grad);
+    padding: 20px;
+    color: var(--accent-col);
+    font-family: var(--dd-serif-font);
+}
+
+#splash h1 {
+    font-size: 250%;
+    font-family: var(--logo-font);
+}
+
+#content_center {
+    max-width: 800px;
+    background-color: var(--bg-main);
+    margin:auto;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 2em;
+    padding-bottom: 4em;
+    line-height: 1.6;
+  }
+
+  #home_nav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #home_nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--dd-serif-font);
+  }
+  
+  #home_nav ul li {
+    float: left;
+  }
+  
+  #home_nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    color: var(--accent-col);
+  }

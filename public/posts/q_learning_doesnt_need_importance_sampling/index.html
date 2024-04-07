@@ -7,6 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/page_without_toc.css">
+    <link rel="stylesheet" href="/css/page_with_toc.css">
+    <link rel="stylesheet" href="/css/content_structure.css">
+    <link rel="stylesheet" href="/css/mdx.css">
 
 
       <script src="/js/main.js"></script>
@@ -60,7 +66,7 @@ window.addEventListener("hashchange", function () {
     </li>
     <li><a href="#importance-sampling">Importance sampling</a></li>
     <li><a href="#generalizing-to-mdps">Generalizing to MDPs</a></li>
-    <li><a href="#q-learing-importance-sampling-free">Q-learing: importance sampling free</a></li>
+    <li><a href="#q-learning-importance-sampling-free">Q-learning: importance sampling free</a></li>
     <li><a href="#why-off-policy-actor-critic-methods-use-importance-sampling">Why off-policy actor critic methods use importance sampling</a></li>
     <li><a href="#why-wouldnt-we-always-learn-q-values">Why wouldn&rsquo;t we always learn Q-values?</a></li>
   </ul>
@@ -72,7 +78,7 @@ window.addEventListener("hashchange", function () {
       <p>In off-policy learning, we are evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference many actor-critic methods use importance sampling. However, Q-learning, perhaps the most famous off-policy method that evaluates the optimal policy, does not. There is a simple reason for that: In Q-learning, samples are only used to average over the transition dynamics, not the policy. Still confused? Let&rsquo;s make that more concrete with a simple example and derive different ways to solve it.</p>
 <h2 id="backseat-gambling">Backseat gambling</h2>
 <p>Importance sampling is a method for estimating an expected value under one distribution using samples drawn from a different distribution. Classically, importance sampling was used deliberately because it turns out you can get a better estimate of an expected value using a different distribution than the one you care about<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. However, the main thing we&rsquo;re interesting in is that it let&rsquo;s you make estimates of expected values of one distribution with samples from another.</p>
-<p>To turn that into a concrete but problem that is more related to reinforcement learning, let&rsquo;s imagine we&rsquo;re looking at two slot machines, which are more typically referred to as &ldquo;bandits&rdquo; in RL literature. Each bandit has a different payout rate that we don&rsquo;t know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he&rsquo;s going to play from from the left bandit 10% of the time and the right one 90% of the time. Let&rsquo;s call Alice&rsquo;s 50-50 strategy $\eta$ and Bob&rsquo;s biased strategy $\pi$. We denote their probabilities of picking the left or right as $\eta(l) = \eta(r) = \frac{1}{2}$ and $\pi(l) = \frac{1}{10}, \pi(r) = \frac{9}{10}$, respectively.</p>
+<p>To turn that into a concrete but problem that is more related to reinforcement learning, let&rsquo;s imagine we&rsquo;re looking at two slot machines, which are more typically referred to as &ldquo;bandits&rdquo; in RL literature. Each bandit has a different payout rate that we don&rsquo;t know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he&rsquo;s going to play from from the left bandit 10% of the time and the right one 90% of the time. Let&rsquo;s call Alice&rsquo;s 50-50 strategy $\mu$ and Bob&rsquo;s biased strategy $\pi$. We denote their probabilities of picking the left or right as $\mu(l) = \mu(r) = \frac{1}{2}$ and $\pi(l) = \frac{1}{10}, \pi(r) = \frac{9}{10}$, respectively.</p>
 <p>Can we use our observations of Alice to predict Bob&rsquo;s average payout? Yes, and there are multiple ways to do this (what a surprise, there are multiple ways to do this in RL too!).</p>
 <h2 id="separate-averages">Separate averages</h2>
 <p>The first way that you probably are thinking of solving this question is to compute the averge payout Alice receives on the left bandit and separately compute average payout Alice receives on the right. Let&rsquo;s denote these averages by
@@ -83,7 +89,6 @@ Q(r) = \frac{1}{N_r} \sum_i^{N_r} r_{ri}.
 \end{align*}
 $$
 where $N_l, N_r$ are the number of times the left and right bandit were played, respectively and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.</p>
-<p>Not sure why I chose the letter $Q$. Just felt right.</p>
 <p>After computing our averages, we can estimate<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> Bob&rsquo;s expected payout by just taking a weight average of those values, where the weights are the probability Bob woud pick each bandit:
 $$
 E_{\pi}\left[R \right] \approx \pi(l) Q(l) + \pi(r) Q(r)
@@ -98,7 +103,7 @@ where $r_t$ is the payout we observe at step $t$ and $\alpha_t \in (0, 1)$ is ou
 <p>In RL, and ML more broadly, this style of estimating expected values is often preferred because it works more clearly with function approximation and has some other nice properties like being smoother change to early on and allowing you to choose close values to initialize to if you have some background knowledge of the range of values.</p>
 <p>At this point it should be clear to that if you simplified Q-learning to the bandit setting where there are no states, this iterative approach to estimating separate expected values for each arm/action is what Q-learning would become. And from it, we could compute the expected value for any policy by simply taking the weighted sum of the Q-values for the policy we&rsquo;re evaluating.</p>
 <h2 id="importance-sampling">Importance sampling</h2>
-<p>In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify our average over our data with some weights. Spoiler, we correct it by weighting them by $\frac{\pi(i)}{\eta(i)}$ where $i$ is either $l$ or $r$, depending on which bandit arm was pulled.</p>
+<p>In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify our average over our data with some weights. Spoiler, we correct it by weighting them by $\frac{\pi(i)}{\mu(i)}$ where $i$ is either $l$ or $r$, depending on which bandit arm was pulled.</p>
 <p>To show how we determine those weights let&rsquo;s start with how we would exactly compute Bob&rsquo;s expected payout. We&rsquo;d ideally compute
 $$
 E_{\pi} \left[ R \right] = \sum_{i \in \{l, r\}} \pi(i) \sum_{r\in R} p_i(r) r,
@@ -108,17 +113,17 @@ where $\pi_i(r)$ is the probability bandit $i$ will payout $r$.<sup id="fnref:3"
 <p>But now comes the counter-intuitie importance sampling trick. Let&rsquo;s modify that expression without changing its value and then do some algebra:
 $$
 \begin{align*}
-\sum_{i \in \{l, r\}} \pi(i) \sum_{r\in R} p_i(r) r &amp;= \sum_{i \in \{l, r\}} \frac{\eta(i)}{\eta(i)} \pi(i) \sum_{r\in R} p_i(r) r \\
-&amp;= \sum_{i \in \{l, r\}} \eta(i) \frac{\pi(i)}{\eta(i)} \sum_{r\in R} p_i(r) r \\
-&amp;= \sum_{i \in \{l, r\}} \eta(i) \sum_{r\in R} p_i(r) \frac{\pi(i)}{\eta(i)} r \\
-&amp;= E_{i \sim \eta} \left [ \sum_{r\in R} p_i(r) \frac{\pi(i)}{\eta(i)} r \right] \\
-&amp;= E_{i \sim \eta} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\eta(i)} r \right] \right] \\
+\sum_{i \in \{l, r\}} \pi(i) \sum_{r\in R} p_i(r) r &amp;= \sum_{i \in \{l, r\}} \frac{\mu(i)}{\mu(i)} \pi(i) \sum_{r\in R} p_i(r) r \\
+&amp;= \sum_{i \in \{l, r\}} \mu(i) \frac{\pi(i)}{\mu(i)} \sum_{r\in R} p_i(r) r \\
+&amp;= \sum_{i \in \{l, r\}} \mu(i) \sum_{r\in R} p_i(r) \frac{\pi(i)}{\mu(i)} r \\
+&amp;= E_{i \sim \mu} \left [ \sum_{r\in R} p_i(r) \frac{\pi(i)}{\mu(i)} r \right] \\
+&amp;= E_{i \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\mu(i)} r \right] \right] \\
 \end{align*}
 $$
-Ahah! Now we turned our expected value from being of Bob&rsquo;s distribution $\pi$ into an expected value of Alice&rsquo;s distribution $\eta$! We just had to weight our payout values $r$ by $\frac{\pi(i)}{\eta(i)}$. Now we&rsquo;re back to a expected values of a joint distribution and we can approximate it with samples:
+Ahah! Now we turned our expected value from being of Bob&rsquo;s distribution $\pi$ into an expected value of Alice&rsquo;s distribution $\mu$! We just had to weight our payout values $r$ by $\frac{\pi(i)}{\mu(i)}$. Now we&rsquo;re back to a expected values of a joint distribution and we can approximate it with samples:
 $$
-E_{i \sim \eta} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\eta(i)} r \right] \right]
-\approx \frac{1}{N} \sum_i^N \frac{\pi(a_i)}{\eta(a_i)} r_i
+E_{i \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(i)}{\mu(i)} r \right] \right]
+\approx \frac{1}{N} \sum_i^N \frac{\pi(a_i)}{\mu(a_i)} r_i
 $$
 where $N$ is the total number of arm pulls Alice made between both bandits, $a_i$ indicates the bandit arm she pulled on the $ith$ try (either the left or right one), and $r_i$ is the payout she received.</p>
 <p>Armed with this expression, we can approximate Bob&rsquo;s expected payout using our observations of Alice playing.</p>
@@ -143,7 +148,7 @@ $$
 $$
 With that in mind, it follows that we can simplify the more general expression $\sum_{a&rsquo;} \pi^*(a&rsquo; | s&rsquo;) Q^*(s&rsquo;, a&rsquo;)$ to $\max_{a&rsquo;} Q^*(s&rsquo;, a&rsquo;)$.</p>
 <p>Now we see that our recursive definition of the Q-funciton includes an expectation over the policy we&rsquo;re evaluating and it&rsquo;s estimating it using the weighted average of the Q-function that we&rsquo;ve become familiar with.</p>
-<h2 id="q-learing-importance-sampling-free">Q-learing: importance sampling free</h2>
+<h2 id="q-learning-importance-sampling-free">Q-learning: importance sampling free</h2>
 <p>Things should be getting clearer, but a recursive definition is not an algorithm and you might wonder if something is going to trip us up as move to algorithms for estimating Q. It won&rsquo;t, but let&rsquo;s be sure of that.</p>
 <p>The recursive definition of the Q-function is neat on its own, but there is a really cool property that if you replace $Q^*(s, a)$ with estimates and iteratively update the estimates using the recursive relationship, the values will converge to $Q^*$! That is, using the update rule
 $$

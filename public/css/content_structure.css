@@ -1,0 +1,33 @@
+/* CSS that is common between content (non-home) pages */
+
+#small_splash {
+    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    color: var(--accent-col);
+    background: var(--banner-grad);
+    font-family: var(--dd-serif-font);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo_link {
+    font-size: 160%;
+    margin-right: 1em;
+    -webkit-text-stroke: 0.5px black;
+    font-family: var(--logo-font);
+    color: var(--accent-col);
+  }
+  
+  .nav {
+    height: 100%;
+    vertical-align: center;
+    position:relative;
+    top:-2px;
+  }
+  
+  .nav a {
+    color: var(--accent-col);
+    margin-right: 1em;
+  }

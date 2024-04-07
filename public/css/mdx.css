@@ -1,0 +1,42 @@
+/* CSS for the kinds of elements that will be generated from MDX. 
+This includes styling for short-code generated MDX content that isn't part of the usual Markdown spec like figures.
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-col);
+    font-family: var(--dd-serif-font);
+}
+  
+hr {
+    width: 100%;
+    border-color: var(--accent-col);
+    margin-top: 4rem;
+}
+  
+.footnotes {
+    font-size: small;
+}
+  
+figure {
+    text-align: center;
+}
+  
+figcaption {
+    font-size: small;
+}
+
+.center {
+    text-align: center;
+}
+  
+blockquote {
+    background-color: var(--bg-dark);
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-width: 0 0 0 10px;
+    border-color: #2e2e2e;
+    border-style: solid;
+    font-size: medium;
+}

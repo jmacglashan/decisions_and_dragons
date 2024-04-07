@@ -1,0 +1,40 @@
+/* CSS for content page structure that includes a table of contents */
+
+#content_with_toc {
+    max-width: 800px;
+    margin-left: 300px;
+    padding-left: 6em;
+    padding-right: 6em;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    line-height: 1.6;
+}
+  
+#toc {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    margin: 0;
+    overflow-y: auto;
+    user-select: none;
+    width: 300px;
+    padding-top: 4rem;
+    padding-right: 1em;
+    background-color: var(--bg-dark);
+}
+
+#TableOfContents ul {
+    font-family: var(--dd-serif-font);
+    list-style-type:disc;
+    color: var(--accent-col);
+}
+  
+#TableOfContents ul li {
+    padding-top: 10px;
+}
+  
+#TableOfContents ul li a {
+    font-family: var(--dd-serif-font);
+    color: var(--accent-col);
+    text-decoration: none;
+}

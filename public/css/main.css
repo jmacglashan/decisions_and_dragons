@@ -1,46 +1,17 @@
-/* alt text for title Decisions γ Dragons */
+/* File for top-level html and reused variables */
 
-@font-face {
-  font-family: libertinus;
-  src: url(/fonts/LibertinusSerif-Regular.otf);
+:root {
+  --logo-font: CinzelDecorative;
+  --dd-serif-font: Caudex;
+  --dd-sans-font: Lato;
+  --bg-main: rgb(46, 37, 30);
+  --bg-dark: rgb(33, 30, 25);
+  --banner-grad: linear-gradient(180deg, rgba(119,43,43,1) 0%, rgba(109,33,33,1) 39%, rgba(89,13,13,1) 100%);
+  --accent-col: rgb(238, 206, 145);
+  --seondary-accent-col: rgb(33, 152, 212);
+  --foreground-color: #dddddd;
 }
 
-
-@font-face {
-  font-family: EBGaramond;
-  src: url(/fonts/EBGaramond-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: Vollkorn;
-  src: url(/fonts/Vollkorn-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: Caudex;
-  src: url(/fonts/Caudex-Regular.ttf);
-}
-
-@font-face {
-  font-family: Cardo;
-  src: url(/fonts/Cardo-Regular.ttf);
-}
-
-@font-face {
-  font-family: CinzelDecorative;
-  src: url(/fonts/CinzelDecorative-Regular.ttf);
-}
-
-@font-face {
-  font-family: Lato;
-  src: url(/fonts/Lato-Regular.ttf);
-}
-
-@font-face {
-  font-family: Lato;
-  src: url(/fonts/Lato-Bold.ttf);
-  font-weight: bold;
-}
 
 html body {
   height: 100%;
@@ -48,194 +19,17 @@ html body {
 
 body {
   margin: 0;
-  background-color: rgb(46, 37, 30);
-  color: #dddddd;
+  background-color: var(--bg-main);
+  color: var(--foreground-color);
   font-size: larger;
   font-family: Lato;
 }
 
-#splash {
-  text-align: center;
-  background-color: rgb(119, 43, 43);
-  background: linear-gradient(180deg, rgba(119,43,43,1) 0%, rgba(109,33,33,1) 39%, rgba(89,13,13,1) 100%);
-  padding: 20px;
-  color: rgb(238, 206, 145);
-  font-family: Caudex;
-}
-
-#small_splash {
-  background-color: rgb(119, 43, 43);
-  padding-left: 1em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  color: rgb(238, 206, 145);
-  background: linear-gradient(180deg, rgba(119,43,43,1) 0%, rgba(109,33,33,1) 39%, rgba(89,13,13,1) 100%);
-  font-family: Caudex;
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-}
-
-#splash h1 {
-  font-size: 250%;
-  font-family: CinzelDecorative, Caudex;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: rgb(238, 206, 145);
-  font-family: Caudex;
-}
-
-hr {
-  width: 100%;
-  border-color: rgb(238, 206, 145);
-  margin-top: 4rem;
-}
-
-.footnotes {
-  font-size: small;
-}
-
-.post_link {
-  color: rgb(238, 206, 145);
-}
-
-
-.logo_link {
-  font-size: 160%;
-  margin-right: 1em;
-  -webkit-text-stroke: 0.5px black;
-  font-family: CinzelDecorative;
-  color: rgb(238, 206, 145);
-}
-
-#content_center {
-  max-width: 800px;
-  background-color: rgb(46, 37, 30);
-  margin:auto;
-  padding-left: 5em;
-  padding-right: 5em;
-  padding-top: 2em;
-  padding-bottom: 4em;
-  line-height: 1.6;
-}
-
-#content_no_toc {
-  max-width: 800px;
-  background-color: rgb(46, 37, 30);
-  margin:auto;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: 6rem;
-  padding-bottom: 4em;
-  line-height: 1.6;
-}
-
-#content_with_toc {
-  max-width: 800px;
-  margin-left: 300px;
-  padding-left: 6em;
-  padding-right: 6em;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  line-height: 1.6;
-}
-
-
-#toc {
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  margin: 0;
-  overflow-y: auto;
-  user-select: none;
-  width: 300px;
-  padding-top: 4rem;
-  padding-right: 1em;
-  background-color: rgb(33, 30, 25);
-}
-
-
-
-
 a {
-  color: rgb(33, 152, 212);
+  color: var(--seondary-accent-col);
   text-decoration: none;
 } 
 
-#home_nav {
-  display: flex;
-  justify-content: center;
-}
-
-#home_nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: Caudex;
-}
-
-#home_nav ul li {
-  float: left;
-}
-
-#home_nav ul li a {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
-  color: rgb(238, 206, 145);
-}
-
-.nav {
-  height: 100%;
-  vertical-align: center;
-  position:relative;
-  top:-2px;
-}
-
-.nav a {
-  color: rgb(238, 206, 145);
-  margin-right: 1em;
-}
-
-#TableOfContents ul {
-  font-family: Caudex;
-  list-style-type:disc;
-  color: rgb(238, 206, 145);
-}
-
-#TableOfContents ul li {
-  padding-top: 10px;
-}
-
-#TableOfContents ul li a {
-  font-family: Caudex;
-  color: rgb(238, 206, 145);
-  text-decoration: none;
-}
-
-.center {
-  text-align: center;
-}
-
-figure {
-  text-align: center;
-}
-
-figcaption {
-  font-size: small;
-}
-
-blockquote {
-  background-color: rgb(33, 30, 25);
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  border-width: 0 0 0 10px;
-  border-color: #2e2e2e;
-  border-style: solid;
-  font-size: medium;
+.post_link {
+  color: var(--accent-col);
 }
