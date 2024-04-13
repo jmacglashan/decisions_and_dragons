@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-col);
     font-family: var(--dd-serif-font);
 }
+
+h4, h5, h6 {
+    display: inline;
+}
   
 hr {
     width: 100%;
@@ -39,4 +43,17 @@ blockquote {
     border-color: #2e2e2e;
     border-style: solid;
     font-size: medium;
+}
+
+.highlight {
+    align-content: center;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+pre {
+    width: 85%;
+    padding: 1em;
+    display: inline-block;
 }

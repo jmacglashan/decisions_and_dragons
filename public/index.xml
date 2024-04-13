@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</link>
       <pubDate>Tue, 02 Apr 2024 23:43:37 -0400</pubDate>
       <guid>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</guid>
-      <description>&lt;p&gt;In off-policy learning, we are evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference many actor-critic methods use importance sampling. However, Q-learning, perhaps the most famous off-policy method that evaluates the optimal policy, does not. There is a simple reason for that: In Q-learning, samples are only used to average over the transition dynamics, not the policy. Still confused? Let&amp;rsquo;s make that more concrete with a simple example and derive different ways to solve it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let&amp;rsquo;s make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is the difference between V(s) and Q(s,a)?</title>
@@ -42,6 +42,13 @@
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/about/</guid>
       <description>Reinforcement learning is an elegant and simple problem definition for autonomous decision-making agents that learn from their own experience. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem are not so simple. The algorithm deriviations require understanding many important mathematical details and the methods in practice have many moving parts. The area is much more difficult to learn than supervised learning and other subfields of AI.</description>
+    </item>
+    <item>
+      <title>Math Notation Cheatsheet</title>
+      <link>http://localhost:1313/notation/</link>
+      <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
+      <guid>http://localhost:1313/notation/</guid>
+      <description>In this section I outline the meaning of the mathematical notation I use. When appropriate (and possible), I also describe the meaning in simple python.&#xA;General math and statistics $f(x) \triangleq mx + b$ The $\triangleq$ indicates that the expresson on the left is defined to be the expression on the right, rather than an equivalence that is derived from mathemtical rules.&#xA;$(a, b)$ The set of real numbers between $a$ and $b$, excluding those values.</description>
     </item>
   </channel>
 </rss>

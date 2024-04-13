@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Decisions & Dragons'
 theme = 'dnd'
 
+[markup]
+  [markup.highlight]
+    style = "gruvbox"
+
 [menu]
     [[menu.nav]]
     identifier = "home"

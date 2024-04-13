@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Math Notation Cheatsheet | Decisions &amp; Dragons</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/page_without_toc.css">
+    <link rel="stylesheet" href="/css/page_with_toc.css">
+    <link rel="stylesheet" href="/css/content_structure.css">
+    <link rel="stylesheet" href="/css/mdx.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']] , 
+      tags: 'ams'
+    }
+  };
+</script>
+  
+  <script>
+window.addEventListener("hashchange", function () {
+    window.scrollTo(window.scrollX, window.scrollY - 70);
+});
+</script>
+</head>
+<body>
+    
+<div id="small_splash">
+    <span><a class="logo_link" href="/">Decisions &amp; Dragons</a></span>
+    <span class="nav">
+         
+            <a href=" /">Home</a>
+         
+            <a href=" /about/">About</a>
+         
+            <a href=" /posts/">All posts</a>
+         
+            <a href=" https://twitter.com/jmac_ai">Twitter</a>
+        
+    </span>
+  </div>
+
+    
+    <div id="content_no_toc">
+      <h1>Math Notation Cheatsheet</h1>
+
+      <p>In this section I outline the meaning of the mathematical notation I use. When appropriate (and possible), I also describe the meaning in simple python.</p>
+<h2 id="general-math-and-statistics">General math and statistics</h2>
+<h4 id="fx-triangleq-mx--b">$f(x) \triangleq mx + b$</h4>
+<p>The $\triangleq$ indicates that the expresson on the left is <em>defined</em> to be the expression on the right, rather than an equivalence that is derived from mathemtical rules.</p>
+<h4 id="a-b">$(a, b)$</h4>
+<p>The set of real numbers between $a$ and $b$, excluding those values.</p>
+<h4 id="a-b-1">$[a, b]$</h4>
+<p>The set of real numbers between $a$ and $b$, including those values.</p>
+<h4 id="a-b-and-a-b">$(a, b]$ and $[a, b)$</h4>
+<p>The set of real numbers between $a$ and $b$, excluding the right or left bound, respectively.</p>
+<h4 id="-a-b-c-">$\{ a, b, c \}$</h4>
+<p>A set containing elements a, b, and c.</p>
+<h4 id="x-in-x">$x \in X$</h4>
+<p>Indicates that value $x$ is an element in set $X$.</p>
+<h4 id="x_i">$x_i$</h4>
+<p>The $ith$ element of the indexed set (list) of elements $x$. In python <code>x[i]</code>.</p>
+<h4 id="sum_in-x_i">$\sum_i^N x_i$</h4>
+<p>The sum of the first $N$ elements of an indexed set (list) of elements $x$. Could also be written as $x_1, + x_2 + &hellip; + x_N$.</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#fabd2f">sum</span> <span style="color:#fe8019">=</span> <span style="color:#d3869b">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#fe8019">for</span> i <span style="color:#fe8019">in</span> <span style="color:#fabd2f">range</span>(N)
+</span></span><span style="display:flex;"><span>    <span style="color:#fabd2f">sum</span> <span style="color:#fe8019">+=</span> x[i]
+</span></span></code></pre></div><p>Whether the starting index is 0 or 1 depends on the context of the variable. If $i$ is assigned to a value like $\sum_{i=3}^N$, it means the series starts at element $i$. If it is unclear whether the starting index is 0 or 1, it will sometimes be explicitly assigned.</p>
+<h4 id="sum_x-in-x-x">$\sum_{x \in X} x$</h4>
+<p>The sum of the elements in $X$.</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#fabd2f">sum</span> <span style="color:#fe8019">=</span> <span style="color:#d3869b">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#fe8019">for</span> x <span style="color:#fe8019">in</span> X:
+</span></span><span style="display:flex;"><span>    <span style="color:#fabd2f">sum</span> <span style="color:#fe8019">+=</span> x
+</span></span></code></pre></div><h4 id="prod_in-x_i">$\prod_i^N x_i$</h4>
+<p>The product of the first $N$ elements of an indexed set (list) of elements $x$. Could also be written as $x_1 \cdot &hellip; \cdot x_N$</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod <span style="color:#fe8019">=</span> <span style="color:#d3869b">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#fe8019">for</span> i <span style="color:#fe8019">in</span> <span style="color:#fabd2f">range</span>(N):
+</span></span><span style="display:flex;"><span>    prod <span style="color:#fe8019">*=</span> x[i]
+</span></span></code></pre></div><p>Whether the starting index is 0 or 1 depends on the context of the variable. If $i$ is assigned to a value like $\prod_{i=3}^N$, it means the series starts at element $i$. If it is unclear whether the starting index is 0 or 1, it will sometimes be explicitly assigned.</p>
+<h4 id="x_t1-gets-gx_t">$x_{t+1} \gets g(x_t)$</h4>
+<p>The $\gets$ arrow indicates that the value of $x$ is updated to be the result of some funciton/operation on the previous value of $x$ defined on the right-hand-side (it doesn&rsquo;t have the be $g$ and can be any expression). The subscript $t$ indicates the value of $x$ after the
+$t$th update to it.</p>
+<h4 id="e_px">$E_p[X]$</h4>
+<p>The expected value of random variable $X$ drawn from probability distribution $p$. For discrete random variables this is defined as $E_p[X] \triangleq \sum_{x \in X} p(x) x$. For continuous random variables this is the integral $E_p[X] \triangleq \int_X p(x) x dx$.</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>expected_x <span style="color:#fe8019">=</span> <span style="color:#d3869b">0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#fe8019">for</span> x <span style="color:#fe8019">in</span> X:
+</span></span><span style="display:flex;"><span>    expected_x <span style="color:#fe8019">+=</span> p(x) <span style="color:#fe8019">*</span> x
+</span></span></code></pre></div><h4 id="x-sim-p">$x \sim p$</h4>
+<p>Random variable $x$ is drawn from probability distribution $p$.</p>
+<h4 id="e_x-sim-p--gx-">$E_{x \sim p} [ g(x) ]$</h4>
+<p>The expected value of drawing $x$ from probability distribution $p$ and then applying some operation on it &ndash; in this case evaluating the function $g$ on it. For discrete random variables $E_{x \sim p} [ g(x) ] \triangleq \sum_{x \in X} p(x) g(x)$.</p>
+<h4 id="px--y">$p(x | y)$</h4>
+<p>The probabiltiy (or probability density) of $x$ given the value $y$ from conditional probability (mass/density) function $p$</p>
+<h4 id="p-cdot--y">$p( \cdot | y)$</h4>
+<p>The conditional probability distribution (rather than specific probability/density) conditioned on $y$ implied by the probability (mass/density) function $p$.</p>
+<h2 id="rl-specific-variables-and-notation-choices">RL-specific variables and notation choices</h2>
+<h4 id="s">$S$</h4>
+<p>State space</p>
+<h4 id="a">$A$</h4>
+<p>Action space</p>
+<h4 id="rs-a-or-rs-a-s">R(s, a) or R(s, a, s')</h4>
+<p>A reward function on state-action pairs or state-action,-next state triples. In practice, reward functions are usually defined in terms of the state $s&rsquo; \in S$, while theoretical analysis usually assumes the simpler $R(s, a)$ functions. Doing analysis with $R(s, a)$ does not limit the validity of the analysis because for any MDP with an $R(s, a, s&rsquo;)$ function, you can define an equivalent MDP with an $R(s, a)$ function that is the expected value of the $R(s, a, s&rsquo;) values (averaging over the next state probabilities).</p>
+<h4 id="ts--s-a">T(s&rsquo; | s, a)</h4>
+<p>The proability (density) that the environment transitions to state $s&rsquo; \in S$ after the agent takes action $a \in A$ from state $s \in S$.</p>
+<h4 id="gamma">$\gamma$</h4>
+<p>A geometric discount factor $\gamma \in [0, 1)$.</p>
+<h4 id="pis">$\pi(s)$</h4>
+<p>A deterministic policy that maps state $s \in S$ to an action.</p>
+<h4 id="pia--s">$\pi(a | s)$</h4>
+<p>The probability (mass/density) of stochastic policy $\pi$ selecting action $a \in A$ from state $s \in S$.</p>
+<h4 id="picdot--s">$\pi(\cdot | s)$</h4>
+<p>A stochastic policy distribution conditioned on state $s$.</p>
+
+      
+    </div>
+
+  <footer>
+    <div style="text-align: center;">
+
+</div>
+  </footer>
+</body>
+</html>
