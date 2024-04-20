@@ -37,8 +37,7 @@ window.addEventListener("hashchange", function () {
 </script>
 </head>
 <body>
-    
-<div id="small_splash">
+     <div id="small_splash">
     <span><a class="logo_link" href="/">Decisions &amp; Dragons</a></span>
     <span class="nav">
          
@@ -48,15 +47,16 @@ window.addEventListener("hashchange", function () {
          
             <a href=" /posts/">All posts</a>
          
+            <a href=" /notation/">Notaiton</a>
+         
             <a href=" https://twitter.com/jmac_ai">Twitter</a>
         
     </span>
-  </div>
-
+  </div> 
     
-    <div id="toc">
-      <span style="text-align: center;"><h4>Table of Contents</h4></span>
-      <nav id="TableOfContents">
+<div id="toc">
+    <span style="text-align: center"><h3>Table of Contents</h3></span>
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#the-policy-objective">The policy objective</a></li>
     <li><a href="#the-true-policy-gradient">The true policy gradient</a></li>
@@ -65,11 +65,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#enter-log-probabilities">Enter log probabilities</a></li>
   </ul>
 </nav>
-    </div>
-    <div id="content_with_toc">
-      <h1>Why does the policy gradient include a log probobability term?</h1>
+</div>
+<div id="content_with_toc">
+    <h1>Why does the policy gradient include a log probobability term?</h1>
 
-      <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
+    <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
 <p>The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. We use this trick because we&rsquo;d like to use the samples the agent takes from each state to estimate the gradient, but computing regular gradient without REINFORCE would require us to observe the outcome of each aciton in each state, including the ones we didn&rsquo;t take. A lot of that might not make much sense yet. Let&rsquo;s remedy that.</p>
 <h2 id="the-policy-objective">The policy objective</h2>
 <p>First, lets identify the following: what is the objective function we want to maximize? From “<a href="https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf">Policy Gradient Methods for Reinforcement Learning with Function Approximation</a>” we have the following objective:
@@ -144,8 +144,8 @@ stable for floating-point math on computers, so it&rsquo;s what we almost always
 </li>
 </ol>
 </div>
-      
-    </div>
+    
+</div>
 
   <footer>
     <div style="text-align: center;">

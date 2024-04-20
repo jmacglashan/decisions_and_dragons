@@ -21,6 +21,12 @@ theme = 'dnd'
     weight = 2
 
     [[menu.nav]]
+    identifier = "notation"
+    name = "Notaiton"
+    url = "/notation/"
+    weight = 4
+
+    [[menu.nav]]
     identifier = "posts"
     name = "All posts"
     url = "/posts/"
@@ -30,4 +36,4 @@ theme = 'dnd'
     identifier = "twitter"
     name = "Twitter"
     url = "https://twitter.com/jmac_ai"
-    weight = 4
+    weight = 5

@@ -37,8 +37,7 @@ window.addEventListener("hashchange", function () {
 </script>
 </head>
 <body>
-    
-<div id="small_splash">
+     <div id="small_splash">
     <span><a class="logo_link" href="/">Decisions &amp; Dragons</a></span>
     <span class="nav">
          
@@ -48,15 +47,16 @@ window.addEventListener("hashchange", function () {
          
             <a href=" /posts/">All posts</a>
          
+            <a href=" /notation/">Notaiton</a>
+         
             <a href=" https://twitter.com/jmac_ai">Twitter</a>
         
     </span>
-  </div>
-
+  </div> 
     
-    <div id="toc">
-      <span style="text-align: center;"><h4>Table of Contents</h4></span>
-      <nav id="TableOfContents">
+<div id="toc">
+    <span style="text-align: center"><h3>Table of Contents</h3></span>
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#mdps">MDPs</a></li>
     <li><a href="#planning-vs-rl">Planning vs RL</a></li>
@@ -66,11 +66,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#a-simple-heuristic">A simple heuristic</a></li>
   </ul>
 </nav>
-    </div>
-    <div id="content_with_toc">
-      <h1>What is the difference between model-based and model-free RL?</h1>
+</div>
+<div id="content_with_toc">
+    <h1>What is the difference between model-based and model-free RL?</h1>
 
-      <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p>
+    <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p>
 <p>To understand these two paradigms more completely, it is helpful to revisit the definition of an MDP, how to solve it, and how RL specifically makes this problem harder.</p>
 <h2 id="mdps">MDPs</h2>
 <p>More specificially, lets revisit the components of an MDP, the most typical decision making framework for RL. An MDP is defined by a 4-tuple $(S, A, R, T)$ where,</p>
@@ -94,8 +94,8 @@ window.addEventListener("hashchange", function () {
 <h2 id="a-simple-heuristic">A simple heuristic</h2>
 <p>If you want a way to check if an RL algorithm is model-based or model-free, ask yourself this question: after learning, can the agent make predictions about what the next state and reward will be before it takes each action? If it can, then it’s a model-based RL algorithm. if it cannot, it’s a model-free algorithm.</p>
 <p>This same idea may also apply to decision-making processes other than MDPs.</p>
-      
-    </div>
+    
+</div>
 
   <footer>
     <div style="text-align: center;">
