@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Apr 2024 23:43:37 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2024 12:51:21 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</title>
+      <link>http://localhost:1313/posts/ddpg_grad/</link>
+      <pubDate>Sat, 20 Apr 2024 12:51:21 -0400</pubDate>
+      <guid>http://localhost:1313/posts/ddpg_grad/</guid>
+      <description>&lt;p&gt;The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;This expression looks a little scary, but all it&amp;rsquo;s saying is to update your policy with gradient ascent to maximize the Q-function. This might not be obvious because the expression has been expanded with the multivariable chain rule of differentiation. If we undid the the chain rule, the product of &amp;ldquo;gradients&amp;rdquo; inside the expected value would be replaced with $\nabla_\theta Q(s, \pi_\theta(s))$.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s talk more about how we got here and why literature might express the result with the chain rule applied in the era of modern automatic differentiation.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</title>
       <link>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</link>
