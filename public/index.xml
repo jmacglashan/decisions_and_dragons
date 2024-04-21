@@ -48,7 +48,7 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>Reinforcement learning (RL) is an elegant and simple problem definition for autonomous decision-making agents that learn from their own experience. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple. Unlike supervised learning, which typically involves training a single model, RL methods often involve training multiple interacting models. These interactions can lead to complex and unexpected mathematical challenges.</description>
+      <description>Reinforcement learning (RL) is an elegant problem definition for autonomous decision-making agents that learn from their own experience. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple. Unlike supervised learning, which typically involves training a single model, RL methods often involve training multiple interacting models. These interactions can lead to complex and unexpected mathematical challenges.</description>
     </item>
     <item>
       <title>Math Notation Cheatsheet</title>
