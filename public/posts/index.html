@@ -60,6 +60,9 @@ window.addEventListener("hashchange", function () {
     <h1>Posts</h1>
     
     
+      <h2><a class="post_link" href="/posts/q_learning_discrete_only/">Why doesn&#39;t Q-learning work with continuous actions?</a></h2>
+      <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p> <a href="/posts/q_learning_discrete_only/">[See more]</a>
+    
       <h2><a class="post_link" href="/posts/ddpg_grad/">Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</a></h2>
       <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
 <p>$$

@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Apr 2024 12:51:21 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2024 15:36:15 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why doesn&#39;t Q-learning work with continuous actions?</title>
+      <link>http://localhost:1313/posts/q_learning_discrete_only/</link>
+      <pubDate>Sun, 21 Apr 2024 15:36:15 -0400</pubDate>
+      <guid>http://localhost:1313/posts/q_learning_discrete_only/</guid>
+      <description>&lt;p&gt;Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</title>
       <link>http://localhost:1313/posts/ddpg_grad/</link>
