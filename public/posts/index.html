@@ -60,6 +60,9 @@ window.addEventListener("hashchange", function () {
     <h1>Posts</h1>
     
     
+      <h2><a class="post_link" href="/posts/horizon/">What is the &#34;horizon&#34; in reinforcement learning?</a></h2>
+      <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p> <a href="/posts/horizon/">[See more]</a>
+    
       <h2><a class="post_link" href="/posts/q_learning_discrete_only/">Why doesn&#39;t Q-learning work with continuous actions?</a></h2>
       <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p> <a href="/posts/q_learning_discrete_only/">[See more]</a>
     

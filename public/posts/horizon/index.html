@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>What is the &#34;horizon&#34; in reinforcement learning? | Decisions &amp; Dragons</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/page_without_toc.css">
+    <link rel="stylesheet" href="/css/page_with_toc.css">
+    <link rel="stylesheet" href="/css/content_structure.css">
+    <link rel="stylesheet" href="/css/mdx.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']] , 
+      tags: 'ams'
+    }
+  };
+</script>
+  
+  <script>
+window.addEventListener("hashchange", function () {
+    window.scrollTo(window.scrollX, window.scrollY - 70);
+});
+</script>
+</head>
+<body>
+     <div id="small_splash">
+    <span><a class="logo_link" href="/">Decisions &amp; Dragons</a></span>
+    <span class="nav">
+         
+            <a href=" /">Home</a>
+         
+            <a href=" /about/">About</a>
+         
+            <a href=" /posts/">All posts</a>
+         
+            <a href=" /notation/">Notaiton</a>
+         
+            <a href=" https://twitter.com/jmac_ai">Twitter</a>
+        
+    </span>
+  </div> 
+    
+<div id="toc">
+    <span style="text-align: center"><h3>Table of Contents</h3></span>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ill-be-taking-my-marshmellow-now">I&rsquo;ll be taking my marshmellow now</a></li>
+    <li><a href="#i-can-wait-for-a-time">I can wait, for a time</a></li>
+    <li><a href="#i-have-infinite-patience-but-id-prefer-it-now">I have infinite patience, but I&rsquo;d prefer it now</a></li>
+    <li><a href="#all-moments-are-equally-good-but-ive-got-a-math-problem-for-you">All moments are equally good, but I&rsquo;ve got a math problem for you</a></li>
+  </ul>
+</nav>
+</div>
+<div id="content_with_toc">
+    <h1>What is the &#34;horizon&#34; in reinforcement learning?</h1>
+
+    <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p>
+<h2 id="ill-be-taking-my-marshmellow-now">I&rsquo;ll be taking my marshmellow now</h2>
+<p>One answer to our question is the future doesn&rsquo;t matter! Our objective is to only maximize the immediate reward received for the next action. <a href="https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment">You want your marshmellow, and you want it now</a>.</p>
+<p>When you define the objective this way, you’ve defined the objective to be over a &ldquo;finite horizon,&rdquo; where &ldquo;horizon&rdquo; refers to how many steps into the future the agent cares about the reward it can receive. In this case, we’ve defined a 1-step horizon objective, the most myopic objective you can define, since it only cares about how big the next immediate reward is.</p>
+<h2 id="i-can-wait-for-a-time">I can wait, for a time</h2>
+<p>The one-step horizon has an obvious limitation. Maybe if you sacrifice a little bit of reward now you can have a bigger total reward later. If we actually want the agent to care about the future, we need a longer horizion.</p>
+<p>Fortunately, the one-step horizon is easy to generalize to a bigger horizon. We could define a 2 step horizon, in which the agent makes a decision that will maximize the total reward it will receive in the next 2 time steps. Or we could choose a 3, or 4, or n step horizon!</p>
+<p>In this finite-horizon regime, the agent cares about how well it can maximize total reward for all steps within the horizon, but after that point, it stops trying to optimize for more reward.</p>
+<p>Finite horizons are perhaps the most common approach you&rsquo;ll see control theory literature. For example, in model predictive control, the agent optimizes what it can do for the next $n$ time steps. Then, after taking an action, the agent again optimizes what it could do for the next $n$ time steps. This appoach is sometimes called &ldquo;receding horizon&rdquo; because on each step, the horizon recedes back one step further, always keeping the boundary out of reach.</p>
+<h2 id="i-have-infinite-patience-but-id-prefer-it-now">I have infinite patience, but I&rsquo;d prefer it now</h2>
+<p>A finiite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that&rsquo; what it will optimize for.</p>
+<p>We might then ask oursleves: is there a way to tell the agent to optimize for an <em>infinite</em> horizon?</p>
+<p>Optimizing for an infinite horizon might get a little funky, because if we just summed up all rewards into infinity, two polcies that both generated small positive rewards indefinitely would have the same total infinite value, even if one policy always recieved more reward on each time step.</p>
+<p>One solution to this enigma is to use a <em>discounted</em> infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about each reward by how far into the future it is by a discount parameter $\gamma \in [0, 1)$:</p>
+<p>$$
+r_1 + \gamma r_2 \gamma^2 r_3 + gamma^3 r_4 + &hellip;
+$$</p>
+<p>Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot&rsquo;s of reward sooner rather than later.</p>
+<p>This approach solves the delimma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it also acccounts for all future reward. However, it does impose a kind of &ldquo;soft horizon.&rdquo; The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.</p>
+<h2 id="all-moments-are-equally-good-but-ive-got-a-math-problem-for-you">All moments are equally good, but I&rsquo;ve got a math problem for you</h2>
+<p>The discounted objective considers an infinite horizon, but the discount factor $\gamma$ acts a lot like a horizon. You might wonder if we can still do better while avoiding the problem of many futures all summing up to infinite value.</p>
+<p>And there is! Sort of. That is, you can instead consider optimizing the <em>average reward</em> over the entire infinite future. There are even constraints you can add to that objective such that ofr two futures with the same average reward, you prefer the one that gathers reward the fastest. See the <a href="https://www.researchgate.net/profile/Anton-Schwartz/publication/221346025_A_Reinforcement_Learning_Method_for_Maximizing_Undiscounted_Rewards/links/5e72421aa6fdcc37caf4cf4b/A-Reinforcement-Learning-Method-for-Maximizing-Undiscounted-Rewards.pdf">R-learning paper</a> for a discussion of that.</p>
+<p>Unfortunately, designing algorithms to optimize this average-reward objective has proven challenging. There is still work in the area, so we may yet find a solution. Until then though, most work will stick with the discounted objective.</p>
+    
+</div>
+
+  <footer>
+    <div style="text-align: center;">
+
+</div>
+  </footer>
+</body>
+</html>

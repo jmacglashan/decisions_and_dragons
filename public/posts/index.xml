@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Apr 2024 15:36:15 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2024 16:49:00 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is the &#34;horizon&#34; in reinforcement learning?</title>
+      <link>http://localhost:1313/posts/horizon/</link>
+      <pubDate>Sun, 21 Apr 2024 16:49:00 -0400</pubDate>
+      <guid>http://localhost:1313/posts/horizon/</guid>
+      <description>&lt;p&gt;In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &amp;ldquo;how does potential future reward affect our decision right now?&amp;rdquo; The &amp;ldquo;horizon&amp;rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Why doesn&#39;t Q-learning work with continuous actions?</title>
       <link>http://localhost:1313/posts/q_learning_discrete_only/</link>
