@@ -68,19 +68,14 @@ me and why I created this site in the <a href="/about/">about section</a>. You c
 
     <h2>Recent posts</h2>
     
+      <h3><a class="post_link" href="/posts/why_is_erb_useful/">Is experience replay only useful for neural net training?</a></h3>
+       <a href="/posts/why_is_erb_useful/">[See more]</a>
+    
+      <h3><a class="post_link" href="/posts/off_policy_replay/">Why does experience replay require off-policy learning and how is it different from on-policy learning?</a></h3>
+      <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. Consequenlty, for any moment in time the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p> <a href="/posts/off_policy_replay/">[See more]</a>
+    
       <h3><a class="post_link" href="/posts/horizon/">What is the &#34;horizon&#34; in reinforcement learning?</a></h3>
       <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p> <a href="/posts/horizon/">[See more]</a>
-    
-      <h3><a class="post_link" href="/posts/q_learning_discrete_only/">Why doesn&#39;t Q-learning work with continuous actions?</a></h3>
-      <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p> <a href="/posts/q_learning_discrete_only/">[See more]</a>
-    
-      <h3><a class="post_link" href="/posts/ddpg_grad/">Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</a></h3>
-      <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
-<p>$$
-\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
-$$</p>
-<p>This expression looks a little scary, but it&rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&rsquo;s gradient with respect to the policy parameters, evaluated at the policy&rsquo;s selected action. That may not be obvious because the product of &ldquo;gradients&rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.</p>
-<p>Let&rsquo;s rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.</p> <a href="/posts/ddpg_grad/">[See more]</a>
     
   </div>
 

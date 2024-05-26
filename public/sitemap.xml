@@ -2,10 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/horizon/</loc>
-    <lastmod>2024-04-21T16:49:00-04:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-05-26T15:06:56-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/why_is_erb_useful/</loc>
+    <lastmod>2024-05-26T15:06:56-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/off_policy_replay/</loc>
+    <lastmod>2024-05-04T11:39:36-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/horizon/</loc>
     <lastmod>2024-04-21T16:49:00-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/q_learning_discrete_only/</loc>

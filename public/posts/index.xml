@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Apr 2024 16:49:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 26 May 2024 15:06:56 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why_is_erb_useful</title>
+      <link>http://localhost:1313/posts/why_is_erb_useful/</link>
+      <pubDate>Sun, 26 May 2024 15:06:56 -0400</pubDate>
+      <guid>http://localhost:1313/posts/why_is_erb_useful/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Why does experience replay require off-policy learning and how is it different from on-policy learning?</title>
+      <link>http://localhost:1313/posts/off_policy_replay/</link>
+      <pubDate>Sat, 04 May 2024 11:39:36 -0400</pubDate>
+      <guid>http://localhost:1313/posts/off_policy_replay/</guid>
+      <description>&lt;p&gt;When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. Consequenlty, for any moment in time the vast majority of experiences in the buffer are generated with a different &amp;ndash; earlier &amp;ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>What is the &#34;horizon&#34; in reinforcement learning?</title>
       <link>http://localhost:1313/posts/horizon/</link>

@@ -60,6 +60,12 @@ window.addEventListener("hashchange", function () {
     <h1>Posts</h1>
     
     
+      <h2><a class="post_link" href="/posts/why_is_erb_useful/">Why_is_erb_useful</a></h2>
+       <a href="/posts/why_is_erb_useful/">[See more]</a>
+    
+      <h2><a class="post_link" href="/posts/off_policy_replay/">Why does experience replay require off-policy learning and how is it different from on-policy learning?</a></h2>
+      <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. Consequenlty, for any moment in time the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p> <a href="/posts/off_policy_replay/">[See more]</a>
+    
       <h2><a class="post_link" href="/posts/horizon/">What is the &#34;horizon&#34; in reinforcement learning?</a></h2>
       <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p> <a href="/posts/horizon/">[See more]</a>
     
