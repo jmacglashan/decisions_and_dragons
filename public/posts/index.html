@@ -60,11 +60,8 @@ window.addEventListener("hashchange", function () {
     <h1>Posts</h1>
     
     
-      <h2><a class="post_link" href="/posts/why_is_erb_useful/">Why_is_erb_useful</a></h2>
-       <a href="/posts/why_is_erb_useful/">[See more]</a>
-    
       <h2><a class="post_link" href="/posts/off_policy_replay/">Why does experience replay require off-policy learning and how is it different from on-policy learning?</a></h2>
-      <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. Consequenlty, for any moment in time the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p> <a href="/posts/off_policy_replay/">[See more]</a>
+      <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. For any moment in time the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p> <a href="/posts/off_policy_replay/">[See more]</a>
     
       <h2><a class="post_link" href="/posts/horizon/">What is the &#34;horizon&#34; in reinforcement learning?</a></h2>
       <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p> <a href="/posts/horizon/">[See more]</a>
@@ -72,22 +69,11 @@ window.addEventListener("hashchange", function () {
       <h2><a class="post_link" href="/posts/q_learning_discrete_only/">Why doesn&#39;t Q-learning work with continuous actions?</a></h2>
       <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p> <a href="/posts/q_learning_discrete_only/">[See more]</a>
     
-      <h2><a class="post_link" href="/posts/ddpg_grad/">Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</a></h2>
-      <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
-<p>$$
-\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
-$$</p>
-<p>This expression looks a little scary, but it&rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&rsquo;s gradient with respect to the policy parameters, evaluated at the policy&rsquo;s selected action. That may not be obvious because the product of &ldquo;gradients&rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.</p>
-<p>Let&rsquo;s rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.</p> <a href="/posts/ddpg_grad/">[See more]</a>
-    
       <h2><a class="post_link" href="/posts/q_learning_doesnt_need_importance_sampling/">If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</a></h2>
       <p>In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let&rsquo;s make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.</p> <a href="/posts/q_learning_doesnt_need_importance_sampling/">[See more]</a>
     
       <h2><a class="post_link" href="/posts/q_vs_v/">What is the difference between V(s) and Q(s,a)?</a></h2>
       <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p> <a href="/posts/q_vs_v/">[See more]</a>
-    
-      <h2><a class="post_link" href="/posts/why_does_the_policy_gradient_include_log_prob/">Why does the policy gradient include a log probobability term?</a></h2>
-      <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p> <a href="/posts/why_does_the_policy_gradient_include_log_prob/">[See more]</a>
     
       <h2><a class="post_link" href="/posts/model_free_vs_model_based/">What is the difference between model-based and model-free RL?</a></h2>
       <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p> <a href="/posts/model_free_vs_model_based/">[See more]</a>

@@ -6,21 +6,14 @@
     <description>Recent content in Home on Decisions &amp; Dragons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 May 2024 15:06:56 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 04 May 2024 11:39:36 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Is experience replay only useful for neural net training?</title>
-      <link>http://localhost:1313/posts/why_is_erb_useful/</link>
-      <pubDate>Sun, 26 May 2024 15:06:56 -0400</pubDate>
-      <guid>http://localhost:1313/posts/why_is_erb_useful/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Why does experience replay require off-policy learning and how is it different from on-policy learning?</title>
       <link>http://localhost:1313/posts/off_policy_replay/</link>
       <pubDate>Sat, 04 May 2024 11:39:36 -0400</pubDate>
       <guid>http://localhost:1313/posts/off_policy_replay/</guid>
-      <description>&lt;p&gt;When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. Consequenlty, for any moment in time the vast majority of experiences in the buffer are generated with a different &amp;ndash; earlier &amp;ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. For any moment in time the vast majority of experiences in the buffer are generated with a different &amp;ndash; earlier &amp;ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is the &#34;horizon&#34; in reinforcement learning?</title>
@@ -37,13 +30,6 @@
       <description>&lt;p&gt;Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</title>
-      <link>http://localhost:1313/posts/ddpg_grad/</link>
-      <pubDate>Sat, 20 Apr 2024 12:51:21 -0400</pubDate>
-      <guid>http://localhost:1313/posts/ddpg_grad/</guid>
-      <description>&lt;p&gt;The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;This expression looks a little scary, but it&amp;rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&amp;rsquo;s gradient with respect to the policy parameters, evaluated at the policy&amp;rsquo;s selected action. That may not be obvious because the product of &amp;ldquo;gradients&amp;rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</title>
       <link>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</link>
       <pubDate>Tue, 02 Apr 2024 23:43:37 -0400</pubDate>
@@ -58,13 +44,6 @@
       <description>&lt;p&gt;State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Why does the policy gradient include a log probobability term?</title>
-      <link>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</link>
-      <pubDate>Fri, 29 Mar 2024 20:07:54 -0400</pubDate>
-      <guid>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</guid>
-      <description>&lt;p&gt;Actually, it doesn&amp;rsquo;t! What you&amp;rsquo;re probably thinking of is the &lt;a href=&#34;https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf&#34;&gt;REINFORCE&lt;/a&gt; &lt;em&gt;esitmate&lt;/em&gt; of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&amp;rsquo;re familiar with and &lt;em&gt;why&lt;/em&gt; we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>What is the difference between model-based and model-free RL?</title>
       <link>http://localhost:1313/posts/model_free_vs_model_based/</link>
       <pubDate>Fri, 29 Mar 2024 19:50:17 -0400</pubDate>
@@ -76,7 +55,7 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>Reinforcement learning (RL) is an elegant problem definition for autonomous decision-making agents that learn from their own experience. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple. Unlike supervised learning, which typically involves training a single model, RL methods often involve training multiple interacting models. These interactions can lead to complex and unexpected mathematical challenges.</description>
+      <description>Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple. Unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions.</description>
     </item>
     <item>
       <title>Math Notation Cheatsheet</title>

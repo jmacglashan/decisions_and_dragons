@@ -68,7 +68,7 @@ window.addEventListener("hashchange", function () {
 <h4 id="a-b-1">$[a, b]$</h4>
 <p>The set of real numbers between $a$ and $b$, including those values.</p>
 <h4 id="a-b-and-a-b">$(a, b]$ and $[a, b)$</h4>
-<p>The set of real numbers between $a$ and $b$, excluding the right or left bound, respectively.</p>
+<p>The set of real numbers between $a$ and $b$, excluding the left or right bound, respectively.</p>
 <h4 id="-a-b-c-">$\{ a, b, c \}$</h4>
 <p>A set containing elements a, b, and c.</p>
 <h4 id="x-in-x">$x \in X$</h4>
@@ -114,7 +114,7 @@ $t$th update to it.</p>
 <h4 id="a">$A$</h4>
 <p>Action space</p>
 <h4 id="rs-a-or-rs-a-s">R(s, a) or R(s, a, s')</h4>
-<p>A reward function on state-action pairs or state-action,-next state triples. In practice, reward functions are usually defined in terms of the state $s&rsquo; \in S$, while theoretical analysis usually assumes the simpler $R(s, a)$ functions. Doing analysis with $R(s, a)$ does not limit the validity of the analysis because for any MDP with an $R(s, a, s&rsquo;)$ function, you can define an equivalent MDP with an $R(s, a)$ function that is the expected value of the $R(s, a, s&rsquo;) values (averaging over the next state probabilities).</p>
+<p>A reward function on state-action pairs or state-action-next state triples. In practice, reward functions are usually defined in terms of the state $s&rsquo; \in S$, while theoretical analysis usually assumes the simpler $R(s, a)$ functions. Doing analysis with $R(s, a)$ does not limit the validity of the analysis because for any MDP with an $R(s, a, s&rsquo;)$ function, you can define an equivalent MDP with an $R(s, a)$ function that is the expected value of the $R(s, a, s&rsquo;) values (averaging over the next state probabilities).</p>
 <h4 id="ts--s-a">T(s&rsquo; | s, a)</h4>
 <p>The proability (density) that the environment transitions to state $s&rsquo; \in S$ after the agent takes action $a \in A$ from state $s \in S$.</p>
 <h4 id="gamma">$\gamma$</h4>

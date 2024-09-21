@@ -56,12 +56,19 @@ window.addEventListener("hashchange", function () {
     
 <div id="toc">
     <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#faster-value-propagation">Faster value propagation</a></li>
+    <li><a href="#decorrelating-data">Decorrelating data</a></li>
+  </ul>
+</nav>
 </div>
 <div id="content_with_toc">
     <h1>Is experience replay only useful for neural net training?</h1>
 
-    
+    <p>Experience replay buffers (ERB) were popularized by <a href="https://training.incf.org/sites/default/files/2023-05/Human-level%20control%20through%20deep%20reinforcement%20learning.pdf">DQN</a> as a means to decorrelate data &ndash; a property critical for training deep neural networks. That fact suggests that ERBs are only useful for deep RL. However, the idea is much older and was originally used to propgate values through bootstrapping faster. This property makes ERBs useful for any bootstrapping-based RL method, from deep RL to tabular RL.</p>
+<h2 id="faster-value-propagation">Faster value propagation</h2>
+<h2 id="decorrelating-data">Decorrelating data</h2>
     
 </div>
 

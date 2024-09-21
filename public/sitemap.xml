@@ -5,9 +5,6 @@
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-05-26T15:06:56-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/why_is_erb_useful/</loc>
-    <lastmod>2024-05-26T15:06:56-04:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/off_policy_replay/</loc>
     <lastmod>2024-05-04T11:39:36-04:00</lastmod>
   </url><url>
@@ -17,17 +14,11 @@
     <loc>http://localhost:1313/posts/q_learning_discrete_only/</loc>
     <lastmod>2024-04-21T15:36:15-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ddpg_grad/</loc>
-    <lastmod>2024-04-20T12:51:21-04:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/q_learning_doesnt_need_importance_sampling/</loc>
     <lastmod>2024-04-02T23:43:37-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/q_vs_v/</loc>
     <lastmod>2024-03-30T23:24:52-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</loc>
-    <lastmod>2024-03-29T20:07:54-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/model_free_vs_model_based/</loc>
     <lastmod>2024-03-29T19:50:17-04:00</lastmod>
