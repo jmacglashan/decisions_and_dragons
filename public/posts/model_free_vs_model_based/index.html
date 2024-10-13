@@ -70,30 +70,38 @@ window.addEventListener("hashchange", function () {
 <div id="content_with_toc">
     <h1>What is the difference between model-based and model-free RL?</h1>
 
-    <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.</p>
-<p>To understand these two paradigms more completely, it is helpful to revisit the definition of an MDP, how to solve it, and how RL specifically makes this problem harder.</p>
+    <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to predict precisely how the environment will be affected by its actions.</p>
+<p>To better understand this distinction more completely, it is helpful to revisit the definition of an MDP, how to solve it, and how RL makes this problem harder.</p>
 <h2 id="mdps">MDPs</h2>
-<p>More specificially, lets revisit the components of an MDP, the most typical decision making framework for RL. An MDP is defined by a 4-tuple $(S, A, R, T)$ where,</p>
+<p>Let&rsquo;s revisit the components of an MDP, the most typical decision-making framework for RL. An MDP is defined by a 4-tuple $(S, A, R, T)$ where,</p>
 <ul>
 <li>$S$ is the state/observation space of an environment,</li>
 <li>$A$ is the set of actions the agent can choose between,</li>
 <li>R(s, a) is a function that returns the reward received for taking action $a$ from state $s$,</li>
 <li>$T(s&rsquo; | s, a)$ is a transition probability function, specifying the probability that the environment will transition to state $s&rsquo;$ if the agent takes action $a$ in state $s$.</li>
 </ul>
-<p>Our goal is to find a policy $\pi$ that maximizes the expected future (discounted) reward.</p>
+<p>Our goal is to find a policy $\pi$, mapping states to action choices we should make in each state, that when followed maximizes the expected future (discounted) reward.</p>
 <h2 id="planning-vs-rl">Planning vs RL</h2>
 <p>If we know what all those elements of an MDP are, we can compute the solution before ever actually executing an action in the environment. In AI, we typically call computing the solution to a decision-making problem before executing an actual decision &ldquo;planning.&rdquo; Some classic planning algorithms for MDPs include Value Iteration, Policy Iteration, Monte Carlo Tree Search, and whole lot more.</p>
-<p>But the RL problem isn’t so kind to us. What makes a problem an RL problem, rather than a planning problem, is the agent does <em>not</em> know all the elements of the MDP, precluding it from being able to plan a solution. Specifically, the agent does not know how the environment will change in response to its actions (the transition function $T$), nor what immediate reward it will receive for doing so (the reward function $R$). The agent will simply have to try taking actions in the environment, observe what happens, and somehow, find a good policy from doing so.</p>
+<p>But the RL problem isn’t so kind to us. What makes a problem an RL problem, rather than a planning problem, is the agent does <em>not</em> know all the elements of the MDP, precluding it from being able to plan a solution.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Specifically, the agent does not know how the environment will change in response to its actions (the transition function $T$), nor what immediate reward it will receive for doing so (the reward function $R$). The agent will simply have to try taking actions in the environment, observe what happens, and somehow, find a good policy from doing so.</p>
 <p>So, if the agent does not know the transition function $T$ nor the reward function $R$, preventing it from planning a solution out, how can it find a good policy? Well, it turns out there are lots of ways!</p>
 <h2 id="model-based-rl">Model-based RL</h2>
 <p>One approach that might immediately strike you is for the agent to learn a model of how the environment works from its observations and then plan a solution using that model. That is, if the agent is currently in state $s_1$, takes action $a_1$, and then observes the environment transition to state $s_2$, with reward $r_2$, that information can be used to improve its estimate of $T(s_2 | s_1, a_1)$ and $R(s_1, a_1)$, which can be performed using supervised learning approaches. Once the agent has adequately modelled the environment, it can use a planning algorithm with its learned model to find a policy. RL solutions that follow this framework are model-based RL algorithms.</p>
 <h2 id="model-free-rl">Model-free RL</h2>
 <p>As it turns out though, we don’t have to learn a model of the environment to find a good policy. One of the most classic examples is Q-learning, which directly estimates the optimal Q-values of each action in each state (roughly, the utility of each action in each state), from which a policy may be derived by choosing the action with the highest Q-value in the current state. Other model-free methods in actor-critic and policy search methods, which directly search over the policy space to find policies that result in better reward from the environment. Because these approaches do not learn a model of the environment they are called model-free algorithms. Model-free methods take the position that you do not really need to know what the next state is to act well, you just need to be able to keep track of which actions in which states will allow you to collect a lot of future reward and take the actions that will generate the most.</p>
 <h2 id="is-one-approach-better-than-another">Is one approach better than another?</h2>
-<p>Answering which is better is rather complicated. Both have their advantages. Model-free methods may end up less biased because they rely more closely on their direct experiences. It turns out to be hard to learn good models of the environment, and if your model used for planning is poor, you may make bad decisions. However, model-free methods tend to need quite a lot of interaction with the environment and have some tricky algorithm stability issues, which may make model-based RL methods more appealing. For the time beign, you will just have to figure out what works best for your environment.</p>
+<p>Answering which is better is rather complicated. Both have their advantages. Model-free methods may end up less biased because they rely more closely on their direct experiences. It turns out to be hard to learn good models of the environment, and if your model used for planning is poor, you may make bad decisions. However, model-free methods tend to need quite a lot of interaction with the environment and have some tricky algorithm stability issues, which may make model-based RL methods more appealing. For the time being, you will just have to figure out what works best for your environment.</p>
 <h2 id="a-simple-heuristic">A simple heuristic</h2>
 <p>If you want a way to check if an RL algorithm is model-based or model-free, ask yourself this question: after learning, can the agent make predictions about what the next state and reward will be before it takes each action? If it can, then it’s a model-based RL algorithm. if it cannot, it’s a model-free algorithm.</p>
 <p>This same idea may also apply to decision-making processes other than MDPs.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Beware: I&rsquo;m entering into controversial territory here! Many people will call methods for problems where the transition dynamics are known RL methods. Like most things, lines get blurry. For example, the authors of AlphaGo will called their work &ldquo;RL&rdquo; even though they used MCTS and the dynamics of the game were known and provided to the algorithm. However, in the cases&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
     
 </div>
 

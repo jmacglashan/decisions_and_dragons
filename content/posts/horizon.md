@@ -26,16 +26,16 @@ Finite horizons are perhaps the most common approach you'll see control theory l
 
 ## I have infinite patience, but I'd prefer it now
 
-A finiite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that' what it will optimize for.
+A finiite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that's what it will optimize for.
 
-We might then ask oursleves: is there a way to tell the agent to optimize for an _infinite_ horizon?
+We might ask oursleves: is there a way to tell the agent to optimize for an _infinite_ horizon?
 
 Optimizing for an infinite horizon might get a little funky, because if we just summed up all rewards into infinity, two polcies that both generated small positive rewards indefinitely would have the same total infinite value, even if one policy always recieved more reward on each time step.
 
-One solution to this enigma is to use a _discounted_ infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about each reward by how far into the future it is by a discount parameter $\gamma \in [0, 1)$:
+One solution to this enigma is to use a _discounted_ infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about it by how far into the future it is. More precisely, using a discount parameter $\gamma \in [0, 1)$, we define the objective to be:
 
 $$
-r_1 + \gamma r_2 \gamma^2 r_3 + gamma^3 r_4 + ...
+r_1 + \gamma r_2 \gamma^2 r_3 + \gamma^3 r_4 + ...
 $$
 
 Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
@@ -46,6 +46,6 @@ This approach solves the delimma of missing the opporutnity to achieve a big rew
 
 The discounted objective considers an infinite horizon, but the discount factor $\gamma$ acts a lot like a horizon. You might wonder if we can still do better while avoiding the problem of many futures all summing up to infinite value.
 
-And there is! Sort of. That is, you can instead consider optimizing the _average reward_ over the entire infinite future. There are even constraints you can add to that objective such that ofr two futures with the same average reward, you prefer the one that gathers reward the fastest. See the [R-learning paper](https://www.researchgate.net/profile/Anton-Schwartz/publication/221346025_A_Reinforcement_Learning_Method_for_Maximizing_Undiscounted_Rewards/links/5e72421aa6fdcc37caf4cf4b/A-Reinforcement-Learning-Method-for-Maximizing-Undiscounted-Rewards.pdf) for a discussion of that.
+And there is! Sort of. That is, you can instead consider optimizing the _average reward_ over the entire infinite future. There are even constraints you can add to that objective such that if two futures have the same average reward, you prefer the one that gathers reward the fastest. See the [R-learning paper](https://www.researchgate.net/profile/Anton-Schwartz/publication/221346025_A_Reinforcement_Learning_Method_for_Maximizing_Undiscounted_Rewards/links/5e72421aa6fdcc37caf4cf4b/A-Reinforcement-Learning-Method-for-Maximizing-Undiscounted-Rewards.pdf) for a discussion of that.
 
-Unfortunately, designing algorithms to optimize this average-reward objective has proven challenging. There is still work in the area, so we may yet find a solution. Until then though, most work will stick with the discounted objective.
+Unfortunately, designing algorithms to optimize this average-reward objective has proven challenging. There is still work in the area, so we may yet find a solution. Until then though, most work sticks with the discounted objective.

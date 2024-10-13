@@ -115,7 +115,7 @@ Action space
 
 #### R(s, a) or R(s, a, s')
 
-A reward function on state-action pairs or state-action-next state triples. In practice, reward functions are usually defined in terms of the state $s' \in S$, while theoretical analysis usually assumes the simpler $R(s, a)$ functions. Doing analysis with $R(s, a)$ does not limit the validity of the analysis because for any MDP with an $R(s, a, s')$ function, you can define an equivalent MDP with an $R(s, a)$ function that is the expected value of the $R(s, a, s') values (averaging over the next state probabilities).
+A reward function on state-action pairs or state-action-next state triples. In practice, reward functions are usually defined in terms of the state $s' \in S$, while theoretical analysis usually assumes the simpler $R(s, a)$ functions. Doing analysis with $R(s, a)$ does not limit the validity of the analysis because for any MDP with an $R(s, a, s')$ function, you can define an equivalent MDP with an $R(s, a)$ function that is the expected value of the $R(s, a, s')$ values (averaging over the next state probabilities).
 
 #### T(s' | s, a)
 

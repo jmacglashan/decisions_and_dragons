@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/off_policy_replay/</link>
       <pubDate>Sat, 04 May 2024 11:39:36 -0400</pubDate>
       <guid>http://localhost:1313/posts/off_policy_replay/</guid>
-      <description>&lt;p&gt;When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. For any moment in time the vast majority of experiences in the buffer are generated with a different &amp;ndash; earlier &amp;ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. At any moment in time, the vast majority of experiences in the buffer are generated with a different &amp;ndash; earlier &amp;ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is the &#34;horizon&#34; in reinforcement learning?</title>
@@ -48,14 +48,14 @@
       <link>http://localhost:1313/posts/model_free_vs_model_based/</link>
       <pubDate>Fri, 29 Mar 2024 19:50:17 -0400</pubDate>
       <guid>http://localhost:1313/posts/model_free_vs_model_based/</guid>
-      <description>&lt;p&gt;In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine good behavior. In model-free reinforcement learning, the agent learns how to act well without ever learning to predict precisely how the environment will be affectd by its actions.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to predict precisely how the environment will be affected by its actions.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
       <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. It subsumes questions of perception, prediction, planning, memory, etc &amp;ndash; all the relevant subfields of AI. But the methods to solve this simple problem definition are not so simple. Unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions.</description>
+      <description>Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.&#xA;Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets.</description>
     </item>
     <item>
       <title>Math Notation Cheatsheet</title>
