@@ -18,16 +18,16 @@
     -webkit-text-stroke: 0.5px black;
     font-family: var(--logo-font);
     color: var(--accent-col);
-  }
-  
-  .nav {
+}
+
+.nav {
     height: 100%;
     vertical-align: center;
-    position:relative;
-    top:-2px;
-  }
-  
-  .nav a {
+    position: relative;
+    top: -2px;
+}
+
+.nav a {
     color: var(--accent-col);
     margin-right: 1em;
-  }
+}

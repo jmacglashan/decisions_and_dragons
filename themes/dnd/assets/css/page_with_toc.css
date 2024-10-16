@@ -2,6 +2,7 @@
 
 #content_with_toc {
     max-width: 800px;
+    min-width: 600px;
     margin-left: 300px;
     padding-left: 6em;
     padding-right: 6em;
@@ -9,7 +10,7 @@
     padding-bottom: 6rem;
     line-height: 1.6;
 }
-  
+
 #toc {
     position: fixed;
     top: 0;
@@ -25,14 +26,14 @@
 
 #TableOfContents ul {
     font-family: var(--dd-serif-font);
-    list-style-type:disc;
+    list-style-type: disc;
     color: var(--accent-col);
 }
-  
+
 #TableOfContents ul li {
     padding-top: 10px;
 }
-  
+
 #TableOfContents ul li a {
     font-family: var(--dd-serif-font);
     color: var(--accent-col);

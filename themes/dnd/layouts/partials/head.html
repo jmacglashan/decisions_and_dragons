@@ -1,6 +1,12 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-{{ partialCached "head/css.html" . }}
-{{ partialCached "head/js.html" . }}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>
+    {{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title
+    site.Title }}{{ end }}
+</title>
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+/>
+{{ partialCached "head/css.html" . }} {{ partialCached "head/js.html" . }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />

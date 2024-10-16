@@ -55,7 +55,7 @@
       <link>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</link>
       <pubDate>Fri, 29 Mar 2024 20:07:54 -0400</pubDate>
       <guid>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</guid>
-      <description>&lt;p&gt;Actually, it doesn&amp;rsquo;t! What you&amp;rsquo;re probably thinking of is the &lt;a href=&#34;https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf&#34;&gt;REINFORCE&lt;/a&gt; &lt;em&gt;esitmate&lt;/em&gt; of the policy gradient that on-policy methods often use in practice. How we derive the REINFORCE estimate you&amp;rsquo;re familiar with and &lt;em&gt;why&lt;/em&gt; we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!&lt;/p&gt;</description>
+      <description>&lt;p&gt;Actually, it doesn&amp;rsquo;t! What you&amp;rsquo;re probably thinking of is the &lt;a href=&#34;https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf&#34;&gt;REINFORCE&lt;/a&gt; &lt;em&gt;esitmate&lt;/em&gt; of the policy gradient. How we derive the REINFORCE estimate you&amp;rsquo;re familiar with and &lt;em&gt;why&lt;/em&gt; we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is the difference between model-based and model-free RL?</title>
