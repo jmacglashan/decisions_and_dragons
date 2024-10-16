@@ -1,7 +1,7 @@
 +++
 title = 'Why is the DDPG gradient the product of the Q-function gradient and policy gradient?'
 date = 2024-04-20T12:51:21-04:00
-draft = true
+draft = false
 +++
 
 The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:
@@ -21,15 +21,19 @@ Like so many methods in RL, the foundation of DDPG and DPG is policy iteration. 
 1. Evaulate $Q^\pi(s, a)$ for your current policy $\pi$ for all state-action pairs.
 2. Improve your policy $\pi$ by updating it to maximize $Q(s, \pi_\theta(s))$ for each state.
 
-This algorithm templates makes sense intutively. We want our policy to maximize the expected future discounted reward. The Q-function $Q^\pi(s, a)$ tells us how much expected future discounted reward the agent will receive if it takes take action $a$ from state $s$ and then follows policy $\pi$ thereafter. Therefore, by updating $\pi$ to maximize $Q(s, \pi(s))$ at each state, the agent will improve its return!
+Recall that we want our policy to maximize the expected future discounted reward. The Q-function $Q^\pi(s, a)$ tells us how much expected future discounted reward the agent will receive if it takes take action $a$ from state $s$ and then follows policy $\pi$ thereafter. Therefore, by updating $\pi$ to maximize $Q(s, \pi(s))$ at each state, the agent will improve its return!
 
-Many different concrete algorithms emerge from how we choose to do steps 1 and 2. For the purposes of this topic, we'll focus on step 2. When an MDP has a small discrete set of actions and a finite managable set of states, you can implement step 2 by enumerating the Q-values for each action in each state and updating the policy to select the action with the highest Q-value.
+Many different concrete algorithms emerge from how we choose to do steps 1 and 2. For the purposes of this topic, we'll focus on step 2. When an MDP has a small discrete set of actions, you can enumerate the Q-values for each action and update the policy to select the action with the highest Q-value.
 
 Unfortunately, if the MDP has continuous actions and a very large or continuous state space, this approach isn't going to work. DDPG and DPG address this problem by using gradient descent.
 
 ## Q-functions as loss functions
 
-When actions are continuous and the states are large, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, optimizing a neural net polciy to maximize the Q-function should look very similar to training a neural net.
+When actions are continuous, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, we're good at optimizing approximate functions to minimize some loss function in machine learning. That's kind of the basis of deep learning! We build a big neural net, define a differentiabe loss function, and then use multiple steps of gradient descent to learn a neural net to minimize the loss.
+
+We can use the same idea to handle our problem of optimizing a policy to select continuous acitons that maximize a Q-function. In this case, our Q-function will act like our loss funciton, and our policy like the usual nerual net.
+
+Let's revist how standard gradient descent works for supervised learning and and then relate that back to DDPG.
 
 ### Supervised regression
 
@@ -79,7 +83,7 @@ $$
 
 The take away is that you can think of the negative Q-function as a loss function for training a neural net policy. By minimizing this loss with (stochastic) gradient descent, we solve the policy improvement problem for MDPs with continuous actions and large or continuous state spaces.[^1]
 
-[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, suprevised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, in DDPG, both the network and the Q-function, which serves as our loss function, may be non-convex. Because this problem is inherent to the loss function, simply scaling up the network will not resolve it. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-funtion may not be convex.
+[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, suprevised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, in DDPG, the Q-function, which serves as our loss function, may be non-convex too. Because this problem is inherent to the loss function, simply scaling up the policy network will not avoid the difficulities of local optima in the Q-function. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-funtion may not be convex.
 
 But we're still not quite at the expression in the DDPG and DPG literature that is the product of gradients. Let's work our way back to that.
 
@@ -93,7 +97,7 @@ $$
 h'(x) = f'(g(x))g'(x).
 $$
 
-The chain rule is useful because it allows us to simplify the computation of derivatives of complex functions by decomposing the function into sub functions for which we already know the derivative. E.g., if I asked you to compute the derivative of $\sin(x^2)$, you don't have to do the exhaustive work of solving a limit of the expression. Instead, if you already know the derivative of $\sin(x)$ and the derivative of $x^2$, then you can use the chain rule to compute the derivate of $\sin(x^2)$.
+The chain rule is useful because it allows us to simplify the computation of derivatives of complex functions by decomposing the function into sub functions for which we already know the derivative. E.g., if I asked you to compute the derivative of $\sin(x^2)$, you don't have to do the exhaustive work of solving a limit of the expression. If you already know the derivative of $\sin(x)$ and the derivative of $x^2$, then you can use the chain rule to compute the derivate of $\sin(x^2)$.
 
 ### Multivariable functions
 
@@ -107,7 +111,7 @@ $$
 
 where $(Dg(x))^\top$ indicates the transpose of the Jacobian matrix (the matrix of gradients for each output) and $\rvert_{a=g(x)}$ indicates that we should evaluate the value $a$ in $f(a)$ as the value of $g(x)$.
 
-The multivariable chain rule is useful for the same reason as the single-variable chain rule: it allows you to leverage your knowledge of the gradients of simple functions to compute the gradient of a complex function that is a composition of those functions.
+The multivariable chain rule is useful for the same reason as the single-variable chain rule: it allows you to leverage your knowledge of the gradients of simple functions to compute the gradient of a complex function.
 
 ### Applying the chain rule
 
@@ -139,4 +143,4 @@ Before deep networks took over, RL researchers often used simple linear function
 
 ## Bias in the DDPG estimate
 
-As a concluding remark, it is important to observe that the DDPG/DPG approach has a source of bias in it. Ideally, we'd be differentiating the true Q-function. But we almost never have this function. Instead, we train another neural net to estimate the Q-function and then take gradients of that. Because we use an estimate of the Q-function, the gradients of that esitmate, and the gradient of our policy objective in turn, will be biased.
+As a concluding remark, it is important to observe that the DDPG/DPG approach has a source of bias in it. Ideally, we'd be differentiating the true Q-function. But we almost never have this function. Instead, we train another neural net to estimate the Q-function and then take gradients of that. Because we use an estimate of the Q-function, the gradients of that esitmate will be biased.

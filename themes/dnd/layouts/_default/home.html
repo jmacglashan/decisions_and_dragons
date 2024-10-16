@@ -1,24 +1,24 @@
 {{ define "headb" }}
 <div id="splash">
-<h1>{{ site.Title }}</h1>
-<p>A guide to the perilous world of reinforcement learning.</p>
+    <h1>{{ site.Title }}</h1>
+    <p>A guide to the perilous world of reinforcement learning.</p>
 </div>
-{{ end }}
-
-{{ define "main" }}
-  <div id="content_center">
+{{ end }} {{ define "main" }}
+<div id="content_center">
     <div id="home_nav">
-      <ul> 
-        {{ range .Site.Menus.nav }} 
+        <ul>
+            {{ range .Site.Menus.nav }}
             <li><a href=" {{ .URL }}">{{ .Name }}</a></li>
-        {{ end }}
-      </ul>
+            {{ end }}
+        </ul>
     </div>
     {{ .Content }}
     <h2>Recent posts</h2>
-    {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
-      <h3><a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-      {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
+    {{ range first 8 (where .Site.RegularPages "Type" "posts") }}
+    <h3>
+        <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    </h3>
+    {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
     {{ end }}
-  </div>
+</div>
 {{ end }}
