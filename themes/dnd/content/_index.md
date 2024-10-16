@@ -10,3 +10,5 @@ Each answer begins with a concise explanation, accessible to those with relevant
 
 Below you will find the most recently published questions and answers. You can find the complete list of all questions and answers in the [posts section](/posts/). You can learn more about
 me and why I created this site in the [about section](/about/).
+
+This site is currently under development. In particular, mobile rendering is not working the way I want right now.
