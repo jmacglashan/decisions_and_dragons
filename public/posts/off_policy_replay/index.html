@@ -64,9 +64,10 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#off-policy-vs-on-policy">Off-policy vs on-policy</a></li>
     <li><a href="#evaluation-vs-improvement-and-the-strange-case-of-ppo">Evaluation vs improvement and the strange case of PPO</a>
@@ -78,11 +79,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#is-on-policy-or-off-policy-better">Is on-policy or off-policy better?</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>Why does experience replay require off-policy learning and how is it different from on-policy learning?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>Why does experience replay require off-policy learning and how is it different from on-policy learning?</h1>
 
-    <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. At any moment in time, the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p>
+        <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. At any moment in time, the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p>
 <h2 id="off-policy-vs-on-policy">Off-policy vs on-policy</h2>
 <p>There is often confusion about the meaning of off-policy and on-policy. Many people believe &ldquo;on-policy&rdquo; refers to any method that evaluates an explicit policy. These people would consider any actor-critic method to be an &ldquo;on-policy&rdquo; method because in actor-critic methods, the actor is an explicit parameterized policy that the critic (the value function) evaluates. While many actor-criticm methods are on-policy, the term classically means something different, and you can in fact have off-policy actor-critic methods.</p>
 <p>The classic meaning of on-policy vs off-policy regards whether your training method requires your training data to be collected from the policy to be evaluated and improved, or whether it can be used even if your data is collected from a different policy.</p>
@@ -122,7 +123,8 @@ $$</p>
 <p>So, although many RL methods are either off-policy or on-policy for both evaluaiton and improvement, this need not be the case. PPO is an example where the evaluation is on-policy (it evaluates the behavior policy), while the improvement step is off-policy (it improves a policy that is different than the behavior policy).</p>
 <h2 id="is-on-policy-or-off-policy-better">Is on-policy or off-policy better?</h2>
 <p>There is no clear answer to whether on-policy of off-policy is better. Off-policy is a more preferable setting, because it means we can learn from any source of data, while on-policy methods are more wasteful and requires us to get more data every time we change our policy. However, at this current moment in time, on-policy methods tend to be more stable than off-policy methods. So if gathering data from your policy is cheap, you might prefer to use an on-policy method.</p>
-    
+        
+    </div>
 </div>
 
   <footer>

@@ -1,35 +1,38 @@
 /* File for top-level html and reused variables */
 
 :root {
-  --logo-font: CinzelDecorative;
-  --dd-serif-font: Caudex;
-  --dd-sans-font: Lato;
-  --bg-main: rgb(46, 37, 30);
-  --bg-dark: rgb(33, 30, 25);
-  --banner-grad: linear-gradient(180deg, rgba(119,43,43,1) 0%, rgba(109,33,33,1) 39%, rgba(89,13,13,1) 100%);
-  --accent-col: rgb(238, 206, 145);
-  --seondary-accent-col: rgb(33, 152, 212);
-  --foreground-color: #dddddd;
-}
-
-
-html body {
-  height: 100%;
+    --logo-font: CinzelDecorative;
+    --dd-serif-font: Caudex;
+    --dd-sans-font: Lato;
+    --bg-main: rgb(46, 37, 30);
+    --bg-dark: rgb(33, 30, 25);
+    --banner-grad: linear-gradient(
+        180deg,
+        rgba(119, 43, 43, 1) 0%,
+        rgba(109, 33, 33, 1) 39%,
+        rgba(89, 13, 13, 1) 100%
+    );
+    --accent-col: rgb(238, 206, 145);
+    --seondary-accent-col: rgb(33, 152, 212);
+    --foreground-color: #dddddd;
 }
 
 body {
-  margin: 0;
-  background-color: var(--bg-main);
-  color: var(--foreground-color);
-  font-size: larger;
-  font-family: Lato;
+    margin: 0;
+    background-color: var(--bg-main);
+    color: var(--foreground-color);
+    font-size: larger;
+    font-family: Lato;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 a {
-  color: var(--seondary-accent-col);
-  text-decoration: none;
-} 
+    color: var(--seondary-accent-col);
+    text-decoration: none;
+}
 
 .post_link {
-  color: var(--accent-col);
+    color: var(--accent-col);
 }

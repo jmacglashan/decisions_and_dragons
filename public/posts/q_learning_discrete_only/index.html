@@ -64,20 +64,21 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#examining-the-q-learning-update">Examining the Q-learning update</a></li>
     <li><a href="#extracting-the-policy-is-no-easier">Extracting the policy is no easier</a></li>
     <li><a href="#alternatives">Alternatives</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>Why doesn&#39;t Q-learning work with continuous actions?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>Why doesn&#39;t Q-learning work with continuous actions?</h1>
 
-    <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p>
+        <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p>
 <h2 id="examining-the-q-learning-update">Examining the Q-learning update</h2>
 <p>Lets take a look at the core Q-learning update rule:</p>
 <p>$$
@@ -122,7 +123,8 @@ $$</p>
 </li>
 </ol>
 </div>
-    
+        
+    </div>
 </div>
 
   <footer>

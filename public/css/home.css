@@ -7,25 +7,11 @@
     color: var(--accent-col);
     font-family: var(--dd-serif-font);
     width: 100vw;
-    display: block;
-    min-width: 700px;
 }
 
 #splash h1 {
     font-size: 250%;
     font-family: var(--logo-font);
-}
-
-#content_center {
-    max-width: 800px;
-    min-width: 600px;
-    background-color: var(--bg-main);
-    margin: auto;
-    padding-left: 5em;
-    padding-right: 5em;
-    padding-top: 2em;
-    padding-bottom: 4em;
-    line-height: 1.6;
 }
 
 #home_nav {
