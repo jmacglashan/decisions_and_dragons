@@ -7,6 +7,7 @@
     color: var(--accent-col);
     font-family: var(--dd-serif-font);
     width: 100vw;
+    min-width: 600px;
 }
 
 #splash h1 {
@@ -37,4 +38,27 @@
     padding: 16px;
     text-decoration: none;
     color: var(--accent-col);
+}
+
+.main-content {
+    padding: 20px;
+    max-width: 800px;
+    min-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-content > h1,
+.main-content > h2,
+.main-content > h3,
+.main-content > h4,
+.main-content > h5,
+.main-content > h6 {
+    margin: 0 auto 20px 0;
+}
+
+.main-content > a {
+    margin: 0 auto 20px 0;
 }

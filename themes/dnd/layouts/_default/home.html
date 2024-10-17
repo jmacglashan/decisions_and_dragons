@@ -1,24 +1,24 @@
-{{ define "headb" }}
-<div id="splash">
-    <h1>{{ site.Title }}</h1>
-    <p>A guide to the perilous world of reinforcement learning.</p>
-</div>
-{{ end }} {{ define "main" }}
-<div id="content_no_toc">
-    <div id="home_nav">
-        <ul>
-            {{ range .Site.Menus.nav }}
-            <li><a href=" {{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-        </ul>
+{{ define "headb" }} {{ end }} {{ define "main" }}
+<div class="center_flex">
+    <div id="splash">
+        <h1>{{ site.Title }}</h1>
+        <p>A guide to the perilous world of reinforcement learning.</p>
     </div>
-    {{ .Content }}
-    <h2>Recent posts</h2>
-    {{ range first 8 (where .Site.RegularPages "Type" "posts") }}
-    <h3>
-        <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-    </h3>
-    {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
-    {{ end }}
+    <div class="main-content">
+        <div id="home_nav">
+            <ul>
+                {{ range .Site.Menus.nav }}
+                <li><a href=" {{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ .Content }}
+        <h2>Recent posts</h2>
+        {{ range first 8 (where .Site.RegularPages "Type" "posts") }}
+        <h3>
+            <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </h3>
+        {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>{{ end }}
+    </div>
 </div>
 {{ end }}

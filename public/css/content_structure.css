@@ -8,8 +8,16 @@
     background: var(--banner-grad);
     font-family: var(--dd-serif-font);
     position: fixed;
-    width: 100%;
+    /* width: 100%; */
     z-index: 1000;
+    /* min-width: 800px; */
+}
+
+.center_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .logo_link {

@@ -64,9 +64,10 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#backseat-gambling">Backseat gambling</a></li>
     <li><a href="#separate-averages">Separate averages</a>
@@ -81,11 +82,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#why-wouldnt-we-always-learn-q-values">Why wouldn&rsquo;t we always learn Q-values?</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</h1>
 
-    <p>In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let&rsquo;s make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.</p>
+        <p>In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let&rsquo;s make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.</p>
 <h2 id="backseat-gambling">Backseat gambling</h2>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -209,7 +210,8 @@ $$</p>
 </li>
 </ol>
 </div>
-    
+        
+    </div>
 </div>
 
   <footer>

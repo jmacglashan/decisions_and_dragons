@@ -64,20 +64,21 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#a-more-precise-definition">A more precise definition</a></li>
     <li><a href="#an-example">An example</a></li>
     <li><a href="#why-q-is-useful">Why Q is useful</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>What is the difference between V(s) and Q(s,a)?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>What is the difference between V(s) and Q(s,a)?</h1>
 
-    <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p>
+        <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p>
 <h2 id="a-more-precise-definition">A more precise definition</h2>
 <p>Before making that more precise, let&rsquo;s first add a point of clarity. Value functions (either V or Q) are always with respect to some policy $\pi$.
 To emphasize this fact, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
@@ -106,7 +107,8 @@ In the case when we’re talking about the value functions for the optimal polic
 
 <p>In this case, the policy is near optimal except at state A where it goes up to B instead of right to C. Consequently, we have $V(A) = -4\ $. However, the Q-function for counterfactual action &ldquo;right&rdquo; shows a better expected return with $Q(A, \mathrm{right}) = -2\ $. This differences indicates that we can improve our policy by setting $\pi(A) = \mathrm{right}$.</p>
 <p>There are of course other ways to improve your policy without learning a Q-function, but it s a common a good way to do it!</p>
-    
+        
+    </div>
 </div>
 
   <footer>

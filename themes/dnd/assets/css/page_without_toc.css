@@ -2,11 +2,29 @@
 
 #content_no_toc {
     max-width: 800px;
+    min-width: 600px;
     background-color: var(--bg-main);
-    margin:auto;
+    margin: auto;
     padding-left: 5rem;
     padding-right: 5rem;
     padding-top: 6rem;
     padding-bottom: 4em;
     line-height: 1.6;
 }
+
+/* #content_no_toc {
+    padding: 20px;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    background-color: var(--bg-main);
+} */
