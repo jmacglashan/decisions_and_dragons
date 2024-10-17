@@ -64,9 +64,10 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#the-policy-objective">The policy objective</a></li>
     <li><a href="#the-true-policy-gradient">The true policy gradient</a></li>
@@ -75,11 +76,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#enter-log-probabilities">Enter log probabilities</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>Why does the policy gradient include a log probobability term?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>Why does the policy gradient include a log probobability term?</h1>
 
-    <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
+        <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
 <p>The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. We use this trick because we&rsquo;d like to use the samples the agent takes from each state to estimate the gradient, but computing the regular gradient without REINFORCE would require us to observe the outcome of each aciton in each state, including the ones we didn&rsquo;t take.</p>
 <p>That might not make much sense yet. Let&rsquo;s remedy that.</p>
 <h2 id="the-policy-objective">The policy objective</h2>
@@ -159,7 +160,8 @@ stable for floating-point math on computers. As such, we almost always use the l
 </li>
 </ol>
 </div>
-    
+        
+    </div>
 </div>
 
   <footer>

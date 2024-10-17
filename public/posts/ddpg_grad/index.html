@@ -64,9 +64,10 @@ window.addEventListener("hashchange", function () {
 </div>
  
     
-<div id="toc">
-    <span style="text-align: center"><h3>Table of Contents</h3></span>
-    <nav id="TableOfContents">
+<div id="content_with_toc">
+    <div id="toc">
+        <span style="text-align: center"><h3>Table of Contents</h3></span>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#revisting-policy-iteration">Revisting policy iteration</a></li>
     <li><a href="#q-functions-as-loss-functions">Q-functions as loss functions</a>
@@ -85,11 +86,11 @@ window.addEventListener("hashchange", function () {
     <li><a href="#bias-in-the-ddpg-estimate">Bias in the DDPG estimate</a></li>
   </ul>
 </nav>
-</div>
-<div id="content_with_toc">
-    <h1>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</h1>
+    </div>
+    <div class="main_next_to_toc">
+        <h1>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</h1>
 
-    <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
+        <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
 <p>$$
 \nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
 $$</p>
@@ -184,7 +185,8 @@ $$</p>
 </li>
 </ol>
 </div>
-    
+        
+    </div>
 </div>
 
   <footer>

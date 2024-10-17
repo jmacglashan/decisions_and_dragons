@@ -12,6 +12,13 @@
     z-index: 1000;
 }
 
+.center_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
 .logo_link {
     font-size: 160%;
     margin-right: 1em;
