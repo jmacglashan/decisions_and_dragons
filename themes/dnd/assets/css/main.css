@@ -183,6 +183,10 @@ body {
         -webkit-text-stroke: 0;
     }
 
+    .nav {
+        font-size: 80%;
+    }
+
     h1 {
         font-size: 1rem;
     }
