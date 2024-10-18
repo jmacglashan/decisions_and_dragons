@@ -103,6 +103,11 @@ body {
     background-color: var(--bg-dark);
 }
 
+.toc_container {
+    position: sticky;
+    top: 100px;
+}
+
 .logo_link {
     font-size: 160%;
     margin-right: 1em;

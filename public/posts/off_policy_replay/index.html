@@ -56,8 +56,9 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#off-policy-vs-on-policy">Off-policy vs on-policy</a></li>
     <li><a href="#evaluation-vs-improvement-and-the-strange-case-of-ppo">Evaluation vs improvement and the strange case of PPO</a>
@@ -69,6 +70,7 @@ window.addEventListener("hashchange", function () {
     <li><a href="#is-on-policy-or-off-policy-better">Is on-policy or off-policy better?</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>Why does experience replay require off-policy learning and how is it different from on-policy learning?</h1>

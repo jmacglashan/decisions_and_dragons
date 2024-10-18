@@ -13,8 +13,10 @@
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        {{ .TableOfContents }}
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            {{ .TableOfContents }}
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>{{ .Title }}</h1>
