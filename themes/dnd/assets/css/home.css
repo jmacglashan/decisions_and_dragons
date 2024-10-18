@@ -1,6 +1,6 @@
 /* CSS specific to the home page styling */
 
-#splash {
+/* #splash {
     text-align: center;
     background: var(--banner-grad);
     padding: 20px;
@@ -60,4 +60,29 @@
 
 .main-content > a {
     margin: 0 auto 20px 0;
+} */
+
+#home_nav {
+    display: flex;
+    justify-content: center;
+}
+
+#home_nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--dd-serif-font);
+}
+
+#home_nav ul li {
+    float: left;
+}
+
+#home_nav ul li a {
+    display: block;
+    text-align: center;
+    padding-right: 1em;
+    text-decoration: none;
+    color: var(--accent-col);
 }

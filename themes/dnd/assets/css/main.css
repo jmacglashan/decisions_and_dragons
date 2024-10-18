@@ -17,7 +17,7 @@
     --foreground-color: #dddddd;
 }
 
-body {
+/* body {
     margin: 0;
     background-color: var(--bg-main);
     color: var(--foreground-color);
@@ -26,6 +26,128 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+a {
+    color: var(--seondary-accent-col);
+    text-decoration: none;
+}
+
+.post_link {
+    color: var(--accent-col);
+} */
+
+body {
+    margin: 0;
+    background-color: var(--bg-main);
+    color: var(--foreground-color);
+    font-size: larger;
+    font-family: Lato;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    background: var(--banner-grad);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    font-family: var(--dd-serif-font);
+    color: var(--accent-col);
+}
+
+.small_header {
+    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    color: var(--accent-col);
+    background: var(--banner-grad);
+    font-family: var(--dd-serif-font);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.toc-content-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+    max-width: 800px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 300px;
+}
+
+.rhs-main-content {
+    max-width: 800px;
+    flex-grow: 1;
+    background-color: var(--bg-main);
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 4em;
+    line-height: 1.6;
+}
+
+.sidebar {
+    flex-shrink: 1;
+    width: 300px;
+    padding-top: 1em;
+    padding-right: 1em;
+    background-color: var(--bg-dark);
+}
+
+/* Mobile-specific style */
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+.main-content > h1,
+.main-content > h2,
+.main-content > h3,
+.main-content > h4,
+.main-content > h5,
+.main-content > h6 {
+    margin: 0 auto 20px 0;
+}
+
+.main-content > a {
+    margin: 0 auto 20px 0;
+}
+
+.main-content > p {
+    margin: 0 auto 20px 0;
 }
 
 a {

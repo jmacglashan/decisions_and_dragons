@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8" />
+<!doctype html>
+<html
+    lang="en-us"
+    dir="ltr"
+>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>
     Why doesn&#39;t Q-learning work with continuous actions? | Decisions &amp; Dragons
@@ -22,9 +25,7 @@
       <script src="/js/main.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
   MathJax = {
     tex: {
@@ -33,16 +34,15 @@
       tags: 'ams'
     }
   };
-</script>
-  
-  <script>
+</script>  <script>
 window.addEventListener("hashchange", function () {
     window.scrollTo(window.scrollX, window.scrollY - 70);
 });
 </script>
-</head>
-<body>
-     <div id="small_splash">
+    </head>
+    <body>
+        
+<div class="small_header">
     <span
         ><a class="logo_link" href="http://localhost:1313/"
             >Decisions &amp; Dragons</a
@@ -62,10 +62,8 @@ window.addEventListener("hashchange", function () {
         
     </span>
 </div>
- 
-    
-<div id="content_with_toc">
-    <div id="toc">
+<div class="toc-content-container">
+    <div class="sidebar">
         <span style="text-align: center"><h3>Table of Contents</h3></span>
         <nav id="TableOfContents">
   <ul>
@@ -75,9 +73,8 @@ window.addEventListener("hashchange", function () {
   </ul>
 </nav>
     </div>
-    <div class="main_next_to_toc">
+    <div class="rhs-main-content">
         <h1>Why doesn&#39;t Q-learning work with continuous actions?</h1>
-
         <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p>
 <h2 id="examining-the-q-learning-update">Examining the Q-learning update</h2>
 <p>Lets take a look at the core Q-learning update rule:</p>
@@ -123,14 +120,8 @@ $$</p>
 </li>
 </ol>
 </div>
-        
     </div>
 </div>
 
-  <footer>
-    <div style="text-align: center;">
-
-</div>
-  </footer>
-</body>
+    </body>
 </html>

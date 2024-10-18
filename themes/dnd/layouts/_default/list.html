@@ -1,14 +1,25 @@
-{{ define "headb" }}
-{{ partial "small_splash.html" . }}
-{{ end }}
-
 {{ define "main" }}
-  <div id="content_no_toc">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-    {{ range .Pages }}
-      <h2><a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
-    {{ end }}
-  </div>
+<div class="centered-container">
+    <div class="small_header">
+        <span
+            ><a class="logo_link" href="{{ .Site.BaseURL }}"
+                >{{ site.Title }}</a
+            ></span
+        >
+        <span class="nav">
+            {{ range .Site.Menus.nav }}
+            <a href=" {{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+        </span>
+    </div>
+    <div class="main-content">
+        <h1>{{ .Title }}</h1>
+        {{ .Content }} {{ range .Pages }}
+        <h2>
+            <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </h2>
+        {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
+        {{ end }}
+    </div>
+</div>
 {{ end }}

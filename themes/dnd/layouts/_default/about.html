@@ -1,11 +1,20 @@
-{{ define "headb" }}
-{{ partial "small_splash.html" . }}
-{{ end }}
-
 {{ define "main" }}
-  <div id="content_no_toc">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-    <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->
-  </div>
+<div class="centered-container">
+    <div class="small_header">
+        <span
+            ><a class="logo_link" href="{{ .Site.BaseURL }}"
+                >{{ site.Title }}</a
+            ></span
+        >
+        <span class="nav">
+            {{ range .Site.Menus.nav }}
+            <a href=" {{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+        </span>
+    </div>
+    <div class="main-content">
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+    </div>
+</div>
 {{ end }}

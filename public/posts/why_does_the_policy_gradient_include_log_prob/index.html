@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8" />
+<!doctype html>
+<html
+    lang="en-us"
+    dir="ltr"
+>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>
     Why does the policy gradient include a log probobability term? | Decisions &amp; Dragons
@@ -22,9 +25,7 @@
       <script src="/js/main.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
   MathJax = {
     tex: {
@@ -33,16 +34,15 @@
       tags: 'ams'
     }
   };
-</script>
-  
-  <script>
+</script>  <script>
 window.addEventListener("hashchange", function () {
     window.scrollTo(window.scrollX, window.scrollY - 70);
 });
 </script>
-</head>
-<body>
-     <div id="small_splash">
+    </head>
+    <body>
+        
+<div class="small_header">
     <span
         ><a class="logo_link" href="http://localhost:1313/"
             >Decisions &amp; Dragons</a
@@ -62,10 +62,8 @@ window.addEventListener("hashchange", function () {
         
     </span>
 </div>
- 
-    
-<div id="content_with_toc">
-    <div id="toc">
+<div class="toc-content-container">
+    <div class="sidebar">
         <span style="text-align: center"><h3>Table of Contents</h3></span>
         <nav id="TableOfContents">
   <ul>
@@ -77,9 +75,8 @@ window.addEventListener("hashchange", function () {
   </ul>
 </nav>
     </div>
-    <div class="main_next_to_toc">
+    <div class="rhs-main-content">
         <h1>Why does the policy gradient include a log probobability term?</h1>
-
         <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
 <p>The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. We use this trick because we&rsquo;d like to use the samples the agent takes from each state to estimate the gradient, but computing the regular gradient without REINFORCE would require us to observe the outcome of each aciton in each state, including the ones we didn&rsquo;t take.</p>
 <p>That might not make much sense yet. Let&rsquo;s remedy that.</p>
@@ -160,14 +157,8 @@ stable for floating-point math on computers. As such, we almost always use the l
 </li>
 </ol>
 </div>
-        
     </div>
 </div>
 
-  <footer>
-    <div style="text-align: center;">
-
-</div>
-  </footer>
-</body>
+    </body>
 </html>

@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8" />
+<!doctype html>
+<html
+    lang="en-us"
+    dir="ltr"
+>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>
     What is the &#34;horizon&#34; in reinforcement learning? | Decisions &amp; Dragons
@@ -22,9 +25,7 @@
       <script src="/js/main.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
   MathJax = {
     tex: {
@@ -33,16 +34,15 @@
       tags: 'ams'
     }
   };
-</script>
-  
-  <script>
+</script>  <script>
 window.addEventListener("hashchange", function () {
     window.scrollTo(window.scrollX, window.scrollY - 70);
 });
 </script>
-</head>
-<body>
-     <div id="small_splash">
+    </head>
+    <body>
+        
+<div class="small_header">
     <span
         ><a class="logo_link" href="http://localhost:1313/"
             >Decisions &amp; Dragons</a
@@ -62,10 +62,8 @@ window.addEventListener("hashchange", function () {
         
     </span>
 </div>
- 
-    
-<div id="content_with_toc">
-    <div id="toc">
+<div class="toc-content-container">
+    <div class="sidebar">
         <span style="text-align: center"><h3>Table of Contents</h3></span>
         <nav id="TableOfContents">
   <ul>
@@ -76,9 +74,8 @@ window.addEventListener("hashchange", function () {
   </ul>
 </nav>
     </div>
-    <div class="main_next_to_toc">
+    <div class="rhs-main-content">
         <h1>What is the &#34;horizon&#34; in reinforcement learning?</h1>
-
         <p>In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p>
 <h2 id="ill-be-taking-my-marshmellow-now">I&rsquo;ll be taking my marshmellow now</h2>
 <p>One answer to our question is the future doesn&rsquo;t matter! Our objective is to only maximize the immediate reward received for the next action. <a href="https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment">You want your marshmellow, and you want it now</a>.</p>
@@ -102,14 +99,8 @@ $$</p>
 <p>The discounted objective considers an infinite horizon, but the discount factor $\gamma$ acts a lot like a horizon. You might wonder if we can still do better while avoiding the problem of many futures all summing up to infinite value.</p>
 <p>And there is! Sort of. That is, you can instead consider optimizing the <em>average reward</em> over the entire infinite future. There are even constraints you can add to that objective such that if two futures have the same average reward, you prefer the one that gathers reward the fastest. See the <a href="https://www.researchgate.net/profile/Anton-Schwartz/publication/221346025_A_Reinforcement_Learning_Method_for_Maximizing_Undiscounted_Rewards/links/5e72421aa6fdcc37caf4cf4b/A-Reinforcement-Learning-Method-for-Maximizing-Undiscounted-Rewards.pdf">R-learning paper</a> for a discussion of that.</p>
 <p>Unfortunately, designing algorithms to optimize this average-reward objective has proven challenging. There is still work in the area, so we may yet find a solution. Until then though, most work sticks with the discounted objective.</p>
-        
     </div>
 </div>
 
-  <footer>
-    <div style="text-align: center;">
-
-</div>
-  </footer>
-</body>
+    </body>
 </html>
