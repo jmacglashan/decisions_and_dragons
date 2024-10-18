@@ -91,18 +91,18 @@ body {
 }
 
 /* Main Content Styles */
-.main-content {
+/* .main-content {
     padding: 20px;
     max-width: 800px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
+} */
 
 /* Main Content Styles */
 .main-content {
-    padding: 20px;
+    padding: 2em;
     max-width: 800px;
     flex-grow: 1;
     display: flex;
@@ -140,6 +140,10 @@ body {
     }
     .sidebar {
         display: none;
+    }
+
+    .rhs-main-content {
+        padding: 2em;
     }
 
     h1 {
