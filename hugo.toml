@@ -4,36 +4,25 @@ title = 'Decisions & Dragons'
 theme = 'dnd'
 
 [markup]
-  [markup.highlight]
-    style = "gruvbox"
+[markup.highlight]
+style = "gruvbox"
 
 [menu]
-    [[menu.nav]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
-    weight = 1
 
-    [[menu.nav]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 2
+[[menu.nav]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 1
 
-    [[menu.nav]]
-    identifier = "notation"
-    name = "Notaiton"
-    url = "/notation/"
-    weight = 4
+[[menu.nav]]
+identifier = "notation"
+name = "Notaiton"
+url = "/notation/"
+weight = 2
 
-    [[menu.nav]]
-    identifier = "posts"
-    name = "All posts"
-    url = "/posts/"
-    weight = 3
-
-    [[menu.nav]]
-    identifier = "twitter"
-    name = "Twitter"
-    url = "https://twitter.com/jmac_ai"
-    weight = 5
+[[menu.nav]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 3
