@@ -56,14 +56,16 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#examining-the-q-learning-update">Examining the Q-learning update</a></li>
     <li><a href="#extracting-the-policy-is-no-easier">Extracting the policy is no easier</a></li>
     <li><a href="#alternatives">Alternatives</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>Why doesn&#39;t Q-learning work with continuous actions?</h1>

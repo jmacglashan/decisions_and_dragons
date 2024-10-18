@@ -56,8 +56,9 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#revisting-policy-iteration">Revisting policy iteration</a></li>
     <li><a href="#q-functions-as-loss-functions">Q-functions as loss functions</a>
@@ -76,6 +77,7 @@ window.addEventListener("hashchange", function () {
     <li><a href="#bias-in-the-ddpg-estimate">Bias in the DDPG estimate</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</h1>

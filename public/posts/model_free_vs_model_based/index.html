@@ -56,8 +56,9 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#mdps">MDPs</a></li>
     <li><a href="#planning-vs-rl">Planning vs RL</a></li>
@@ -67,6 +68,7 @@ window.addEventListener("hashchange", function () {
     <li><a href="#a-simple-heuristic">A simple heuristic</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>What is the difference between model-based and model-free RL?</h1>

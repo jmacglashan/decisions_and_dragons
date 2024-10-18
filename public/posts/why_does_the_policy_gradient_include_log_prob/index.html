@@ -56,8 +56,9 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#the-policy-objective">The policy objective</a></li>
     <li><a href="#the-true-policy-gradient">The true policy gradient</a></li>
@@ -66,6 +67,7 @@ window.addEventListener("hashchange", function () {
     <li><a href="#enter-log-probabilities">Enter log probabilities</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>Why does the policy gradient include a log probobability term?</h1>

@@ -56,8 +56,9 @@ window.addEventListener("hashchange", function () {
 </div>
 <div class="toc-content-container">
     <div class="sidebar">
-        <span style="text-align: center"><h3>Table of Contents</h3></span>
-        <nav id="TableOfContents">
+        <div class="toc_container">
+            <span style="text-align: center"><h3>Table of Contents</h3></span>
+            <nav id="TableOfContents">
   <ul>
     <li><a href="#backseat-gambling">Backseat gambling</a></li>
     <li><a href="#separate-averages">Separate averages</a>
@@ -72,6 +73,7 @@ window.addEventListener("hashchange", function () {
     <li><a href="#why-wouldnt-we-always-learn-q-values">Why wouldn&rsquo;t we always learn Q-values?</a></li>
   </ul>
 </nav>
+        </div>
     </div>
     <div class="rhs-main-content">
         <h1>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</h1>
