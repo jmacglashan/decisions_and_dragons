@@ -59,6 +59,11 @@ body {
     color: var(--accent-col);
 }
 
+.header > h1 {
+    font-size: 250%;
+    font-family: var(--logo-font);
+}
+
 .small_header {
     padding-left: 1em;
     padding-top: 0.5em;
@@ -105,6 +110,7 @@ body {
     justify-content: center;
     flex-direction: column;
     margin-bottom: 300px;
+    line-height: 1.6;
 }
 
 .rhs-main-content {
@@ -116,6 +122,7 @@ body {
     padding-top: 1em;
     padding-bottom: 4em;
     line-height: 1.6;
+    margin-bottom: 300px;
 }
 
 .sidebar {
@@ -128,8 +135,46 @@ body {
 
 /* Mobile-specific style */
 @media only screen and (max-width: 768px) {
+    body {
+        font-size: small;
+    }
     .sidebar {
         display: none;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+    h2 {
+        font-size: 0.9rem;
+    }
+    h3 {
+        font-size: 0.8rem;
+    }
+    h4 {
+        font-size: 0.7rem;
+    }
+    h5 {
+        font-size: 0.68rem;
+    }
+    h6 {
+        font-size: 0.65rem;
+    }
+
+    .header > h1 {
+        font-size: 1.5rem;
+    }
+
+    pre {
+        font-size: 0.5rem;
+    }
+
+    mjx-container mjx-math * {
+        font-size: 0.6rem;
+    }
+
+    figure img {
+        max-width: 80%;
     }
 }
 

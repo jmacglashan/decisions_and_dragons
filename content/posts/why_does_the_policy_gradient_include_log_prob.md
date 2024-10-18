@@ -13,9 +13,7 @@ That might not make much sense yet. Let's remedy that.
 ## The policy objective
 First, lets identify the following: what is the objective function we want to maximize? From “[Policy Gradient Methods for Reinforcement Learning with Function Approximation](https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf)” we have the following objective:
 $$
-\begin{equation}
 J(\pi) = \sum_s d^\pi(s) \sum_a \pi(a | s) Q^\pi(s, a)
-\end{equation}
 $$
 where
 * $d^\pi(s)$ defines the (discounted[^1]) probability of being in state $s$ when following policy $\pi$,
@@ -33,9 +31,7 @@ The quesiton is *how* do we optimize this objective? If we are defining our poli
 ## The true policy gradient
 Of course that means we need to know how to compute the gradient of that objective. The main result of the policy gradient theorem is that the derivative of the objective is the following:
 $$
-\begin{equation}
 \frac{d}{d\theta} J(\pi) = \sum_s d^\pi(s) \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
-\end{equation}
 $$
 
 The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action and then we can just multiply that by the Q-value (and take a weighted average over discounted state distribution). We don't need to compute gradients through transitions functions, which usually are not known in RL problems.
@@ -47,9 +43,7 @@ Unfortunately, no, on its own that will not work.
 ## No takesies backsies
 To see the problem lets ignore the state distribution part of the objective on focus on the last part:
 $$
-\begin{equation}
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
-\end{equation}
 $$
 This may look like an expected value, but it's not. It's the *derivative* of an expected value. Because of that, we cannot estimate the gradient by using sampled actions. To compute the gradient correctly for each state, we'd have to know what the Q-value is for every action, and sum their gradients together.
 
@@ -60,15 +54,11 @@ Fortunately, REINFORCE provides us a way to turn our derivative of an expected v
 
 We begin by doing something ridiculous: inside the sum, we're going to multiply everything by the probability of our policy taking the action and immediately divide by it to cancel it:
 $$
-\begin{equation}
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
-\end{equation}
 $$
 So far, we've done nothing. All we did was add needless work by multiplying by the policy probability and dividing by it. But when you look at it this way, you may notice that this is the same as an expected value!
 $$
-\begin{equation}
 \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
-\end{equation}
 $$
 Now we're in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and aciton distribution in our new gradient. That is, our naive hope was _almost_ right. All we had to do to correct for the fact that we weren't summing the policy gradients over each action uniformly is divide by the probability of our policy selecting the action it took.
 
@@ -77,16 +67,12 @@ Except I promised log probabilities and as of now they haven't shown up.
 ## Enter log probabilities
 Fortunately, introducing the log probability is just one more step away. Let's remark on this simple calculus identity about the derivative of logs:
 $$
-\begin{equation}
 \frac{d}{dx} \log f(x)= \frac{1}{f(x)} \frac{df(x)}{dx}
-\end{equation}
 $$
 Here we see that we have the right-hand-side of that in our REINFORCE estimate of the gradient. Therefore, we can simplify it
 but substituing the log probability.
 $$
-\begin{equation}
 E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right] = E_{a \sim \pi(\cdot | s)} \left[ \frac{d\log \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
-\end{equation}
 $$
 In addition to simplifying the expression, using the log probabiltiy is usually preferable because it tends to be more numerically
 stable for floating-point math on computers. As such, we almost always use the log probability formulation.
