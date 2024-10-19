@@ -6,24 +6,21 @@ type = "page"
 layout = "about"
 +++
 
-Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn
-from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.
+Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.
 
-Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions. Even worse, the data the agent collects does not explicitly include the correct response in it and it is highly correlated. Instead, an RL agent must reason about its data to determine the correct reponse and it must actively explore the environment to ensure it has good data coverage. And if that wasn't hard enough for you, solving this problem often involves learning multiple interacting models, instead of just one.
+Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions. Even worse, the data the agent collects is highly correlated and does not explicitly include the correct response. Instead, an RL agent must reason about its data to determine the correct reponse and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough for you, solving this problem often involves learning multiple interacting models.
 
 The RL problem is _hard_ and if you feel lost trying to grock it, you're not alone.
 
-Although I now feel comfortable in the field, it took me a long time to feel that way. I overcame my struggles with reinforcement learning by building my understanding from fundamental principles. Over the years, I've done what I can to help others understand some of the paritcularly elusive concepts in this field. During that time, I've found that certain questions get asked more than others and I'll often point people to different places where I've already answered that question. However, my answers are often scattered over many different platforms and the format of those platforms were not always conducive to providing the presentation the answer deserves.
+This website aims to address that problem. Here I've collected answers I've given to common questions in the past and expanded on them.
 
-This website aims to address those problems. Here I've collected answers I've given to common questions in the past and expanded on them.
+Each answer begins with a concise response, followed by a step-by-step derivation from first principles. The aim of these step-by-step derivations is to fill in the gaps commonly skipped over in papers.
 
-Each answer begins with a concise response, followed by a step-by-step derivation from first principles. The aim of these step-by-step derivations is to fill in the gaps commonly skipped over in papers where people usually get stuck.
-
-Of course, the unpleasant reality is most of us have to suffer a long time to gain competence. But perhaps this site will help you suffer a little less.
+I can't promise that you'll come away from these answers with perfect clarity on the matter. The unpleasant reality is most of us have to suffer a long time to gain competence. But perhaps this site will help you suffer a little less.
 
 ## About the name
 
-This site is called "Decisions & Dragons," a name that reflects the focus on reinforcement learning (RL). "Decisions" represents the core goal of RL: developing agents that learn to make effective decisions. "Dragons" represents the perilous complexities and challenges that must be navigated in pursuit of solving the RL problem.
+This site is called "Decisions & Dragons. "Decisions" represents the core goal of RL: developing agents that learn to make effective decisions in an environment. "Dragons" represents the perilous complexities and challenges that must be navigated in pursuit of solving the RL problem.
 
 I trust you understand that there were no other motivations for this name and any similarities it has with other titles is purely coincidental.
 
@@ -33,12 +30,12 @@ At the time of launch, I populated this site with answers to frequently asked qu
 
 Moving forward, I will continue to curate and share my responses to new and emerging questions, as well as revisit and refine my previous answers as needed.
 
-Occasionally, I may also use this platform to share opinion pieces on RL and AI more broadly, although I am less sure of this direction. This site is still a work in progress -- we'll see how it goes.
+Occasionally, I may use this platform to share opinion pieces on RL and AI more broadly, although I am less sure of this direction. This site is still a work in progress -- we'll see how it goes.
 
 ## About me
 
 I'm James MacGlashan. If you want to ask me RL questions, the best place is either on [Twitter](https://twitter.com/jmac_ai), or
-on the [Reinforcement Learning Discord server](https://discord.gg/rn7J7W4F).
+on the [Reinforcement Learning Discord server](https://discord.gg/nu3pyBrNpg). (See the other links at the top of this page.)
 
 I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I
 worked on reinforcement learning. I then moved on to a postdoctoral position at Brown University, where I continued to work on reinforcement learning.
