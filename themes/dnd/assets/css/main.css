@@ -32,7 +32,7 @@ body {
 .header {
     background: var(--banner-grad);
     color: #fff;
-    padding: 20px;
+    padding: 20px 0 20px 0;
     text-align: center;
     width: 100%;
     font-family: var(--dd-serif-font);
@@ -45,7 +45,6 @@ body {
 }
 
 .small_header {
-    padding-left: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     color: var(--accent-col);
@@ -111,6 +110,7 @@ body {
 .logo_link {
     font-size: 160%;
     margin-right: 1em;
+    padding-left: 0.5em;
     -webkit-text-stroke: 0.5px black;
     font-family: var(--logo-font);
     color: var(--accent-col);
