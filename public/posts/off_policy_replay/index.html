@@ -72,7 +72,7 @@ window.addEventListener("hashchange", function () {
 </nav>
         </div>
     </div>
-    <div class="rhs-main-content">
+    <div class="main-content">
         <h1>Why does experience replay require off-policy learning and how is it different from on-policy learning?</h1>
         <p>When you use an experience replay buffer, you save the most recent $k$ experiences of the agent, and sample data from that buffer for training. Typically, the agent does a step of training to update its policy for every step in the environment. At any moment in time, the vast majority of experiences in the buffer are generated with a different &ndash; earlier &ndash; policy than the current policy. And if the policy used to collect data is different than the policy being evaluated or improved, then you need an off-policy method.</p>
 <h2 id="off-policy-vs-on-policy">Off-policy vs on-policy</h2>

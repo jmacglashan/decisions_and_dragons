@@ -75,7 +75,7 @@ window.addEventListener("hashchange", function () {
 </nav>
         </div>
     </div>
-    <div class="rhs-main-content">
+    <div class="main-content">
         <h1>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</h1>
         <p>In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let&rsquo;s make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.</p>
 <h2 id="backseat-gambling">Backseat gambling</h2>

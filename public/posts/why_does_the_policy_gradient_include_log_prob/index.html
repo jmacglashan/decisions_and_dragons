@@ -69,7 +69,7 @@ window.addEventListener("hashchange", function () {
 </nav>
         </div>
     </div>
-    <div class="rhs-main-content">
+    <div class="main-content">
         <h1>Why does the policy gradient include a log probobability term?</h1>
         <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>esitmate</em> of the policy gradient. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be glossed over in literature, or presented in an overly technical way, but fortunately, it is not a hard concept to learn!</p>
 <p>The short answer for where the log probability comes from is that REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability manfiests as an importance sampling correction to make this work. We use this trick because we&rsquo;d like to use the samples the agent takes from each state to estimate the gradient, but computing the regular gradient without REINFORCE would require us to observe the outcome of each aciton in each state, including the ones we didn&rsquo;t take.</p>

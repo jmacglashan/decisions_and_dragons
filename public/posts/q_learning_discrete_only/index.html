@@ -67,7 +67,7 @@ window.addEventListener("hashchange", function () {
 </nav>
         </div>
     </div>
-    <div class="rhs-main-content">
+    <div class="main-content">
         <h1>Why doesn&#39;t Q-learning work with continuous actions?</h1>
         <p>Q-learning requires finding the action with the maximum Q-value in two places: (1) In the learning update itself; and (2) when extracting the policy from the learned Q-values. When there are a small number of discrete actions, you can simply enumerate the Q-values for each and pick the action with the highest value. However, this approach does not work with continuous actions, because there are an infinite number of actions to evaluate!</p>
 <h2 id="examining-the-q-learning-update">Examining the Q-learning update</h2>

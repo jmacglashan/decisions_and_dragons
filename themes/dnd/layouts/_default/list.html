@@ -18,7 +18,8 @@
         <h2>
             <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
         </h2>
-        {{ .Summary }} <a href="{{ .RelPermalink }}">[See more]</a>
+        {{ .Summary }}
+        <p><a href="{{ .RelPermalink }}">[See more]</a></p>
         {{ end }}
     </div>
 </div>
