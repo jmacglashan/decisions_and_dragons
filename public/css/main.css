@@ -175,6 +175,11 @@ h6 {
         display: none;
     }
 
+    .main-content {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
     .logo_link {
         font-size: 100%;
         -webkit-text-stroke: 0;
