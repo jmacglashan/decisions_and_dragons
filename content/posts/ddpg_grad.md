@@ -10,9 +10,9 @@ $$
 \nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
 $$
 
-This expression looks a little scary, but it's conveying a straightforward concept: the gradient is the average of the Q-function's gradient with respect to the policy parameters, evaluated at the policy's selected action. That may not be obvious because the product of "gradients" (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.
+This expression looks a little scary, but it's conveying a straightforward concept: the gradient is the average of the Q-function's gradient with respect to the policy parameters, evaluated at the policy's selected action. That may not be obvious because the product of "gradients" (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.<!--more-->
 
-Let's rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.<!--more-->
+Let's rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.
 
 ## Revisting policy iteration
 

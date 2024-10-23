@@ -84,7 +84,6 @@ window.addEventListener("hashchange", function () {
 \nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
 $$</p>
 <p>This expression looks a little scary, but it&rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&rsquo;s gradient with respect to the policy parameters, evaluated at the policy&rsquo;s selected action. That may not be obvious because the product of &ldquo;gradients&rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.</p>
-<p>Let&rsquo;s rederive this result and explore why the literature presents it with an expansion of the chain rule instead of the more recognizable form.</p>
         <p><a href="/posts/ddpg_grad/">[See more]</a></p>
         
         <h2>
