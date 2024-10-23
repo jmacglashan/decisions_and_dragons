@@ -35,7 +35,7 @@ Optimizing for an infinite horizon might get a little funky, because if we just 
 One solution to this enigma is to use a _discounted_ infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about it by how far into the future it is. More precisely, using a discount parameter $\gamma \in [0, 1)$, we define the objective to be:
 
 $$
-r_1 + \gamma r_2 \gamma^2 r_3 + \gamma^3 r_4 + ...
+r_1 + \gamma r_2 + \gamma^2 r_3 + \gamma^3 r_4 + ...
 $$
 
 Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
