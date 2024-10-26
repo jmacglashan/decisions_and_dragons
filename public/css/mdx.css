@@ -61,7 +61,6 @@ blockquote {
 }
 
 pre {
-    width: 100%;
+    white-space: pre-wrap;
     padding: 1em;
-    display: inline-block;
 }

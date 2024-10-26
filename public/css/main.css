@@ -78,6 +78,7 @@ body {
     padding-top: 1em;
     padding-bottom: 4em;
     line-height: 1.6;
+    overflow-x: auto;
 }
 
 .sidebar {
@@ -165,6 +166,24 @@ h6 {
     margin: 0;
 }
 
+mjx-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+figure img {
+    max-width: 80%;
+}
+
+a {
+    color: var(--seondary-accent-col);
+    text-decoration: none;
+}
+
+.post_link {
+    color: var(--accent-col);
+}
+
 /* Mobile-specific style */
 @media only screen and (max-width: 768px) {
     body {
@@ -211,23 +230,6 @@ h6 {
     }
 
     pre {
-        font-size: 0.5rem;
-    }
-
-    mjx-container mjx-math * {
         font-size: 0.6rem;
     }
-
-    figure img {
-        max-width: 80%;
-    }
-}
-
-a {
-    color: var(--seondary-accent-col);
-    text-decoration: none;
-}
-
-.post_link {
-    color: var(--accent-col);
 }

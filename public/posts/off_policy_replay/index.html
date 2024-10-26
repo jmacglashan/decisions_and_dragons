@@ -94,16 +94,19 @@ window.addEventListener("hashchange", function () {
 <p>Because these are distinct steps, you can use different methods and data to perform them. Let&rsquo;s briefly review the core idea behind PPO to help explain how you might perform these steps differently.</p>
 <h3 id="ppo">PPO</h3>
 <p>PPO is roughly the following algorithm.</p>
-<pre tabindex="0"><code>Initialize parameters of state value function V.
-Initialize parameters policy pi.
+<pre tabindex="0"><code>Initialize state value function V.
+Initialize policy pi.
 Do forever:
-  Collect k n-length trajecories T following policy pi
+  Collect k n-length trajecories
   For each trajectory i to k:
-    Compute Return from each step Ri1, ..., Rin
-    Compute advantages Ai1, ..., Ain using Aij = Rij - V(sij)
+    For each step j to n:
+      // compute returns
+      Rij = discounted sum of rewards j to n
+      // compute advantages
+      Advantages Aij = Rij - V(sij)
   For M SGD steps:
-    Update V(sij) toward Rij for all trajectoies and time steps
-    Update policy pi using PPO CLIP objective with Aij
+    Update V(sij) toward Rij
+    Update policy pi using PPO CLIP
 </code></pre><p>Here, the PPO CLIP objective is defined as</p>
 <p>$$
 L(s, a, \theta_\text{old}, \theta) = \min\left(\frac{\pi_\theta(a | s)}{\pi_{\theta_\text{old}}(a | s)}A(s, a), \text{clip}\left(\frac{\pi_\theta(a | s)}{\pi_{\theta_\text{old}}(a | s)}, 1-\epsilon, 1+\epsilon \right)A(s, a) \right),

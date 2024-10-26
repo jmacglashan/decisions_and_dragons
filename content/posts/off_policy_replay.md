@@ -40,16 +40,19 @@ Because these are distinct steps, you can use different methods and data to perf
 PPO is roughly the following algorithm.
 
 ```
-Initialize parameters of state value function V.
-Initialize parameters policy pi.
+Initialize state value function V.
+Initialize policy pi.
 Do forever:
-  Collect k n-length trajecories T following policy pi
+  Collect k n-length trajecories
   For each trajectory i to k:
-    Compute Return from each step Ri1, ..., Rin
-    Compute advantages Ai1, ..., Ain using Aij = Rij - V(sij)
+    For each step j to n:
+      // compute returns
+      Rij = discounted sum of rewards j to n
+      // compute advantages
+      Advantages Aij = Rij - V(sij)
   For M SGD steps:
-    Update V(sij) toward Rij for all trajectoies and time steps
-    Update policy pi using PPO CLIP objective with Aij
+    Update V(sij) toward Rij
+    Update policy pi using PPO CLIP
 ```
 
 Here, the PPO CLIP objective is defined as
