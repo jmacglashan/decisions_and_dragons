@@ -35,7 +35,7 @@ $$
 
 where $N_l, N_r$ are the number of times the left and right bandit were played, respectively and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.
 
-After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weight average of those values, where the weights are the probability Bob woud pick each bandit:
+After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weighted average of those values, where the weights are the probability Bob woud pick each bandit:
 
 $$
 E_{\pi}\left[R \right] \approx \pi(a_l) Q(a_l) + \pi(a_r) Q(a_r)
@@ -63,7 +63,7 @@ At this point it should be clear to that if you simplified Q-learning to the ban
 
 In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify an average over _all_ our data with some weights. Spoiler, we modify it by weighting them by $\frac{\pi(a_i)}{\mu(a_i)}$ where $i$ is set to the arm that was pulled on that sample.
 
-To show how we determine those weights let's start with how we would exactly compute Bob's expected payout if we knew the probabilities for possible payout for each bandit. We'd ideally compute:
+To show how we determine those weights let's start with how we would exactly compute Bob's expected payout if we knew the probabilities for each possible payout for each bandit. We'd ideally compute:
 
 $$
 E_{\pi} \left[ R \right] = \sum_{a \in \\{a_l, a_r\\}} \pi(a) \sum_{r\in R} p_a(r) r,
@@ -77,7 +77,7 @@ There's just one problem: while we know the probability values $\pi(a_l)$ and $\
 
 If we were directly observing Bob play, this wouldn't be so bad. We would estimate the expected value with an average of his observed payouts. We wouldn't even have to keep track of which arm he pulled, because we can think of his random choice of the bandit as part of the underlying joint distribution. But we don't get to observe Bob play. We're trying to predict his payout from observation of Alice.
 
-Now comes the surprisingly simple importance sampling trick. Let's modify that expression without changing its value my multiplying and dividing by the probability that Alice will select the arm:
+Now comes the surprisingly simple importance sampling trick. Let's modify that expression without changing its value by multiplying and dividing by the probability that Alice will select the arm:
 
 $$
 \begin{align*}
@@ -97,7 +97,7 @@ $$
 \end{align*}
 $$
 
-Ahah! We turned our expected value of Bob's distribution $\pi$ into an expected value of Alice's distribution $\mu$! We just had to weight our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we're back to a expected values of a joint distribution and we can approximate it with the mean of our samples:
+Ahah! We turned our expected value of Bob's distribution $\pi$ into an expected value of Alice's distribution $\mu$! We just had to weigh our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we're back to a expected values of a joint distribution and we can approximate it with the mean of our samples:
 
 $$
 E_{a \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(a)}{\mu(a)} r \right] \right]
@@ -108,9 +108,9 @@ where $N$ is the total number of arm pulls Alice made between both bandits, $a_t
 
 Armed with this expression, we can approximate Bob's expected payout using our observations of Alice playing. We also could adopt the iterative estimate, rather than this mean estimate, of expected values, if we wanted.
 
-## Generalizing to MDPs
+## Where's the exepcted value under the policy in $Q^*$?
 
-We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action and can estimate the expected value of a different policy by taking a weighted average of the Q-values under that policy. We also understand that if we didn't keep seprate estimates for each action that importance sampling would be useful to correct for the mismatch is sampling distributions.
+We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn't keep seprate estimates for each action that importance sampling would be useful to correct for the mismatch is sampling distributions.
 
 But what about more general MDPs where there are sequential states and your value depends on what the expected value of your policy is for each subsequent state? Well, we now know how to solve that exact problem. Since Q-learning keeps separate estimates for each action from each state, we can the take a weighted average of future Q-values under the policy we care about (for Q-learning, the optimal policy) and never have to worry about importance sampling.
 
@@ -127,7 +127,7 @@ $$
 Q^\pi(s, a) = R(s, a) + \gamma \sum_{s'} T(s' | s, a) \sum_{a'} \pi(a' | s') Q^\pi(s', a')
 $$
 
-Now it's obvious in that expression. Now observe that we can express the optimal policy as a "stochastic" policy that with probability 1 selects the action with the highest Q-value[^5]:
+Now it's obvious in that expression. Next, observe that we can express the optimal policy as a "stochastic" policy that with probability 1 selects the action with the highest Q-value[^5]:
 
 $$
 \pi^\*(a | s) = \begin{cases}
@@ -136,9 +136,13 @@ $$
 \end{cases}
 $$
 
-With that in mind, it follows that we can simplify the more general expression $\sum_{a'} \pi^\*(a' | s') Q^\*(s', a')$ to $\max_{a'} Q^\*(s', a')$.
+With that in mind, it follows that we can simplify the more general expression
 
-So really, that max operator has been an expected value of a policy distribution all along, it's just a simplification for the optimal policy case. And once you make that connection, you can see it handles the off-policy problem by using our separate averages approach.
+$$
+\sum_{a'} \pi^\*(a' | s') Q^\*(s', a') = \max_{a'} Q^\*(s', a')
+$$
+
+So really, that max operator has been an expected value of a policy distribution all along. It's just a simplification for the optimal policy case. And once you make that connection, you can see it handles the off-policy problem by using our separate averages approach.
 
 ## Q-learning: importance sampling free
 
@@ -150,9 +154,9 @@ $$
 Q_{t+1}(s, a) \gets R(s, a) + \gamma \sum_{s'} T(s' | s, a) \max_{a'} Q_t(s', a')
 $$
 
-for all states and actions, we have that $Q_t \rightarrow Q^\*$ as $t \rightarrow \infty$. This algorithm is know as value iteration. In this post, I won't show why VI has that property, but let's simply accept this awesome property as true for the time being.
+for all states and actions, we have that $Q_t \rightarrow Q^\*$ as $t \rightarrow \infty$. This algorithm is know as value iteration (VI). In this post, I won't show why VI has that property, but let's simply accept this awesome property as true for the time being.
 
-Of course, even if you accept that property as true, it still doesn't answer our question. We wanted to know about Q-learning, not value iteraiton. However, Q-learning is a lot like value iteration, except Q-learning is meant to solve _reinforcement learning_ problems.
+"I asked about Q-learning, not value iteration!" I hear you yelling. I know, I know. However, Q-learning is a lot like value iteration, except Q-learning is meant to solve _reinforcement learning_ problems.
 
 In RL, the agent doesn't know the function $R(s, a)$ nor $T(s' | s, a)$, much like how in our bandit example we didn't know the probability distributions of payouts of the bandits $p$. But the agent can interact with the environment and obsereve the outcomes.
 
@@ -170,7 +174,7 @@ To summarize, even though Q-learning uses samples to estimate expected values, i
 
 ## Why off-policy actor critic methods use importance sampling
 
-After all this focus on Q-learning you may now actually be confused about why off-policy actor critic algorithms need importane sampling! Not all actually do. It usually depends on whether the actor-critic algorithm is estimating Q-functions, which have separate estimates for each action, or state value functions, which do not.
+After all this focus on Q-learning, you may be confused about why off-policy actor critic algorithms need importane sampling! Not all actually do. It usually depends on whether the actor-critic algorithm is estimating Q-functions, which have separate estimates for each action, or state value functions, which do not.
 
 To briefly review, one way we can define the state value function is in terms of $Q$:
 
@@ -186,6 +190,6 @@ However, other off-policy actor-critic algorithms, like IMPALA[^6] do not. Inste
 
 ## Why wouldn't we always learn Q-values?
 
-You might wonder why we don't always estimate Q-values if we want to do off-policy learning. Afterall, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy was (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
+You might wonder why we don't always estimate Q-values if we want to do off-policy learning. Afterall, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy were (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
 
 However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing funtion approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values and that adds another source of bias. These sources of bias are not trivial -- very often if algorithms like SAC fall apart it's inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.
