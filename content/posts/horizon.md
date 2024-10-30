@@ -4,7 +4,7 @@ date = 2024-04-21T16:49:00-04:00
 draft = false
 +++
 
-In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question "how does potential future reward affect our decision right now?" The "horizon" in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.
+In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question "how does potential future reward affect our decision right now?" The "horizon" in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.
 
 <!--more-->
 
@@ -12,7 +12,7 @@ In reinforcement learning, an agent receives reward on each time step and the go
 
 One answer to our question is the future doesn't matter! Our objective is to only maximize the immediate reward received for the next action. [You want your marshmellow, and you want it now](https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment).
 
-When you define the objective this way, you’ve defined the objective to be over a "finite horizon," where "horizon" refers to how many steps into the future the agent cares about the reward it can receive. In this case, we’ve defined a 1-step horizon objective, the most myopic objective you can define, since it only cares about how big the next immediate reward is.
+Such an objective is a "finite horizon" objective, where "horizon" refers to how many steps into the future the agent cares about the reward it can receive. In this case, we’ve defined a 1-step horizon objective, the most myopic objective you can define, since it only cares about how big the next immediate reward is.
 
 ## I can wait, for a time
 
@@ -22,7 +22,7 @@ Fortunately, the one-step horizon is easy to generalize to a bigger horizon. We 
 
 In this finite-horizon regime, the agent cares about how well it can maximize total reward for all steps within the horizon, but after that point, it stops trying to optimize for more reward.
 
-Finite horizons are perhaps the most common approach you'll see control theory literature. For example, in model predictive control, the agent optimizes what it can do for the next $n$ time steps. Then, after taking an action, the agent again optimizes what it could do for the next $n$ time steps. This appoach is sometimes called "receding horizon" because on each step, the horizon recedes back one step further, always keeping the boundary out of reach.
+Finite horizons are perhaps the most common objective you'll see in control theory literature. For example, in model predictive control, the agent optimizes what it can do for the next $n$ time steps. Then, after taking an action, the agent again optimizes what it could do for the next $n$ time steps, this time looking one step further than on the last step. This appoach is sometimes called "receding horizon" because on each step, the horizon recedes back one step further, always keeping the boundary out of reach.
 
 ## I have infinite patience, but I'd prefer it now
 
@@ -38,9 +38,9 @@ $$
 r_1 + \gamma r_2 + \gamma^2 r_3 + \gamma^3 r_4 + ...
 $$
 
-Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
+Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a finite maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
 
-This approach solves the delimma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it also acccounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
+This approach solves the delimma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it acccounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
 
 ## All moments are equally good, but I've got a math problem for you
 
@@ -48,4 +48,4 @@ The discounted objective considers an infinite horizon, but the discount factor 
 
 And there is! Sort of. That is, you can instead consider optimizing the _average reward_ over the entire infinite future. There are even constraints you can add to that objective such that if two futures have the same average reward, you prefer the one that gathers reward the fastest. See the [R-learning paper](https://www.researchgate.net/profile/Anton-Schwartz/publication/221346025_A_Reinforcement_Learning_Method_for_Maximizing_Undiscounted_Rewards/links/5e72421aa6fdcc37caf4cf4b/A-Reinforcement-Learning-Method-for-Maximizing-Undiscounted-Rewards.pdf) for a discussion of that.
 
-Unfortunately, designing algorithms to optimize this average-reward objective has proven challenging. There is still work in the area, so we may yet find a solution. Until then though, most work sticks with the discounted objective.
+Unfortunately, designing algorithms that optimize the average-reward objective has proven challenging. There is still work in the area, so we may yet find a practical solution. In fact, I'm increasingly optimistic that a solution is within reach. Perhaps when we do, we'll all switch to using average reward. Until then though, most work sticks with the discounted objective.

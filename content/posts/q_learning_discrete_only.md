@@ -34,7 +34,7 @@ You might think that as long as our Q-function network operats on continuous act
 
 Except how are you going to compute that label? Do you see the problem? It’s that damn $\max$ operator!
 
-If your actions are continuous, and therefore infinite, you can’t just look up which action produces the maximum q-value because there are an infinite number of actions to scan.[^1].
+If your actions are continuous, and therefore infinite, you can’t just look up which action produces the maximum q-value because there are an infinite number of actions to scan.[^1]
 
 ## Extracting the policy is no easier
 
@@ -55,10 +55,10 @@ However, if you’re going to replace the exact max with the result of some opti
 1. probably increasing the compute time for both training (you’re doing optimization in the inner loop of an optimization algorithm!) and inference/acting; and
 2. only going to end up with an approximate max anyway which, depending on details, may get stuck in local optima.[^2]
 
-[^2]: Unless your Q-function is convex on the actions or has some other really convenient, but restrictive, properties.
+[^2]: Unless your Q-function is convex over the actions or has some other really convenient, but restrictive, properties.
 
 That’s not to say those approaches can’t be successful, but it’s a fairly significant deviation from the classic Q-learning algorithm that will affect the solution conept the algorithm finds. I'll let you decided whether to still call algorithms that use these modifications Q-learning.
 
 Personally, I prefer actor-critic methods for continuous actions since they do not suffer this same problem. And if you want an actor-critic method that is quite similar to Q-learning, you may want to consider [DDPG](https://arxiv.org/abs/1509.02971), [TD3](https://arxiv.org/abs/1802.09477v3), or [SAC](https://arxiv.org/abs/1801.01290). If you want to learn more about how DDPG (and largely TD3) works, you may want to see [my post](../ddpg_grad/) on its policy gradient derivation.
 
-[^1]: Okay, _nothing_ is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there's still a hell of lot of possible values that you wouldn't want to enumerate! Like, over 4 billion. And that's if you only have _one_ continuous action.
+[^1]: Okay, _nothing_ is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there's still a hell of lot of possible values that you wouldn't want to enumerate! Like, over 4 billion. And that's if you only have _one_ continuous action dimension.

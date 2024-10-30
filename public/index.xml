@@ -20,7 +20,7 @@
       <link>http://localhost:1313/posts/horizon/</link>
       <pubDate>Sun, 21 Apr 2024 16:49:00 -0400</pubDate>
       <guid>http://localhost:1313/posts/horizon/</guid>
-      <description>&lt;p&gt;In reinforcement learning, an agent receives reward on each time step and the goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &amp;ldquo;how does potential future reward affect our decision right now?&amp;rdquo; The &amp;ldquo;horizon&amp;rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &amp;ldquo;how does potential future reward affect our decision right now?&amp;rdquo; The &amp;ldquo;horizon&amp;rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why doesn&#39;t Q-learning work with continuous actions?</title>

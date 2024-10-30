@@ -87,7 +87,7 @@ y \triangleq r + \gamma \max_{a&rsquo;} Q_{\theta^-}(s&rsquo;, a&rsquo;).
 $$</p>
 <p>You might think that as long as our Q-function network operats on continuous actions we should be alright. After all, neural networks train on all kind of continuous inputs, why not the action?</p>
 <p>Except how are you going to compute that label? Do you see the problem? It’s that damn $\max$ operator!</p>
-<p>If your actions are continuous, and therefore infinite, you can’t just look up which action produces the maximum q-value because there are an infinite number of actions to scan.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>If your actions are continuous, and therefore infinite, you can’t just look up which action produces the maximum q-value because there are an infinite number of actions to scan.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <h2 id="extracting-the-policy-is-no-easier">Extracting the policy is no easier</h2>
 <p>This same problem emerges when we want to extract the policy from the Q-values, because the greedy policy from the learned Q-values (which is optimal when the optimal Q-values are leared) is:</p>
 <p>$$
@@ -107,10 +107,10 @@ $$</p>
 <hr>
 <ol>
 <li id="fn:1">
-<p>Okay, <em>nothing</em> is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there&rsquo;s still a hell of lot of possible values that you wouldn&rsquo;t want to enumerate! Like, over 4 billion. And that&rsquo;s if you only have <em>one</em> continuous action.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Okay, <em>nothing</em> is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there&rsquo;s still a hell of lot of possible values that you wouldn&rsquo;t want to enumerate! Like, over 4 billion. And that&rsquo;s if you only have <em>one</em> continuous action dimension.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p>Unless your Q-function is convex on the actions or has some other really convenient, but restrictive, properties.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Unless your Q-function is convex over the actions or has some other really convenient, but restrictive, properties.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
