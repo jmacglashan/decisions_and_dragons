@@ -4,7 +4,7 @@ date = 2024-03-29T20:07:54-04:00
 draft = false
 +++
 
-Actually, it doesn't! What you're probably thinking of is the [REINFORCE](https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf) *esitmate* of the policy gradient. How we derive the REINFORCE estimate you're familiar with and *why* we use it is something I found to be poorly explained in literature. Fortunately, it is not a hard concept to learn!<!--more-->
+Actually, it doesn't! What you're probably thinking of is the [REINFORCE](https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf) *estimate* of the policy gradient. How we derive the REINFORCE estimate you're familiar with and *why* we use it is something I found to be poorly explained in literature. Fortunately, it is not a hard concept to learn!<!--more-->
 
 The log probability term emerges because REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability serves as an importance sampling correction for this alternative expression. We use this trick because we'd like to use the actions the agent takes to estimate the gradient, but the analytic gradient would require us to observe the outcomes of alls actions, including the ones the agent didn't take.
 
@@ -24,7 +24,7 @@ where
 
 This math might feel a bit scary, but in words, the objective is the average Q-value (across all states and actions) when following the policy. Adjusting your policy to maximize this objective means the average Q-value goes up, which in turn means the averaged expected future return is higher, which is of course the objective of RL!
 
-The quesiton is *how* do we optimize this objective? If we are defining our policy with a neural net or some other differentiable function approximation, we can compute gradients of the objective with respect to the policy neural net parameters $\theta$ and use something like stochastic gradient descent (SGD) to improve the policy.[^2]
+The question is *how* do we optimize this objective? If we are defining our policy with a neural net or some other differentiable function approximation, we can compute gradients of the objective with respect to the policy neural net parameters $\theta$ and use something like stochastic gradient descent (SGD) to improve the policy.[^2]
 
 [^2]: To use gradient *descent* we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient *ascent*.)
 
@@ -70,7 +70,7 @@ $$
 \frac{d}{dx} \log f(x)= \frac{1}{f(x)} \frac{df(x)}{dx}
 $$
 You will notice the right-hand-side of that appears in our REINFORCE estimate of the gradient. Therefore, we can simplify it
-but substituing the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
+but substituting the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
 $$
 E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right] = E_{a \sim \pi(\cdot | s)} \left[ \frac{d\log \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
@@ -78,4 +78,4 @@ In addition to simplifying the expression, using the log probabiltiy is usually 
 stable for floating-point math on computers. As such, we almost always use the log probability formulation.
 
 ## Any other heroes for hire?
-In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called _reparameterization_ is a strong altenative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it's not always the right pick. At any rate, the question we were answering is why log probabilities exist in the policy gradient methods, not which methods you can use to estimate policy gradients. Perhaps we will cover these differences another time.
+In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called _reparameterization_ is a strong alternative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it's not always the right pick. At any rate, the question we were answering is why log probabilities exist in the policy gradient methods, not which methods you can use to estimate policy gradients. Perhaps we will cover these differences another time.
