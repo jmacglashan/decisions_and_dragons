@@ -8,16 +8,6 @@ In off-policy learning, we evaluate the value function for a policy other than t
 
 ## Backseat gambling
 
-<!--
-
-Importance sampling is a method for estimating an expected value under one distribution using samples drawn from a different distribution. Classically, importance sampling was used deliberately because it turns out you can get a better estimate of an expected value using a different distribution than the one you care about[^1]. However, the main thing we're interesting in is that it let's you make estimates of expected values of one distribution with samples from another.
-
-[^1]:
-    Being able to get a better estimate using an alternative distribution turns out to be quite useful for estimating integrals, but that's another topic.
-
-    To turn that into a concrete but problem that is more related to reinforcement learning,
--->
-
 Let's imagine we're looking at two slot machines, which are more typically referred to as "bandits" in RL literature. Each bandit has a different payout rate that we don't know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he's going to play from from the left bandit 10% of the time and the right one 90% of the time. Let's call Alice's 50-50 strategy $\mu$ and Bob's biased strategy $\pi$. We denote their probabilities of picking the left or right arm as $\mu(a_l) = \mu(a_r) = \frac{1}{2}$ and $\pi(a_l) = \frac{1}{10}, \pi(a_r) = \frac{9}{10}$, respectively.
 
 Can we use our observations of Alice playing to predict Bob's average payout? Yes, and there are multiple ways to do this (what a surprise, there are multiple ways to do this in RL too!).
@@ -85,7 +75,7 @@ $$
 \end{align*}
 $$
 
-This is obviously true. Multiplying and dividing by the same value immediately cancels itself. How could this possibly be useful? If we re-arange some terms though, a useful poperty emerges:
+This is obviously true. Multiplying and dividing by the same value immediately cancels itself. How could this possibly be useful? If we re-arange some terms though, a useful property emerges:
 
 $$
 \begin{align*}
