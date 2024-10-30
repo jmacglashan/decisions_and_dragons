@@ -8,9 +8,9 @@ In reinforcement learning, an agent receives reward on each time step. The goal,
 
 <!--more-->
 
-## I'll be taking my marshmellow now
+## I'll be taking my marshmallow now
 
-One answer to our question is the future doesn't matter! Our objective is to only maximize the immediate reward received for the next action. [You want your marshmellow, and you want it now](https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment).
+One answer to our question is the future doesn't matter! Our objective is to only maximize the immediate reward received for the next action. [You want your marshmallow, and you want it now](https://en.wikipedia.org/wiki/Stanford_marshmallow_experiment).
 
 Such an objective is a "finite horizon" objective, where "horizon" refers to how many steps into the future the agent cares about the reward it can receive. In this case, we’ve defined a 1-step horizon objective, the most myopic objective you can define, since it only cares about how big the next immediate reward is.
 
@@ -28,9 +28,9 @@ Finite horizons are perhaps the most common objective you'll see in control theo
 
 A finiite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that's what it will optimize for.
 
-We might ask oursleves: is there a way to tell the agent to optimize for an _infinite_ horizon?
+We might ask ourselves: is there a way to tell the agent to optimize for an _infinite_ horizon?
 
-Optimizing for an infinite horizon might get a little funky, because if we just summed up all rewards into infinity, two polcies that both generated small positive rewards indefinitely would have the same total infinite value, even if one policy always recieved more reward on each time step.
+Optimizing for an infinite horizon might get a little funky, because if we just summed up all rewards into infinity, two policies that both generated small positive rewards indefinitely would have the same total infinite value, even if one policy always received more reward on each time step.
 
 One solution to this enigma is to use a _discounted_ infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about it by how far into the future it is. More precisely, using a discount parameter $\gamma \in [0, 1)$, we define the objective to be:
 
@@ -40,7 +40,7 @@ $$
 
 Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a finite maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
 
-This approach solves the delimma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it acccounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
+This approach solves the dilemma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it acccounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
 
 ## All moments are equally good, but I've got a math problem for you
 

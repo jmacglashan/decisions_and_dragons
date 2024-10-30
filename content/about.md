@@ -8,7 +8,7 @@ layout = "about"
 
 Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.
 
-Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions. Even worse, the data the agent collects is highly correlated and does not explicitly include the correct response. Instead, an RL agent must reason about its data to determine the correct reponse and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough for you, solving this problem often involves learning multiple interacting models.
+Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions. Even worse, the data the agent collects is highly correlated and does not explicitly include the correct response. Instead, an RL agent must reason about its data to determine the correct response and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough for you, solving this problem often involves learning multiple interacting models.
 
 The RL problem is _hard_ and if you feel lost trying to grock it, you're not alone.
 
@@ -37,7 +37,7 @@ Occasionally, I may use this platform to share opinion pieces on RL and AI more 
 I'm James MacGlashan. If you want to ask me RL questions, the best place is either on [Twitter](https://twitter.com/jmac_ai), or
 on the [Reinforcement Learning Discord server](https://discord.gg/nu3pyBrNpg). (See my other social links at the top of this page.)
 
-I received my PhD in computer science from the University of Maryland, Balitmore County in 2013 where I
+I received my PhD in computer science from the University of Maryland, Baltimore County in 2013 where I
 worked on reinforcement learning. I then moved on to a postdoctoral position at Brown University, where I continued to work on reinforcement learning.
 Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and
 continual learning as a service. Cogitai was eventually acquired by Sony and we formed game AI team at [Sony AI](https://ai.sony/), where I

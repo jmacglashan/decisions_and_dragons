@@ -35,7 +35,7 @@ $$
 
 where $N_l, N_r$ are the number of times the left and right bandit were played, respectively and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.
 
-After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weighted average of those values, where the weights are the probability Bob woud pick each bandit:
+After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weighted average of those values, where the weights are the probability Bob would pick each bandit:
 
 $$
 E_{\pi}\left[R \right] \approx \pi(a_l) Q(a_l) + \pi(a_r) Q(a_r)
@@ -108,9 +108,9 @@ where $N$ is the total number of arm pulls Alice made between both bandits, $a_t
 
 Armed with this expression, we can approximate Bob's expected payout using our observations of Alice playing. We also could adopt the iterative estimate, rather than this mean estimate, of expected values, if we wanted.
 
-## Where's the exepcted value under the policy in $Q^*$?
+## Where's the expected value under the policy in $Q^*$?
 
-We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn't keep seprate estimates for each action that importance sampling would be useful to correct for the mismatch is sampling distributions.
+We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn't keep separate estimates for each action that importance sampling would be useful to correct for the mismatch is sampling distributions.
 
 But what about more general MDPs where there are sequential states and your value depends on what the expected value of your policy is for each subsequent state? Well, we now know how to solve that exact problem. Since Q-learning keeps separate estimates for each action from each state, we can the take a weighted average of future Q-values under the policy we care about (for Q-learning, the optimal policy) and never have to worry about importance sampling.
 
@@ -120,7 +120,7 @@ $$
 Q^\*(s, a) = R(s, a) + \gamma \sum_{s'} T(s' | s, a) \max_{a'} Q^\*(s', a').
 $$
 
-Let's pause and ask ourselves: "where in this expression is the policy we're evaluting being used?" It's all the way to the right:
+Let's pause and ask ourselves: "where in this expression is the policy we're evaluating being used?" It's all the way to the right:
 $\max_{a'} Q^\*(s', a')$ is the part of the expression that is defining the policy we're evaluating. That might not look like a policy to you because we're just taking a max of values. To remedy that, let's write down the Q-function for any arbitrary policy $\pi$, not just the optimal policy:
 
 $$
@@ -166,9 +166,9 @@ $$
 Q_{t+1}(s, a) \gets Q_t(s_t, a_t) + \alpha (r_t + \gamma \max_{a'} Q_t(s_{t+1}, a') - Q_t(s_t, a_t))
 $$
 
-Note that the samples are drawn from the reward and transition function, _not_ the policy we're evaluating. In the one place we have to compute something about the policy: $\max_{a'} Q_t(s_{t+1}, a')$, we are using the seprate averages approach. That is, the Q-function gives us a seperate expected value estimate for each action (in each state) and when we want to evaluate the expected average for some arbitrary policy (in this case, the optimal one), we just take the weighted combination of them.
+Note that the samples are drawn from the reward and transition function, _not_ the policy we're evaluating. In the one place we have to compute something about the policy: $\max_{a'} Q_t(s_{t+1}, a')$, we are using the separate averages approach. That is, the Q-function gives us a separate expected value estimate for each action (in each state) and when we want to evaluate the expected average for some arbitrary policy (in this case, the optimal one), we just take the weighted combination of them.
 
-[^5]: Or if there are ties for the highest Q-value, an optimal policy is any division of the probability between the actions that tie for the hightest value.
+[^5]: Or if there are ties for the highest Q-value, an optimal policy is any division of the probability between the actions that tie for the highest value.
 
 To summarize, even though Q-learning uses samples to estimate expected values, it doesn't need importance sampling because the samples inform us about the transition dynamics only. We use the separate averages approach to compute the expected value of the optimal policy.
 
@@ -192,4 +192,4 @@ However, other off-policy actor-critic algorithms, like IMPALA[^6] do not. Inste
 
 You might wonder why we don't always estimate Q-values if we want to do off-policy learning. Afterall, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy were (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
 
-However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing funtion approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values and that adds another source of bias. These sources of bias are not trivial -- very often if algorithms like SAC fall apart it's inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.
+However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing function approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values and that adds another source of bias. These sources of bias are not trivial -- very often if algorithms like SAC fall apart it's inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.
