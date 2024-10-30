@@ -6,7 +6,7 @@ draft = false
 
 Actually, it doesn't! What you're probably thinking of is the [REINFORCE](https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf) *estimate* of the policy gradient. How we derive the REINFORCE estimate you're familiar with and *why* we use it is something I found to be poorly explained in literature. Fortunately, it is not a hard concept to learn!<!--more-->
 
-The log probability term emerges because REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability serves as an importance sampling correction for this alternative expression. We use this trick because we'd like to use the actions the agent takes to estimate the gradient, but the analytic gradient would require us to observe the outcomes of alls actions, including the ones the agent didn't take.
+The log probability term emerges because REINFORCE uses a trick to make the policy gradient look like an expected value over the gradient, and the log probability serves as an importance sampling correction for this alternative expression. We use this trick because we'd like to use the actions the agent takes to estimate the gradient, but the analytic gradient would require us to observe the outcomes of all actions, including the ones the agent didn't take.
 
 That might not make much sense yet. Let's remedy that.
 
@@ -36,7 +36,7 @@ $$
 
 The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action and then we can just multiply that by the Q-value (and take a weighted average over discounted state distribution). We don't need to compute gradients through transition functions, which usually are not known in RL problems.
 
-We do of course need an estimate of our Q-values too, and we need to take the average over our states. The tempting approach is to use samples for these remaining bits. I.e., maybe we could execute our policy in our environment a bunch of times, estimate Q-values with observed returns, multiply them by the gradient of the action probabilities, and average over the visted states?
+We do of course need an estimate of our Q-values too, and we need to take the average over our states. The tempting approach is to use samples for these remaining bits. I.e., maybe we could execute our policy in our environment a bunch of times, estimate Q-values with observed returns, multiply them by the gradient of the action probabilities, and average over the visited states?
 
 Unfortunately, no, on its own that will not work.
 
