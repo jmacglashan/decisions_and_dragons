@@ -30,7 +30,7 @@ $$
 y \triangleq r + \gamma \max_{a'} Q_{\theta^-}(s', a').
 $$
 
-You might think that as long as our Q-function network operats on continuous actions we should be alright. After all, neural networks train on all kind of continuous inputs, why not the action?
+You might think that as long as our Q-function network operates on continuous actions we should be alright. After all, neural networks train on all kind of continuous inputs, why not the action?
 
 Except how are you going to compute that label? Do you see the problem? It’s that damn $\max$ operator!
 
@@ -38,13 +38,13 @@ If your actions are continuous, and therefore infinite, you can’t just look up
 
 ## Extracting the policy is no easier
 
-This same problem emerges when we want to extract the policy from the Q-values, because the greedy policy from the learned Q-values (which is optimal when the optimal Q-values are leared) is:
+This same problem emerges when we want to extract the policy from the Q-values, because the greedy policy from the learned Q-values (which is optimal when the optimal Q-values are learned) is:
 
 $$
 \pi(s) = \arg\max_a Q(s, a).
 $$
 
-So when we want to act in the world, here too does the curse of the max operator thwart us. Even if you use epsilon-greedy, the greedy part of the policy is going to requrie you to find the action with the maximum Q-value!
+So when we want to act in the world, here too does the curse of the max operator thwart us. Even if you use epsilon-greedy, the greedy part of the policy is going to require you to find the action with the maximum Q-value!
 
 ## Alternatives
 

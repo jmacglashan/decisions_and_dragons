@@ -14,7 +14,7 @@ Can we use our observations of Alice playing to predict Bob's average payout? Ye
 
 ## Separate averages
 
-The first way that you probably are thinking of solving this question is to compute the averge payout Alice receives on the left bandit and separately compute average payout Alice receives on the right. Let's denote these averages by
+The first way that you probably are thinking of solving this question is to compute the average payout Alice receives on the left bandit and separately compute average payout Alice receives on the right. Let's denote these averages by
 
 $$
 \begin{align*}
@@ -75,7 +75,7 @@ $$
 \end{align*}
 $$
 
-This is obviously true. Multiplying and dividing by the same value immediately cancels itself. How could this possibly be useful? If we re-arange some terms though, a useful property emerges:
+This is obviously true. Multiplying and dividing by the same value immediately cancels itself. How could this possibly be useful? If we re-arrange some terms though, a useful property emerges:
 
 $$
 \begin{align*}
@@ -148,7 +148,7 @@ for all states and actions, we have that $Q_t \rightarrow Q^\*$ as $t \rightarro
 
 "I asked about Q-learning, not value iteration!" I hear you yelling. I know, I know. However, Q-learning is a lot like value iteration, except Q-learning is meant to solve _reinforcement learning_ problems.
 
-In RL, the agent doesn't know the function $R(s, a)$ nor $T(s' | s, a)$, much like how in our bandit example we didn't know the probability distributions of payouts of the bandits $p$. But the agent can interact with the environment and obsereve the outcomes.
+In RL, the agent doesn't know the function $R(s, a)$ nor $T(s' | s, a)$, much like how in our bandit example we didn't know the probability distributions of payouts of the bandits $p$. But the agent can interact with the environment and observe the outcomes.
 
 To handle this lack of knowledge of $R$ and $T$, Q-learning uses the iterative method for estimating expected values from samples:
 
@@ -164,7 +164,7 @@ To summarize, even though Q-learning uses samples to estimate expected values, i
 
 ## Why off-policy actor critic methods use importance sampling
 
-After all this focus on Q-learning, you may be confused about why off-policy actor critic algorithms need importane sampling! Not all actually do. It usually depends on whether the actor-critic algorithm is estimating Q-functions, which have separate estimates for each action, or state value functions, which do not.
+After all this focus on Q-learning, you may be confused about why off-policy actor critic algorithms need importance sampling! Not all actually do. It usually depends on whether the actor-critic algorithm is estimating Q-functions, which have separate estimates for each action, or state value functions, which do not.
 
 To briefly review, one way we can define the state value function is in terms of $Q$:
 
@@ -180,6 +180,6 @@ However, other off-policy actor-critic algorithms, like IMPALA[^6] do not. Inste
 
 ## Why wouldn't we always learn Q-values?
 
-You might wonder why we don't always estimate Q-values if we want to do off-policy learning. Afterall, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy were (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
+You might wonder why we don't always estimate Q-values if we want to do off-policy learning. After all, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy were (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
 
 However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing function approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values and that adds another source of bias. These sources of bias are not trivial -- very often if algorithms like SAC fall apart it's inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.

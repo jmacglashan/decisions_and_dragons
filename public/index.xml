@@ -51,7 +51,7 @@
       <description>&lt;p&gt;State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Why does the policy gradient include a log probobability term?</title>
+      <title>Why does the policy gradient include a log probability term?</title>
       <link>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</link>
       <pubDate>Fri, 29 Mar 2024 20:07:54 -0400</pubDate>
       <guid>http://localhost:1313/posts/why_does_the_policy_gradient_include_log_prob/</guid>
@@ -76,7 +76,7 @@
       <link>http://localhost:1313/notation/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
       <guid>http://localhost:1313/notation/</guid>
-      <description>In this section I outline the meaning of the mathematical notation I use. When appropriate (and possible), I also describe the meaning in simple python.&#xA;General math and statistics $f(x) \triangleq mx + b$ The $\triangleq$ indicates that the expresson on the left is defined to be the expression on the right, rather than an equivalence that is derived from mathemtical rules.&#xA;$(a, b)$ The set of real numbers between $a$ and $b$, excluding those values.</description>
+      <description>In this section I outline the meaning of the mathematical notation I use. When appropriate (and possible), I also describe the meaning in simple python.&#xA;General math and statistics $f(x) \triangleq mx + b$ The $\triangleq$ indicates that the expression on the left is defined to be the expression on the right, rather than an equivalence that is derived from mathematical rules.&#xA;$(a, b)$ The set of real numbers between $a$ and $b$, excluding those values.</description>
     </item>
   </channel>
 </rss>

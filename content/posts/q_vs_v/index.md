@@ -11,7 +11,7 @@ Before making that more precise, let's add a point of clarity. Value functions (
 To emphasize this fact, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
 In the case when we’re talking about the value functions for the optimal policy $\pi^\*$, we often use the shorthand $V^\*(s)$ and $Q^\*(s, a)$. Sometimes in literature we leave off the $\pi$ or $\*$ and just refer to $V$ and $Q$, because it’s implicit in the context. Regardless, every value function is always with respect to some policy.
 
-With that in mind, let's give the more prescie definitions.
+With that in mind, let's give the more precise definitions.
 * $V^\pi(s)$ expresses the expected value of the (discounted) future return when following policy $\pi$ forever from state $s$.
 * $Q^\pi(s, a)$ expresses the expected value of the (discounted) future return when first taking action $a$ from state $s$ and then following policy $\pi$ forever after that first step.
 

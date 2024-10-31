@@ -1,5 +1,5 @@
 +++
-title = 'Why does the policy gradient include a log probobability term?'
+title = 'Why does the policy gradient include a log probability term?'
 date = 2024-03-29T20:07:54-04:00
 draft = false
 +++
@@ -50,7 +50,7 @@ This may look like an expected value, but it's not. It's the *derivative* of an 
 Summing over all the actions for each state may not sound bad, but in RL, once you take an action, you have to live with the consequences. You cannot undo it and then try a different action to see what would happen. And even if we could, that's a lot of extra environment interactions! For every state we visit, we'd have to roll out another trajectory for every other possible action we could have taken. (Good luck if your actions are continuous!)
 
 ## REINFORCE to the rescue
-Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value of the derivative of an expected value, allowing us to estimate the gradient with samples. To achieve this, REINFORE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that's okay, because we're going to walk through the idea here.
+Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value of the derivative of an expected value, allowing us to estimate the gradient with samples. To achieve this, REINFORCE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that's okay, because we're going to walk through the idea here.
 
 We begin by doing something ridiculous: inside the sum, we're going to multiply everything by the probability of our policy taking the action and immediately divide by it to cancel it:
 $$
@@ -60,7 +60,7 @@ So far, we've done nothing. All we did was add needless work by multiplying by t
 $$
 \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
-Now we're in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and aciton distribution in our new expression. That is, our naive hope was _almost_ right. All we had to do to correct for the fact that we weren't summing the policy gradients over each action uniformly is divide by the probability of our policy selecting the action it took.
+Now we're in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and action distribution in our new expression. That is, our naive hope was _almost_ right. All we had to do to correct for the fact that we weren't summing the policy gradients over each action uniformly is divide by the probability of our policy selecting the action it took.
 
 Except I promised log probabilities and as of now they haven't shown up.
 
@@ -74,7 +74,7 @@ but substituting the derivative of the policy probability divided by policy prob
 $$
 E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right] = E_{a \sim \pi(\cdot | s)} \left[ \frac{d\log \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
-In addition to simplifying the expression, using the log probabiltiy is usually preferable because it tends to be more numerically
+In addition to simplifying the expression, using the log probability is usually preferable because it tends to be more numerically
 stable for floating-point math on computers. As such, we almost always use the log probability formulation.
 
 ## Any other heroes for hire?

@@ -16,7 +16,7 @@ Let's rederive this result and explore why the literature presents it with an ex
 
 ## Revisiting policy iteration
 
-Like so many methods in RL, the foundation of DDPG and DPG is policy iteration. Policy iteration is a template algorithm for improving your policy. It is described by two steps that you repat until the policy stops improving:
+Like so many methods in RL, the foundation of DDPG and DPG is policy iteration. Policy iteration is a template algorithm for improving your policy. It is described by two steps that you repeat until the policy stops improving:
 
 1. Evaluate $Q^\pi(s, a)$ for your current policy $\pi$ for all state-action pairs.
 2. Improve your policy $\pi$ by updating it to maximize $Q(s, \pi_\theta(s))$ for each state.
@@ -29,9 +29,9 @@ Unfortunately, if the MDP has continuous actions and a very large or continuous 
 
 ## Q-functions as loss functions
 
-When actions are continuous, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, we're good at optimizing approximate functions to minimize some loss function in machine learning. That's kind of the basis of deep learning! We build a big neural net, define a differentiabe loss function, and then use multiple steps of gradient descent to learn a neural net to minimize the loss.
+When actions are continuous, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, we're good at optimizing approximate functions to minimize some loss function in machine learning. That's kind of the basis of deep learning! We build a big neural net, define a differentiable loss function, and then use multiple steps of gradient descent to learn a neural net to minimize the loss.
 
-We can use the same idea to handle our problem of optimizing a policy to select continuous acitons that maximize a Q-function. In this case, our Q-function will act like our loss function, and our policy like the usual nerual net.
+We can use the same idea to handle our problem of optimizing a policy to select continuous actions that maximize a Q-function. In this case, our Q-function will act like our loss function, and our policy like the usual neural net.
 
 Let's revisit how standard gradient descent works for supervised learning and and then relate that back to DDPG.
 
@@ -83,7 +83,7 @@ $$
 
 The take away is that you can think of the negative Q-function as a loss function for training a neural net policy. By minimizing this loss with (stochastic) gradient descent, we solve the policy improvement problem for MDPs with continuous actions and large or continuous state spaces.[^1]
 
-[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, suprevised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, the Q-function, which serves as our loss function, may be non-convex either. Because this problem is inherent to the loss function, simply scaling up the policy network will not avoid the difficulities of local optima in the Q-function. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-function may not be convex.
+[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, supervised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, the Q-function, which serves as our loss function, may be non-convex either. Because this problem is inherent to the loss function, simply scaling up the policy network will not avoid the difficulties of local optima in the Q-function. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-function may not be convex.
 
 But we're still not quite at the expression in the DDPG and DPG literature that is the product of gradients. Let's work our way back to that.
 
@@ -91,7 +91,7 @@ But we're still not quite at the expression in the DDPG and DPG literature that 
 
 Our next question is how to go from $\nabla_\theta Q(s, \pi_\theta(s))$ to $\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)}$. This final step is just a result of applying the multivariable chain rule.
 
-To explain, let's briefly review the single variable chain rule of differentiation. Given a function $h$ that is defined to be a composition of function $f$ and $g$: $h(x) = f(g(x))$, we can compute the derivative of $h$ as product of the derivative of $f$ and the deriviative $g$:
+To explain, let's briefly review the single variable chain rule of differentiation. Given a function $h$ that is defined to be a composition of function $f$ and $g$: $h(x) = f(g(x))$, we can compute the derivative of $h$ as product of the derivative of $f$ and the derivative $g$:
 
 $$
 h'(x) = f'(g(x))g'(x).
@@ -123,17 +123,17 @@ $$
 \end{align*}
 $$
 
-where in this case the (transposed) Jocobian $(D\pi_\theta(s))^\top$ has its column gradients be with respect to the underlying parameters $\theta$ (we are treating state $s$ as a constant since we are optimizing the parameters, not states!).
+where in this case the (transposed) Jacobian $(D\pi_\theta(s))^\top$ has its column gradients be with respect to the underlying parameters $\theta$ (we are treating state $s$ as a constant since we are optimizing the parameters, not states!).
 
 That looks almost identical to what we see in literature, except instead of $D\pi_\theta(s))^\top$, the literature writes $\nabla_\theta \pi_\theta(s)$. You might be expecting some fancy mathematical insight to make the connection. I regret to inform you that this difference is just an abuse of notation. If you look at description after equation 7 in the [DPG paper](https://proceedings.mlr.press/v32/silver14.pdf), you will see they simply define $\nabla_\theta \pi_\theta(s)$ to be the transpose Jacobian.
 
 ## Why explicitly expand the chain rule?
 
-We've finally seen how to arrive at the DDPG/DPG policy gradient, but there is a good chance you have a final question: in an era of autodifferentiation, why does literature expand the chain rule? Why not just use the more recognizable expression $\nabla_\theta Q(s, \pi_\theta(s))$? After all, with an autodifferentiation library we will simply compute $Q(s, \pi_\theta(s))$ and then ask the library to compute the gradient for us.
+We've finally seen how to arrive at the DDPG/DPG policy gradient, but there is a good chance you have a final question: in an era of auto differentiation, why does literature expand the chain rule? Why not just use the more recognizable expression $\nabla_\theta Q(s, \pi_\theta(s))$? After all, with an auto differentiation library we will simply compute $Q(s, \pi_\theta(s))$ and then ask the library to compute the gradient for us.
 
 Although I can't know for certain what drove the authors to expand the chain rule, I can offer some plausible reasons behind their decision. Here are a few possible motivations:
 
-**(1)** The first reason is historical. Although it's hard to imagine a time when we wern't all using autodifferentiation libraries, that time did exist, and it wasn't _that_ long ago. If you don't have automatic differentiation, you're going to want a clear expression to implement yourself. By expanding the chain rule, it makes it clear that you need a way to compute the gradient of the Q-function with repsect to the actions, and the Jacobian of the policy with respect to the policy parameters.
+**(1)** The first reason is historical. Although it's hard to imagine a time when we weren't all using auto differentiation libraries, that time did exist, and it wasn't _that_ long ago. If you don't have automatic differentiation, you're going to want a clear expression to implement yourself. By expanding the chain rule, it makes it clear that you need a way to compute the gradient of the Q-function with respect to the actions, and the Jacobian of the policy with respect to the policy parameters.
 
 Before deep networks took over, RL researchers often used simple linear functions. Linear functions have very simple gradients that you can compute efficiently. As a result, researchers could easily calculate the Jacobian and gradients of their linear policy and Q-functions separately and then compute the product, without relying on an automatic differentiation system. In fact, the DPG paper specifically focused on linear function approximation.
 

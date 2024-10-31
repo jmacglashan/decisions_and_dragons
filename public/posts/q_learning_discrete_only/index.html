@@ -85,15 +85,15 @@ $$</p>
 <p>$$
 y \triangleq r + \gamma \max_{a&rsquo;} Q_{\theta^-}(s&rsquo;, a&rsquo;).
 $$</p>
-<p>You might think that as long as our Q-function network operats on continuous actions we should be alright. After all, neural networks train on all kind of continuous inputs, why not the action?</p>
+<p>You might think that as long as our Q-function network operates on continuous actions we should be alright. After all, neural networks train on all kind of continuous inputs, why not the action?</p>
 <p>Except how are you going to compute that label? Do you see the problem? It’s that damn $\max$ operator!</p>
 <p>If your actions are continuous, and therefore infinite, you can’t just look up which action produces the maximum q-value because there are an infinite number of actions to scan.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <h2 id="extracting-the-policy-is-no-easier">Extracting the policy is no easier</h2>
-<p>This same problem emerges when we want to extract the policy from the Q-values, because the greedy policy from the learned Q-values (which is optimal when the optimal Q-values are leared) is:</p>
+<p>This same problem emerges when we want to extract the policy from the Q-values, because the greedy policy from the learned Q-values (which is optimal when the optimal Q-values are learned) is:</p>
 <p>$$
 \pi(s) = \arg\max_a Q(s, a).
 $$</p>
-<p>So when we want to act in the world, here too does the curse of the max operator thwart us. Even if you use epsilon-greedy, the greedy part of the policy is going to requrie you to find the action with the maximum Q-value!</p>
+<p>So when we want to act in the world, here too does the curse of the max operator thwart us. Even if you use epsilon-greedy, the greedy part of the policy is going to require you to find the action with the maximum Q-value!</p>
 <h2 id="alternatives">Alternatives</h2>
 <p>Taking a step back, we <em>mostly</em> already know how to solve this problem in AI: finding the the max is just an optimization problem! Therefore, you can just replace the max operator with your favorite optimization algorithm. For example <a href="https://arxiv.org/abs/1806.10293">QT-OPT</a>, uses the cross entropy method to approximate the max. Or you could use SGD on the Q-function to find the maximum action.</p>
 <p>However, if you’re going to replace the exact max with the result of some optimization algorithm you’re</p>

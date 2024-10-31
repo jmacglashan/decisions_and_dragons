@@ -16,17 +16,17 @@ Such an objective is a "finite horizon" objective, where "horizon" refers to how
 
 ## I can wait, for a time
 
-The one-step horizon has an obvious limitation. Maybe if you sacrifice a little bit of reward now you can have a bigger total reward later. If we actually want the agent to care about the future, we need a longer horizion.
+The one-step horizon has an obvious limitation. Maybe if you sacrifice a little bit of reward now you can have a bigger total reward later. If we actually want the agent to care about the future, we need a longer horizon.
 
 Fortunately, the one-step horizon is easy to generalize to a bigger horizon. We could define a 2 step horizon, in which the agent makes a decision that will maximize the total reward it will receive in the next 2 time steps. Or we could choose a 3, or 4, or n step horizon!
 
 In this finite-horizon regime, the agent cares about how well it can maximize total reward for all steps within the horizon, but after that point, it stops trying to optimize for more reward.
 
-Finite horizons are perhaps the most common objective you'll see in control theory literature. For example, in model predictive control, the agent optimizes what it can do for the next $n$ time steps. Then, after taking an action, the agent again optimizes what it could do for the next $n$ time steps, this time looking one step further than on the last step. This appoach is sometimes called "receding horizon" because on each step, the horizon recedes back one step further, always keeping the boundary out of reach.
+Finite horizons are perhaps the most common objective you'll see in control theory literature. For example, in model predictive control, the agent optimizes what it can do for the next $n$ time steps. Then, after taking an action, the agent again optimizes what it could do for the next $n$ time steps, this time looking one step further than on the last step. This approach is sometimes called "receding horizon" because on each step, the horizon recedes back one step further, always keeping the boundary out of reach.
 
 ## I have infinite patience, but I'd prefer it now
 
-A finiite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that's what it will optimize for.
+A finite horizon, even a long finite horizon, does have its limitations of course. You have to pick a somewhat arbitrary threshold, and that choice has sharp consequences. If you choose a horizon of 15, but this causes the agent to miss the opportunity to receive a massive reward on the 16th step, too bad. You chose 15, and that's what it will optimize for.
 
 We might ask ourselves: is there a way to tell the agent to optimize for an _infinite_ horizon?
 
@@ -40,7 +40,7 @@ $$
 
 Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming the reward has a finite maximum and minimum value). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
 
-This approach solves the dilemma of missing the opporutnity to achieve a big reward just one or a few steps later than a finite horizon limit, because it acccounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
+This approach solves the dilemma of missing the opportunity to achieve a big reward just one or a few steps later than a finite horizon limit, because it accounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
 
 ## All moments are equally good, but I've got a math problem for you
 

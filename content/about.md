@@ -38,7 +38,7 @@ continue to work on reinforcement learning.
 Despite all these years working on reinforcement learning, I have shockingly failed to solve it.
 
 Fortunately, it hasn't all been bad news. RL methods have vastly improved
-and I've played a role in bringining reinforcement learning to products with
+and I've played a role in bringing reinforcement learning to products with
 [GT Sophy](https://www.gran-turismo.com/us/gran-turismo-sophy/) -- an RL agent that outraced the best racers in the game Gran Turismo Sport. GT Sophy was subsequently adapted to be a racing opponent in Gran Turismo 7 that you can race against today!
 
 We're continuing to work on exciting reinforcement learning applications and problems at Sony AI and I hope we can help turn reinforcement learning into a robust technology that can be more broadly used. Perhaps one that is less fraught with dragons.

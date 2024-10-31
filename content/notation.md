@@ -12,7 +12,7 @@ In this section I outline the meaning of the mathematical notation I use. When a
 
 #### $f(x) \triangleq mx + b$
 
-The $\triangleq$ indicates that the expresson on the left is _defined_ to be the expression on the right, rather than an equivalence that is derived from mathemtical rules.
+The $\triangleq$ indicates that the expression on the left is _defined_ to be the expression on the right, rather than an equivalence that is derived from mathematical rules.
 
 #### $(a, b)$
 
@@ -74,7 +74,7 @@ Whether the starting index is 0 or 1 depends on the context of the variable. If 
 
 #### $x_{t+1} \gets g(x_t)$
 
-The $\gets$ arrow indicates that the value of $x$ is updated to be the result of some funciton/operation on the previous value of $x$ defined on the right-hand-side (it doesn't have the be $g$ and can be any expression). The subscript $t$ indicates the value of $x$ after the
+The $\gets$ arrow indicates that the value of $x$ is updated to be the result of some function/operation on the previous value of $x$ defined on the right-hand-side (it doesn't have the be $g$ and can be any expression). The subscript $t$ indicates the value of $x$ after the
 $t$th update to it.
 
 #### $E_p[X]$
@@ -97,7 +97,7 @@ The expected value of drawing $x$ from probability distribution $p$ and then app
 
 #### $p(x | y)$
 
-The probabiltiy (or probability density) of $x$ given the value $y$ from conditional probability (mass/density) function $p$
+The probability (or probability density) of $x$ given the value $y$ from conditional probability (mass/density) function $p$
 
 #### $p( \cdot | y)$
 
@@ -119,7 +119,7 @@ A reward function on state-action pairs or state-action-next state triples. In p
 
 #### T(s' | s, a)
 
-The proability (density) that the environment transitions to state $s' \in S$ after the agent takes action $a \in A$ from state $s \in S$.
+The probability (density) that the environment transitions to state $s' \in S$ after the agent takes action $a \in A$ from state $s \in S$.
 
 #### $\gamma$
 
