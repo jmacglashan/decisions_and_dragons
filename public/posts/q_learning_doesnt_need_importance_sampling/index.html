@@ -82,14 +82,14 @@ window.addEventListener("hashchange", function () {
 <p>Let&rsquo;s imagine we&rsquo;re looking at two slot machines, which are more typically referred to as &ldquo;bandits&rdquo; in RL literature. Each bandit has a different payout rate that we don&rsquo;t know in advance. Our friend Alice told us that she is going to play from each 50-50. We watch her play for some time and observe her payouts for each pull. Later, our other friend Bob comes up and says he&rsquo;s going to play from from the left bandit 10% of the time and the right one 90% of the time. Let&rsquo;s call Alice&rsquo;s 50-50 strategy $\mu$ and Bob&rsquo;s biased strategy $\pi$. We denote their probabilities of picking the left or right arm as $\mu(a_l) = \mu(a_r) = \frac{1}{2}$ and $\pi(a_l) = \frac{1}{10}, \pi(a_r) = \frac{9}{10}$, respectively.</p>
 <p>Can we use our observations of Alice playing to predict Bob&rsquo;s average payout? Yes, and there are multiple ways to do this (what a surprise, there are multiple ways to do this in RL too!).</p>
 <h2 id="separate-averages">Separate averages</h2>
-<p>The first way that you probably are thinking of solving this question is to compute the average payout Alice receives on the left bandit and separately compute average payout Alice receives on the right. Let&rsquo;s denote these averages by</p>
+<p>The first way you may be thinking to answer this question is to separately compute the average payout Alice receives for the left and right arm. Let&rsquo;s denote these averages by</p>
 <p>$$
 \begin{align*}
 Q(a_l) = \frac{1}{N_l} \sum_i^{N_l} r_{li}, \\
 Q(a_r) = \frac{1}{N_r} \sum_i^{N_r} r_{ri}.
 \end{align*}
 $$</p>
-<p>where $N_l, N_r$ are the number of times the left and right bandit were played, respectively and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.</p>
+<p>where $N_l, N_r$ are the number of times the left and right bandit were played, respectively, and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.</p>
 <p>After computing our averages, we can estimate<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Bob&rsquo;s expected payout by just taking a weighted average of those values, where the weights are the probability Bob would pick each bandit:</p>
 <p>$$
 E_{\pi}\left[R \right] \approx \pi(a_l) Q(a_l) + \pi(a_r) Q(a_r)
@@ -102,7 +102,7 @@ Q_{t+1}(a_t) \gets Q_t(a_t) + \alpha_t (r_t - Q_t(a_t))
 $$</p>
 <p>where $a_t \in \{l, r\}$ is the bandit arm pulled on the $t$th pull, $r_t$ is the payout we observe at step $t$, and $\alpha_t \in (0, 1)$ is our learning rate at time step $t$. As long as $\alpha_t$ is slowly decreased (with mild constraints regarding how), the estimate will converge to the true expected value.</p>
 <p>In RL, and ML more broadly, this style of estimating expected values is often preferred because it works well with function approximation and has some other nice properties like smoothly changing and letting you start from good guesses.</p>
-<p>At this point it should be clear to that if you simplified Q-learning to the bandit setting where there are no states, this iterative approach to estimating separate expected values for each arm/action is what Q-learning would become. And from it, we could compute the expected value for any policy by simply taking the weighted sum of the Q-values for the policy we&rsquo;re evaluating.</p>
+<p>At this point it should be clear that if you simplified Q-learning to the bandit setting where there are no states, this iterative approach to estimating separate expected values for each arm/action is what Q-learning would become. And from it, we could compute the expected value for any policy by simply taking the weighted sum of the Q-values for the policy we&rsquo;re evaluating.</p>
 <h2 id="importance-sampling">Importance sampling</h2>
 <p>In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify an average over <em>all</em> our data with some weights. Spoiler, we modify it by weighting them by $\frac{\pi(a_i)}{\mu(a_i)}$ where $i$ is set to the arm that was pulled on that sample.</p>
 <p>To show how we determine those weights let&rsquo;s start with how we would exactly compute Bob&rsquo;s expected payout if we knew the probabilities for each possible payout for each bandit. We&rsquo;d ideally compute:</p>
@@ -128,15 +128,15 @@ $$</p>
 &amp;= E_{a \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(a)}{\mu(a)} r \right] \right] \\
 \end{align*}
 $$</p>
-<p>Ahah! We turned our expected value of Bob&rsquo;s distribution $\pi$ into an expected value of Alice&rsquo;s distribution $\mu$! We just had to weigh our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we&rsquo;re back to a expected values of a joint distribution and we can approximate it with the mean of our samples:</p>
+<p>Ahah! We turned our expected value of Bob&rsquo;s distribution $\pi$ into an expected value of Alice&rsquo;s distribution $\mu$! We just had to weigh our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we&rsquo;re back to an expected values of a joint distribution and we can approximate it with the mean of our samples:</p>
 <p>$$
 E_{a \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(a)}{\mu(a)} r \right] \right]
 \approx \frac{1}{N} \sum_t^N \frac{\pi(a_t)}{\mu(a_t)} r_t
 $$</p>
 <p>where $N$ is the total number of arm pulls Alice made between both bandits, $a_t$ indicates the bandit arm she pulled on the $t$th try (either the left or right one), and $r_t$ is the payout she received.</p>
-<p>Armed with this expression, we can approximate Bob&rsquo;s expected payout using our observations of Alice playing. We also could adopt the iterative estimate, rather than this mean estimate, of expected values, if we wanted.</p>
+<p>Armed with this expression, we can approximate Bob&rsquo;s expected payout using our observations of Alice playing. We could similarly adapt the iterative expected value estimate method to use importance sampling if we wanted.</p>
 <h2 id="wheres-the-expected-value-under-the-policy-in-q">Where&rsquo;s the expected value under the policy in $Q^*$?</h2>
-<p>We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn&rsquo;t keep separate estimates for each action that importance sampling would be useful to correct for the mismatch is sampling distributions.</p>
+<p>We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn&rsquo;t keep separate estimates for each action that importance sampling would be useful to correct for the mismatch in sampling distributions.</p>
 <p>But what about more general MDPs where there are sequential states and your value depends on what the expected value of your policy is for each subsequent state? Well, we now know how to solve that exact problem. Since Q-learning keeps separate estimates for each action from each state, we can the take a weighted average of future Q-values under the policy we care about (for Q-learning, the optimal policy) and never have to worry about importance sampling.</p>
 <p>To illustrate that, recall that the recursive definition of the optimal Q-function is</p>
 <p>$$
@@ -184,7 +184,7 @@ $$</p>
 <p>However, other off-policy actor-critic algorithms, like IMPALA<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> do not. Instead, they directly use sampled returns to estimate $V$. Consequently, they need to correct for the sample distribution difference with importance sampling, much like we did in our bandit example.</p>
 <h2 id="why-wouldnt-we-always-learn-q-values">Why wouldn&rsquo;t we always learn Q-values?</h2>
 <p>You might wonder why we don&rsquo;t always estimate Q-values if we want to do off-policy learning. After all, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don&rsquo;t have to know what the probabilities of the behavior policy were (e.g., Alice&rsquo;s policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.</p>
-<p>However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you&rsquo;re using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you&rsquo;re introducing function approximation across your actions, now you&rsquo;ve opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state&rsquo;s Q-values and that adds another source of bias. These sources of bias are not trivial &ndash; very often if algorithms like SAC fall apart it&rsquo;s inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.</p>
+<p>However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you&rsquo;re using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you&rsquo;re introducing function approximation across your actions, now you&rsquo;ve opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state&rsquo;s Q-values and that adds another source of bias. These sources of bias are non-trivial &ndash; very often if algorithms like SAC fall apart it&rsquo;s inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -192,7 +192,7 @@ $$</p>
 <p>This is expression approximately equals the expected payout because our Q-values are sample averages of the bandit payouts, not the true averages.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p>We&rsquo;re going to assume there are a discrete number of possible payouts, but what we&rsquo;re going to do would work for continuous values if we swapped the sum for an integral&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>We&rsquo;re going to assume there are a discrete number of possible payouts, but our approach would work for continuous payouts if we swapped the sum for an integral&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3">
 <p>Or if there are ties for the highest Q-value, an optimal policy is any division of the probability between the actions that tie for the highest value.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>

@@ -93,18 +93,18 @@ where</p>
 $$
 \frac{d}{d\theta} J(\pi) = \sum_s d^\pi(s) \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$</p>
-<p>The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action and then we can just multiply that by the Q-value (and take a weighted average over discounted state distribution). We don&rsquo;t need to compute gradients through transition functions, which usually are not known in RL problems.</p>
+<p>The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action. Then we can multiply that by the Q-value. We don&rsquo;t need to compute gradients through transition functions, which usually are not known in RL problems.</p>
 <p>We do of course need an estimate of our Q-values too, and we need to take the average over our states. The tempting approach is to use samples for these remaining bits. I.e., maybe we could execute our policy in our environment a bunch of times, estimate Q-values with observed returns, multiply them by the gradient of the action probabilities, and average over the visited states?</p>
 <p>Unfortunately, no, on its own that will not work.</p>
 <h2 id="no-takesies-backsies">No takesies backsies</h2>
-<p>To see the problem lets ignore the state distribution part of the objective on focus on the last part:
+<p>To see the problem, let&rsquo;s ignore the state distribution part of the objective on focus on the last part:
 $$
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$
 This may look like an expected value, but it&rsquo;s not. It&rsquo;s the <em>derivative</em> of an expected value. Because of that, we cannot estimate the gradient by multiplying the Q-value with the gradient of sampled action probabilities. To compute the gradient correctly for each state, we&rsquo;d have to know what the Q-value is for every action, and sum their gradients together.</p>
-<p>Summing over all the actions for each state may not sound bad, but in RL, once you take an action, you have to live with the consequences. You cannot undo it and then try a different action to see what would happen. And even if we could, that&rsquo;s a lot of extra environment interactions! For every state we visit, we&rsquo;d have to roll out another trajectory for every other possible action we could have taken. (Good luck if your actions are continuous!)</p>
+<p>Summing over all the actions for each state may not sound bad, but in RL, you have to live with the consequences of your action choice. You cannot undo it and then try a different action to see what would happen. And even if we could, that&rsquo;s a lot of extra environment interactions! For every state we visit, we&rsquo;d have to roll out another trajectory for every other possible action we could have taken. (Good luck if your actions are continuous!)</p>
 <h2 id="reinforce-to-the-rescue">REINFORCE to the rescue</h2>
-<p>Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value of the derivative of an expected value, allowing us to estimate the gradient with samples. To achieve this, REINFORCE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that&rsquo;s okay, because we&rsquo;re going to walk through the idea here.</p>
+<p>Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value involving the derivative of the action probability, allowing us to estimate the gradient with samples. To achieve this, REINFORCE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that&rsquo;s okay, because we&rsquo;re going to walk through the idea here.</p>
 <p>We begin by doing something ridiculous: inside the sum, we&rsquo;re going to multiply everything by the probability of our policy taking the action and immediately divide by it to cancel it:
 $$
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
@@ -113,22 +113,22 @@ So far, we&rsquo;ve done nothing. All we did was add needless work by multiplyin
 $$
 \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
-Now we&rsquo;re in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and action distribution in our new expression. That is, our naive hope was <em>almost</em> right. All we had to do to correct for the fact that we weren&rsquo;t summing the policy gradients over each action uniformly is divide by the probability of our policy selecting the action it took.</p>
+Now we&rsquo;re in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and action distribution in our new expression. That is, our naive hope was <em>almost</em> right. All we had to do to correct for the fact that we weren&rsquo;t uniformly summing the policy gradients is divide by the probability of our policy selecting the action it took.</p>
 <p>Except I promised log probabilities and as of now they haven&rsquo;t shown up.</p>
 <h2 id="enter-log-probabilities">Enter log probabilities</h2>
 <p>Fortunately, introducing the log probability is just one more step away. Let&rsquo;s remark on this simple calculus identity about the derivative of logs:
 $$
 \frac{d}{dx} \log f(x)= \frac{1}{f(x)} \frac{df(x)}{dx}
 $$
-You will notice the right-hand-side of that appears in our REINFORCE estimate of the gradient. Therefore, we can simplify it
-but substituting the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
+You will notice the right-hand-side of that appears in our REINFORCE estimate of the gradient. Therefore, we can simplify the REINFORCE expression
+by substituting the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
 $$
 E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right] = E_{a \sim \pi(\cdot | s)} \left[ \frac{d\log \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
 In addition to simplifying the expression, using the log probability is usually preferable because it tends to be more numerically
 stable for floating-point math on computers. As such, we almost always use the log probability formulation.</p>
 <h2 id="any-other-heroes-for-hire">Any other heroes for hire?</h2>
-<p>In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called <em>reparameterization</em> is a strong alternative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it&rsquo;s not always the right pick. At any rate, the question we were answering is why log probabilities exist in the policy gradient methods, not which methods you can use to estimate policy gradients. Perhaps we will cover these differences another time.</p>
+<p>In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called <em>reparameterization</em> is a strong alternative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it&rsquo;s not always the right pick. It particular, it often requires you to learn a Q-function to optimize the policy, and the learned Q-function introduces bias.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -136,7 +136,7 @@ stable for floating-point math on computers. As such, we almost always use the l
 <p>When solving discounted future reward problems &ndash; the most common case in RL &ndash; the state distribution is a little funny. In this case, it&rsquo;s <em>not</em> just the probability (density) of being in a state. It&rsquo;s the <em>discounted</em> probability. Without going into too much detail, this discounts the probability by how long it takes to reach a state and averages over all the different lengths of time it could take. One way to think about discounted probability is by noting an equivalence between solving a discounted MDP and solving a modified undiscounted MDP where there is a probability of $1 - \gamma$ of transitioning to an absorbing state at any time. In practice, algorithms often ignore this fact, but to be mathematically precise, the policy gradient for discounted MDPs use discounted state probability distributions. A more complete discussion of this topic is left for another time.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p>To use gradient <em>descent</em> we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient <em>ascent</em>.)&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>To use gradient <em>descent</em> we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient <em>ascent</em>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>

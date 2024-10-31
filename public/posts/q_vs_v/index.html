@@ -72,14 +72,14 @@ window.addEventListener("hashchange", function () {
         <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p>
 <h2 id="a-more-precise-definition">A more precise definition</h2>
 <p>Before making that more precise, let&rsquo;s add a point of clarity. Value functions (both V and Q) are always with respect to some policy $\pi$.
-To emphasize this fact, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
+To indicate that they are with respect to policy $\pi$, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
 In the case when we’re talking about the value functions for the optimal policy $\pi^*$, we often use the shorthand $V^*(s)$ and $Q^*(s, a)$. Sometimes in literature we leave off the $\pi$ or $*$ and just refer to $V$ and $Q$, because it’s implicit in the context. Regardless, every value function is always with respect to some policy.</p>
 <p>With that in mind, let&rsquo;s give the more precise definitions.</p>
 <ul>
-<li>$V^\pi(s)$ expresses the expected value of the (discounted) future return when following policy $\pi$ forever from state $s$.</li>
-<li>$Q^\pi(s, a)$ expresses the expected value of the (discounted) future return when first taking action $a$ from state $s$ and then following policy $\pi$ forever after that first step.</li>
+<li>$V^\pi(s)$ expresses the expected value of the (discounted) future return when following policy $\pi$ from state $s$.</li>
+<li>$Q^\pi(s, a)$ expresses the expected value of the (discounted) future return when first taking action $a$ from state $s$ and then following policy $\pi$ after that first step.</li>
 </ul>
-<p>The main difference is the Q-value lets you play a hypothetical of potentially taking a different action in the first time step than what the policy might prescribe and then following the policy from the state the agent winds up in.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>While $V$ tells you how good your policy is, the Q-function lets you evaluate how good it is to take alternative actions for the first time step .<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <h2 id="an-example">An example</h2>
 <p>To illustrate this difference, consider the below three-state MDP where the agent can go left or right and receives -1 reward until it reaches the terminating goal on the right. The straight blue arrows indicate the optimal policy always going to the right.</p>
 <figure><img src="/posts/q_vs_v/3state.png"><figcaption>
@@ -87,7 +87,7 @@ In the case when we’re talking about the value functions for the optimal polic
     </figcaption>
 </figure>
 
-<p>The value for the value function of the policy for any of the states can be easily determined by counting the number of blue arrows until the goal is reached. E.g., $V^\pi(B) = -1\ $ because it is just one step away from the goal. However, the Q-value at $Q^\pi(B, \mathrm{left}) = -3\ $ because first the agent will go left (following the off-policy orange arc) to state $A$, and then after that step it will follow the blue arcs of our policy back to state $B$ and then to final state $C$.</p>
+<p>The state value for any of the states can be easily determined by counting the number of blue arrows until the goal is reached. E.g., $V^\pi(B) = -1\ $ because it is just one step away from the goal. Similarly, the Q-value $Q^\pi(B, \mathrm{right}) = -1$, because the right action is the same action our policy selects. However, we can also evaluate the Q-value for the alternative left action. In this case, $Q^\pi(B, \mathrm{left}) = -3$, because first the agent will go left (following the off-policy orange arc) to state $A$, and then after that step it will follow the blue arcs of our policy back to state $B$ and then to final state $C$.</p>
 <h2 id="why-q-is-useful">Why Q is useful</h2>
 <p>The above example illustrates the difference between Q and V. However, in that example, knowing the Q-value for the bad action wasn&rsquo;t especially useful, so you may be wondering why we care about Q-values. The reason, of course, is that when the agent starts learning, it will not know the optimal policy. When the policy is suboptimal some of those counterfactual off-policy actions will have higher Q-values then the state value of the current suboptimal policy. When that is the case, knowing which actions have higher Q-values let&rsquo;s you identify how you can improve you policy.</p>
 <p>To illustrate that, let&rsquo;s have a slightly more complex MDP with a suboptimal policy shown below.</p>
@@ -97,7 +97,7 @@ In the case when we’re talking about the value functions for the optimal polic
 </figure>
 
 <p>In this case, the policy is near optimal except at state A where it goes up to B instead of right to C. Consequently, we have $V(A) = -4\ $. However, the Q-function for counterfactual action &ldquo;right&rdquo; shows a better expected return with $Q(A, \mathrm{right}) = -2\ $. This differences indicates that we can improve our policy by setting $\pi(A) = \mathrm{right}$.</p>
-<p>There are of course other ways to improve your policy without learning a Q-function, but it s a common a way to do it!</p>
+<p>There are of course other ways to improve your policy without learning a Q-function, but it is a common a way to do it!</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>

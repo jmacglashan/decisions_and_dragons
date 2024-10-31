@@ -26,7 +26,7 @@ This math might feel a bit scary, but in words, the objective is the average Q-v
 
 The question is *how* do we optimize this objective? If we are defining our policy with a neural net or some other differentiable function approximation, we can compute gradients of the objective with respect to the policy neural net parameters $\theta$ and use something like stochastic gradient descent (SGD) to improve the policy.[^2]
 
-[^2]: To use gradient *descent* we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient *ascent*.)
+[^2]: To use gradient *descent* we would want to turn this objective into a loss by multiplying it by negative one. Otherwise we can use gradient *ascent*.
 
 ## The true policy gradient
 Of course that means we need to know how to compute the gradient of that objective. The main result of the policy gradient theorem is that the derivative of the objective with respect to any single parameter $\theta$  is the following:
@@ -34,23 +34,23 @@ $$
 \frac{d}{d\theta} J(\pi) = \sum_s d^\pi(s) \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$
 
-The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action and then we can just multiply that by the Q-value (and take a weighted average over discounted state distribution). We don't need to compute gradients through transition functions, which usually are not known in RL problems.
+The neat and important property of this result is we really only need to compute the gradients of the probability that our policy will take any given action. Then we can multiply that by the Q-value. We don't need to compute gradients through transition functions, which usually are not known in RL problems.
 
 We do of course need an estimate of our Q-values too, and we need to take the average over our states. The tempting approach is to use samples for these remaining bits. I.e., maybe we could execute our policy in our environment a bunch of times, estimate Q-values with observed returns, multiply them by the gradient of the action probabilities, and average over the visited states?
 
 Unfortunately, no, on its own that will not work.
 
 ## No takesies backsies
-To see the problem lets ignore the state distribution part of the objective on focus on the last part:
+To see the problem, let's ignore the state distribution part of the objective on focus on the last part:
 $$
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$
 This may look like an expected value, but it's not. It's the *derivative* of an expected value. Because of that, we cannot estimate the gradient by multiplying the Q-value with the gradient of sampled action probabilities. To compute the gradient correctly for each state, we'd have to know what the Q-value is for every action, and sum their gradients together.
 
-Summing over all the actions for each state may not sound bad, but in RL, once you take an action, you have to live with the consequences. You cannot undo it and then try a different action to see what would happen. And even if we could, that's a lot of extra environment interactions! For every state we visit, we'd have to roll out another trajectory for every other possible action we could have taken. (Good luck if your actions are continuous!)
+Summing over all the actions for each state may not sound bad, but in RL, you have to live with the consequences of your action choice. You cannot undo it and then try a different action to see what would happen. And even if we could, that's a lot of extra environment interactions! For every state we visit, we'd have to roll out another trajectory for every other possible action we could have taken. (Good luck if your actions are continuous!)
 
 ## REINFORCE to the rescue
-Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value of the derivative of an expected value, allowing us to estimate the gradient with samples. To achieve this, REINFORCE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that's okay, because we're going to walk through the idea here.
+Fortunately, REINFORCE provides us a way to turn our derivative of an expected value into an expected value involving the derivative of the action probability, allowing us to estimate the gradient with samples. To achieve this, REINFORCE uses an approach very similar to importance sampling. If you are not familiar with importance sampling, that's okay, because we're going to walk through the idea here.
 
 We begin by doing something ridiculous: inside the sum, we're going to multiply everything by the probability of our policy taking the action and immediately divide by it to cancel it:
 $$
@@ -60,7 +60,7 @@ So far, we've done nothing. All we did was add needless work by multiplying by t
 $$
 \sum_a \frac{\pi(a | s)}{\pi(a | s)} \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) = E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
-Now we're in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and action distribution in our new expression. That is, our naive hope was _almost_ right. All we had to do to correct for the fact that we weren't summing the policy gradients over each action uniformly is divide by the probability of our policy selecting the action it took.
+Now we're in business: if we sample trajectories from our environment by following our policy, that will give us samples from the state and action distribution in our new expression. That is, our naive hope was _almost_ right. All we had to do to correct for the fact that we weren't uniformly summing the policy gradients is divide by the probability of our policy selecting the action it took.
 
 Except I promised log probabilities and as of now they haven't shown up.
 
@@ -69,8 +69,8 @@ Fortunately, introducing the log probability is just one more step away. Let's r
 $$
 \frac{d}{dx} \log f(x)= \frac{1}{f(x)} \frac{df(x)}{dx}
 $$
-You will notice the right-hand-side of that appears in our REINFORCE estimate of the gradient. Therefore, we can simplify it
-but substituting the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
+You will notice the right-hand-side of that appears in our REINFORCE estimate of the gradient. Therefore, we can simplify the REINFORCE expression
+by substituting the derivative of the policy probability divided by policy probability with the derivative of the log policy probability.
 $$
 E_{a \sim \pi(\cdot | s)} \left[ \frac{1}{\pi(a | s)}  \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a) \right] = E_{a \sim \pi(\cdot | s)} \left[ \frac{d\log \pi(a | s)}{d\theta} Q^\pi(s, a) \right]
 $$
@@ -78,4 +78,4 @@ In addition to simplifying the expression, using the log probability is usually 
 stable for floating-point math on computers. As such, we almost always use the log probability formulation.
 
 ## Any other heroes for hire?
-In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called _reparameterization_ is a strong alternative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it's not always the right pick. At any rate, the question we were answering is why log probabilities exist in the policy gradient methods, not which methods you can use to estimate policy gradients. Perhaps we will cover these differences another time.
+In this answer, we showed how REINFORCE comes to our rescue and allows us to use action samples to estimate the policy gradient. But there are other ways to address this problem. In particular, a method called _reparameterization_ is a strong alternative. The soft actor-critic space of algorithms is perhaps the most well known setting where it is employed to estimate policy gradients. However, using reparameterization for policy gradients requires a different set of assumptions and trade offs relative to REINFORCE, so it's not always the right pick. It particular, it often requires you to learn a Q-function to optimize the policy, and the learned Q-function introduces bias.
