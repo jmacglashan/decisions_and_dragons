@@ -8,29 +8,21 @@ layout = "about"
 
 Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.
 
-Furthermore, unlike other forms of machine learning, an RL algorithm is not provided well-curated datasets. An RL agent must form its own data from interactions. Even worse, the data the agent collects is highly correlated and does not explicitly include the correct response. Instead, an RL agent must reason about its data to determine the correct response and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough for you, solving this problem often involves learning multiple interacting models.
+Unlike other forms of machine learning, we cannot feed an algorithm a well curated dataset. An agent must form its own data from interactions. Even worse, this data is temporally correlated and does not explicitly include the correct response. The agent must reason about its data to determine the correct response and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough, it must do all this even when the it doesn't have much data to go on. The world waits for no ~~man~~ agent, and it must make do with what it has.
 
-The RL problem is _hard_ and if you feel lost trying to grock it, you're not alone.
+The RL problem is _hard_ and if you feel lost, you're not alone.
 
-This website aims to address that problem. Here I've collected answers I've given to common questions in the past and expanded on them.
+This website aims to guide you through this challenging landscape. To that end, I've collected answers I've given to common RL questions in the past. Questions that many beginners eventually ask, but have trouble finding complete answers to in literature. I am launching the site with eight questions and answers, but I'll add more with time.
 
-Each answer begins with a concise response, followed by a step-by-step derivation from first principles. While I will assume you have enough background knowledge to ask the question, I won't assume you have any more. The aim of these step-by-step derivations is to fill in the gaps commonly skipped over in literature.
+Each answer begins with a concise response, followed by a step-by-step derivation from first principles. While I will assume you have enough background knowledge to ask the question, I won't assume you have any more.
 
 I can't promise that you'll come away from these answers with perfect clarity on the matter. Most of us have to suffer a long time to gain competence. But perhaps this site will help you suffer a little less.
 
 ## About the name
 
-This site is called "Decisions & Dragons. "Decisions" represents the core goal of RL: developing agents that learn to make effective decisions. "Dragons" represents the perilous complexities and challenges that must be navigated in pursuit of solving the RL problem.
+This site is called "Decisions & Dragons." "Decisions" represents the core goal of RL: developing agents that learn to make effective decisions. "Dragons" represents the perilous complexities and challenges that must be navigated in pursuit of solving the RL problem.
 
 I trust you understand that there were no other motivations for this name and any similarities it has with other titles is purely coincidental.
-
-## How I will update the site
-
-At the time of launch, I populated this site with answers to frequently asked questions that I've encountered and answered in the past. I've taken this opportunity to expand on my answers to and to take advantage of the freedom of presentation a personal website affords.
-
-Moving forward, I will continue to curate and share my responses to new and emerging questions, as well as revisit and refine my previous answers as needed.
-
-Occasionally, I may use this platform to share opinion pieces on RL and AI more broadly, although I am less sure of this direction. This site is still a work in progress -- we'll see how it goes.
 
 ## About me
 
