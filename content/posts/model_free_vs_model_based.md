@@ -4,9 +4,9 @@ date = 2024-03-29T19:50:17-04:00
 draft = false
 +++
 
-In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to predict precisely how the environment will be affected by its actions. <!--more-->
+In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to precisely predict how the environment will be affected by its actions. <!--more-->
 
-To better understand this distinction more completely, it is helpful to revisit the definition of an MDP, how to solve it, and how RL makes this problem harder.
+To better understand this distinction, it is helpful to revisit the definition of an MDP, how to solve it, and how RL makes this problem harder.
 
 ## MDPs
 
@@ -21,11 +21,11 @@ Our goal is to find a policy $\pi$, mapping states to action choices we should m
 
 ## Planning vs RL
 
-If we know what all those elements of an MDP are, we can compute a good policy before ever actually executing an action in the environment. In AI, we typically call computing the solution to a decision-making problem before executing an actual decision "planning." Some classic planning algorithms for MDPs include Value Iteration, Policy Iteration, Monte Carlo Tree Search, and whole lot more.
+If we know what all those elements of an MDP are, we can find a good policy before ever actually executing an action in the environment. In AI, we typically call computing the solution to a decision-making problem before executing an actual decision "planning." Some classic planning algorithms for MDPs include Value Iteration, Policy Iteration, Monte Carlo Tree Search, and whole lot more.
 
-But the RL problem isn’t so kind to us. What makes a problem an RL problem, rather than a planning problem, is the agent does _not_ know all the elements of the MDP, precluding it from being able to plan a solution.[^1] Specifically, the agent does not know how the environment will change in response to its actions (the transition function $T$), nor what immediate reward it will receive for doing so (the reward function $R$). The agent will simply have to try actions in the environment, observe what happens, and somehow, find a good policy from doing so.
+But the RL problem isn’t so kind to us. What makes a problem an RL problem, rather than a planning problem, is the agent does _not_ know all the elements of the MDP, preventing it from planning.[^1] Specifically, the agent does not know how the environment will change in response to its actions (the transition function $T$), nor what immediate reward it will receive for doing so (the reward function $R$). The agent will simply have to try actions in the environment, observe what happens, and somehow, find a good policy from doing so.
 
-[^1]: Beware: I'm entering into controversial territory here! There are methods that use knowledge of the transitions dynamics that some people will call "RL." Like most things, lines get blurry. For example, the authors of AlphaGo called their method "RL" even though they used MCTS and the dynamics of the game were known and provided to the algorithm. Usually, when people call "planning" methods "RL" methods, they do so because the method makes limited use of its knowledge of the transition dynamics. Typically for computational reasons. Nevertheless, methods like MCTS require the agent to have knowledge of how the environment is affected by its actions, and they exploit this knowledge. For this reason, I still call them "planning" methods. Call me a curmudgeon if you must.
+[^1]: Beware: I'm entering into controversial territory here! There are methods that use knowledge of the transitions dynamics that some people will still call "RL." Like most things, lines get blurry. For example, the authors of AlphaGo called their method "RL" even though they used MCTS and the dynamics of the game were known and provided to the algorithm. Usually, when people call "planning" methods "RL" methods, they do so because the method makes limited use of its knowledge of the transition dynamics. Typically for computational reasons. Nevertheless, methods like MCTS require the agent to have knowledge of how the environment is affected by its actions, and they exploit this knowledge. For this reason, I still call them "planning" methods. Call me a curmudgeon if you must.
 
 How can an agent find a good policy if it does not know the transition function $T$ nor the reward function $R$? It turns out there are lots of ways!
 
@@ -37,7 +37,7 @@ One approach that might immediately strike you is for the agent to learn a model
 
 ## Model-free RL
 
-As it turns out though, we don’t have to learn a model of the environment to find a good policy. One of the most classic examples is Q-learning, which directly estimates the optimal Q-values of each action in each state.[^2] A policy may then be derived from the learned Q-values by choosing the action with the highest Q-value in the current state. Other model-free methods include actor-critic and policy search methods, which search over the policy space to find policies that result in better reward from the environment (sometimes while still learning Q-functions!).
+As it turns out though, we don’t have to learn a model of the environment to find a good policy. One of the most classic examples is Q-learning, which directly estimates the optimal Q-values of each action in each state.[^2] A policy may then be derived from the learned Q-values by choosing the action with the highest Q-value in the current state. Other model-free methods include actor-critic and policy search methods, which search over the policy space to find policies that result in better reward from the environment.
 
 Because these approaches do not learn a model of the environment they are called model-free algorithms. Model-free methods demonstrate that you do not need to know what the next state for any given action is to act well. You just need to be able to estimate which actions in which states will allow you to collect a lot of future reward.
 

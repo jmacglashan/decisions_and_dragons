@@ -4,7 +4,7 @@ date = 2024-04-20T12:51:21-04:00
 draft = false
 +++
 
-The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:
+The [DDPG](https://arxiv.org/abs/1509.02971) and [DPG paper](https://proceedings.mlr.press/v32/silver14.pdf) before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:
 
 $$
 \nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
@@ -29,7 +29,7 @@ Unfortunately, if the MDP has continuous actions and a very large or continuous 
 
 ## Q-functions as loss functions
 
-When actions are continuous, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, we're good at optimizing approximate functions to minimize some loss function in machine learning. That's kind of the basis of deep learning! We build a big neural net, define a differentiable loss function, and then use multiple steps of gradient descent to learn a neural net to minimize the loss.
+When actions are continuous, we cannot find the action with the highest Q-value by simply enumerating each action's value. We also cannot directly assign that action to be selected in each state if the state space is too large or continuous. However, we're good at optimizing approximate functions to minimize some loss function in machine learning. That's kind of the basis of deep learning! We build a big neural net, define a differentiable loss function, and then use multiple steps of gradient descent to train a neural net to minimize the loss.
 
 We can use the same idea to handle our problem of optimizing a policy to select continuous actions that maximize a Q-function. In this case, our Q-function will act like our loss function, and our policy like the usual neural net.
 
@@ -83,7 +83,7 @@ $$
 
 The take away is that you can think of the negative Q-function as a loss function for training a neural net policy. By minimizing this loss with (stochastic) gradient descent, we solve the policy improvement problem for MDPs with continuous actions and large or continuous state spaces.[^1]
 
-[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, supervised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, the Q-function, which serves as our loss function, may be non-convex either. Because this problem is inherent to the loss function, simply scaling up the policy network will not avoid the difficulties of local optima in the Q-function. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-function may not be convex.
+[^1]: **Warning**: A crucial limitation of stochastic gradient descent (SGD) is that it only converges to a local optimum. While this limitation is often manageable in supervised learning, it can be a significant issue in policy improvement. That is, supervised learning problems typically involve a convex loss function with a single global optima, like $L_2$. When the function approximation architecture is also convex (like a linear function), SGD will converge to the global optima. While neural networks are not convex, bad local optima can be avoided by just making the neural net bigger. However, the Q-function, which serves as our loss function, may be non-convex too. Because this problem is inherent to the loss function, simply scaling up the policy network will not avoid the difficulties of local optima in the Q-function. Scaling up the Q-function network won't help either, because we're training the Q-function network to model the true Q-function, and the true Q-function may not be convex.
 
 But we're still not quite at the expression in the DDPG and DPG literature that is the product of gradients. Let's work our way back to that.
 
@@ -103,7 +103,7 @@ The chain rule is useful because it allows us to decompose the computation of de
 
 Of course, that's just single variables. Once we have multivariable functions, as is common in the case of neural networks, it get's a little more complex. But fortunately, not wildly more complex, because there is also a [chain rule for multivariable functions](https://en.wikipedia.org/wiki/Gradient#Chain_rule)!
 
-Suppose our function $f$ is a function of multiple variables (like a Q-function of multi-dimensional continuous actions), suppose $g$ outputs a multi-dimensional value in the same domain as $f$ (like a deterministic continuous-action policy), and suppose our input $x$ for which we want the gradient is multidimensional (like the parameters $\theta$ of a neural net). Then the multivariable chain rule is:
+Suppose our function $f$ is a function of multiple variables (like a Q-function of multi-dimensional continuous actions), suppose $g$ outputs a multi-dimensional value in the same domain as $f$ (like a deterministic continuous-action policy), and suppose our input $x$ for which we want the gradient is multidimensional (like the parameters $\theta$ of a neural net). Then the multivariable chain rule for $h(x) = f(g(x))$ is:
 
 $$
 \nabla_x h(x) = (Dg(x))^\top \nabla_a f(a) \rvert_{a=g(x)},
@@ -111,7 +111,7 @@ $$
 
 where $(Dg(x))^\top$ indicates the transpose of the Jacobian matrix (the matrix of gradients for each output) and $\rvert_{a=g(x)}$ indicates that we should evaluate the value $a$ in $f(a)$ as the result of $g(x)$.
 
-The multivariable chain rule is useful for the same reason as the single-variable chain rule: it allows you to leverage your knowledge of the gradients of simple functions to compute the gradient of a complex function.
+The multivariable chain rule is useful for the same reason the single-variable chain rule is: it allows you to leverage your knowledge of the gradients of simple functions to compute the gradient of a complex function.
 
 ### Applying the chain rule
 
@@ -139,7 +139,7 @@ Before deep networks took over, RL researchers often used simple linear function
 
 **(2)** The second reason is that in addition to deriving the deterministic policy gradient, the original DPG work also showed that this gradient is the limit of stochastic policies as they converge to deterministic policies. By using the expanded chain rule form, it may have been easier to prove this relationship with stochastic policies.
 
-**(3)** The third reason is you need to be careful with automatic differentiation. If you compute the gradient of the Q-function with an autodiff library you need to take care not to compute the gradients for the Q-function parameters during the optimization. Otherwise, you may accidentally distort the Q-function network. By expanding the chain rule, it makes it clear exactly what should be computed. That said, there are lots of ways in modern automatic differentiation libraries to avoid this pitfall without expanding the chain rule, so I would not suggest expanding it in modern practice. Just be aware of it.
+**(3)** The third reason is you need to be careful with automatic differentiation. If you compute the gradient of the Q-function with an autodiff library you need to take care not to compute the gradients for the Q-function parameters during the optimization. Otherwise, you may accidentally distort the Q-function network. This can get trickier if you are sharing parameters between the Q-function and policy. By expanding the chain rule, it makes it clear exactly what should be computed. That said, there are lots of ways in modern automatic differentiation libraries to avoid this pitfall without expanding the chain rule, so I would not suggest expanding it in modern practice. Just be aware of it.
 
 ## Bias in the DDPG estimate
 

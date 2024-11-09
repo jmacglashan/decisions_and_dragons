@@ -73,14 +73,14 @@ window.addEventListener("hashchange", function () {
 <h2 id="examining-the-q-learning-update">Examining the Q-learning update</h2>
 <p>Lets take a look at the core Q-learning update rule:</p>
 <p>$$
-Q(s, a) \gets Q(s, a) \alpha \left[ r + \gamma \max_{a&rsquo;} Q(s&rsquo;, a&rsquo;) - Q(s, a) \right],
+Q(s, a) \gets Q(s, a) + \alpha \left[ r + \gamma \max_{a&rsquo;} Q(s&rsquo;, a&rsquo;) - Q(s, a) \right],
 $$</p>
 <p>where $r$ is the observed reward and $s&rsquo;$ is the next observed state.</p>
 <p>Or if we’re working with function approximation of the Q function (e.g., using a neural net), we can frame this as a loss minimization problem where the loss function to minimize is:</p>
 <p>$$
 L(\theta) \triangleq \frac{1}{2}\left(r + \gamma \max_{a&rsquo;} Q_{\theta^-}(s&rsquo;, a&rsquo;) - Q_\theta(s, a) \right)^2,
 $$</p>
-<p>where $\theta^-$ is a copy of the parameters $\theta$ that we do not differentiate through (and in the case of DQN, may be many updates old).</p>
+<p>where $\theta^-$ is a copy of the parameters $\theta$ that we do not differentiate through (and in the case of DQN and others, may be many updates old).</p>
 <p>Effectively we’re doing a standard supervised regression problem on our function approximation of Q, except instead of having pre-defined labels in a dataset, we compute a “label” on each step with the value:</p>
 <p>$$
 y \triangleq r + \gamma \max_{a&rsquo;} Q_{\theta^-}(s&rsquo;, a&rsquo;).
@@ -107,7 +107,7 @@ $$</p>
 <hr>
 <ol>
 <li id="fn:1">
-<p>Okay, <em>nothing</em> is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there&rsquo;s still a hell of lot of possible values that you wouldn&rsquo;t want to enumerate! Like, over 4 billion. And that&rsquo;s if you only have <em>one</em> continuous action dimension.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Okay, <em>nothing</em> is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like 32-bit <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a> to represent a large (but finite!) set of fractional values. But there&rsquo;s still a hell of lot of possible values that you wouldn&rsquo;t want to enumerate! Like, over 4 billion. And that&rsquo;s if you only have <em>one</em> continuous action dimension.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
 <p>Unless your Q-function is convex over the actions or has some other really convenient, but restrictive, properties.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>

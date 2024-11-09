@@ -14,7 +14,7 @@ Can we use our observations of Alice playing to predict Bob's average payout? Ye
 
 ## Separate averages
 
-The first way you may be thinking to answer this question is to separately compute the average payout Alice receives for the left and right arm. Let's denote these averages by
+The first way you may think to answer this question is to separately compute the average payout Alice receives for the left and right arm. Let's denote these averages by
 
 $$
 \begin{align*}
@@ -25,7 +25,7 @@ $$
 
 where $N_l, N_r$ are the number of times the left and right bandit were played, respectively, and $r_{li}, r_{ri}$ are the ith payout for the left and right bandit, respectively.
 
-After computing our averages, we can estimate[^3] Bob's expected payout by just taking a weighted average of those values, where the weights are the probability Bob would pick each bandit:
+After computing our averages, we can estimate[^3] Bob's expected payout by taking a weighted average of those values, where the weights are the probability Bob would pick each bandit:
 
 $$
 E_{\pi}\left[R \right] \approx \pi(a_l) Q(a_l) + \pi(a_r) Q(a_r)
@@ -51,9 +51,9 @@ At this point it should be clear that if you simplified Q-learning to the bandit
 
 ## Importance sampling
 
-In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are just going to modify an average over _all_ our data with some weights. Spoiler, we modify it by weighting them by $\frac{\pi(a_i)}{\mu(a_i)}$ where $i$ is set to the arm that was pulled on that sample.
+In importance sampling, we do not have to maintain separate averages for each choice. Instead, we are going to modify an average over _all_ our data with some weights. Spoiler: we modify it by weighting them by $\frac{\pi(a_i)}{\mu(a_i)}$ where $i$ is set to the arm that was pulled on that sample.
 
-To show how we determine those weights let's start with how we would exactly compute Bob's expected payout if we knew the probabilities for each possible payout for each bandit. We'd ideally compute:
+To show how we determine those weights, let's start with how we would exactly compute Bob's expected payout if we knew the probabilities for each possible payout for each bandit. We'd ideally compute:
 
 $$
 E_{\pi} \left[ R \right] = \sum_{a \in \\{a_l, a_r\\}} \pi(a) \sum_{r\in R} p_a(r) r,
@@ -65,7 +65,7 @@ There's just one problem: while we know the probability values $\pi(a_l)$ and $\
 
 [^2]: We're going to assume there are a discrete number of possible payouts, but our approach would work for continuous payouts if we swapped the sum for an integral
 
-If we were directly observing Bob play, this wouldn't be so bad. We would estimate the expected value with an average of his observed payouts. We wouldn't even have to keep track of which arm he pulled, because we can think of his random choice of the bandit as part of the underlying joint distribution. But we don't get to observe Bob play. We're trying to predict his payout from observation of Alice.
+If we were directly observing Bob play, this wouldn't be so bad. We would estimate the expected value with an average of his observed payouts. We wouldn't even have to keep track of which arm he pulled, because we can think of his random choice of the bandit as part of the underlying joint distribution. But we don't get to observe Bob play. We're trying to predict his payout by observing Alice.
 
 Now comes the surprisingly simple importance sampling trick. Let's modify that expression without changing its value by multiplying and dividing by the probability that Alice will select the arm:
 
@@ -144,7 +144,7 @@ $$
 Q_{t+1}(s, a) \gets R(s, a) + \gamma \sum_{s'} T(s' | s, a) \max_{a'} Q_t(s', a')
 $$
 
-for all states and actions, we have that $Q_t \rightarrow Q^\*$ as $t \rightarrow \infty$. This algorithm is know as value iteration (VI). In this post, I won't show why VI has that property, but let's simply accept this awesome property as true for the time being.
+for all states and actions, we have that $Q_t \rightarrow Q^\*$ as $t \rightarrow \infty$. This algorithm is know as value iteration (VI). In this post, I won't show why VI has that property, but let's simply accept this awesome property for the time being.
 
 "I asked about Q-learning, not value iteration!" I hear you yelling. I know, I know. However, Q-learning is a lot like value iteration, except Q-learning is meant to solve _reinforcement learning_ problems.
 
@@ -160,7 +160,7 @@ Note that the samples are drawn from the reward and transition function, _not_ t
 
 [^5]: Or if there are ties for the highest Q-value, an optimal policy is any division of the probability between the actions that tie for the highest value.
 
-To summarize, even though Q-learning uses samples to estimate expected values, it doesn't need importance sampling because the samples inform us about the transition dynamics only. We use the separate averages approach to compute the expected value of the optimal policy.
+To summarize, even though Q-learning uses samples to estimate expected values, it doesn't need importance sampling because the samples inform us about the transition dynamics only. We use the separate averages approach to compute the expected value of the optimal policy which may differ from the policy being followed.
 
 ## Why off-policy actor critic methods use importance sampling
 
@@ -182,4 +182,6 @@ However, other off-policy actor-critic algorithms, like IMPALA[^6] do not. Inste
 
 You might wonder why we don't always estimate Q-values if we want to do off-policy learning. After all, it was probably the simpler approach you first imagined when I described the simple bandit problem. It also has the nice property that you don't have to know what the probabilities of the behavior policy were (e.g., Alice's policy $\mu$ in our bandit example). You only have to know the probabilities of the policy you want to evaluate.
 
-However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing function approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values and that adds another source of bias. These sources of bias are non-trivial -- very often if algorithms like SAC fall apart it's inherently linked to bias issues in the estimate of the Q-function. For these reasons, estimating the state value function and using importance sampling may be preferable.
+However, there are still some nice things about using state value estimates. First, if your action space is very large, maintaining separate estimates for each action can become problematic. If you're using function approximation, you might try to avoid that problem by generalizing over the actions. That is in fact what SAC, TD3, and DDPG do. But if you're introducing function approximation across your actions, now you've opened the door for more biased estimates for each action. Furthermore, you can only really do one-step updates where you bootstrap from the next state's Q-values[^7] and that adds another source of bias. These sources of bias are non-trivial -- very often if algorithms like SAC fall apart, it's because of bias in the Q-function estimate. For these reasons, estimating the state value function and using importance sampling may be preferable.
+
+[^7]: Many works, including my group's work on GT Sophy, use $n$-step Q-learning updates in practice. This is technically wrong, because it doesn't correct for any off-policy differences within the $n$-step, only at the end of the n-steps. Nevertheless, this approach tends to be useful in practice for reasons I won't get into here. As long as $n$ is small, the off-policy error tends to not be too bad.

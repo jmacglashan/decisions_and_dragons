@@ -20,7 +20,7 @@
       <link>http://localhost:1313/posts/horizon/</link>
       <pubDate>Sun, 21 Apr 2024 16:49:00 -0400</pubDate>
       <guid>http://localhost:1313/posts/horizon/</guid>
-      <description>&lt;p&gt;In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &amp;ldquo;how does potential future reward affect our decision right now?&amp;rdquo; The &amp;ldquo;horizon&amp;rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t fully define the goal, because each decision can affect what reward the agent can receive the future. Consequently, we’re left with the question &amp;ldquo;how does potential future reward affect our decision right now?&amp;rdquo; The &amp;ldquo;horizon&amp;rdquo; refers to how far into the future the agent will optimize its reward. You can have finite-horizon objectives, or even infinite-horizon objectives.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why doesn&#39;t Q-learning work with continuous actions?</title>
@@ -34,7 +34,7 @@
       <link>http://localhost:1313/posts/ddpg_grad/</link>
       <pubDate>Sat, 20 Apr 2024 12:51:21 -0400</pubDate>
       <guid>http://localhost:1313/posts/ddpg_grad/</guid>
-      <description>&lt;p&gt;The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;This expression looks a little scary, but it&amp;rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&amp;rsquo;s gradient with respect to the policy parameters, evaluated at the policy&amp;rsquo;s selected action. That may not be obvious because the product of &amp;ldquo;gradients&amp;rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://arxiv.org/abs/1509.02971&#34;&gt;DDPG&lt;/a&gt; and &lt;a href=&#34;https://proceedings.mlr.press/v32/silver14.pdf&#34;&gt;DPG paper&lt;/a&gt; before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;\nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;This expression looks a little scary, but it&amp;rsquo;s conveying a straightforward concept: the gradient is the average of the Q-function&amp;rsquo;s gradient with respect to the policy parameters, evaluated at the policy&amp;rsquo;s selected action. That may not be obvious because the product of &amp;ldquo;gradients&amp;rdquo; (spoiler: there is some notation abuse) is the result of applying the multivariable chain rule of differentiation. If we were to reverse this step, the expected value would simplify to the more explicit expression $\nabla_\theta Q(s, \pi_\theta(s))$.&lt;/p&gt;</description>
     </item>
     <item>
       <title>If Q-learning is off-policy, why doesn&#39;t it require importance sampling?</title>
@@ -62,7 +62,7 @@
       <link>http://localhost:1313/posts/model_free_vs_model_based/</link>
       <pubDate>Fri, 29 Mar 2024 19:50:17 -0400</pubDate>
       <guid>http://localhost:1313/posts/model_free_vs_model_based/</guid>
-      <description>&lt;p&gt;In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to predict precisely how the environment will be affected by its actions.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to precisely predict how the environment will be affected by its actions.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>

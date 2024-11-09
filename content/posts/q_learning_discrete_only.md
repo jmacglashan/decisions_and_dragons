@@ -11,7 +11,7 @@ Q-learning requires finding the action with the maximum Q-value in two places: (
 Lets take a look at the core Q-learning update rule:
 
 $$
-Q(s, a) \gets Q(s, a) \alpha \left[ r + \gamma \max_{a'} Q(s', a') - Q(s, a) \right],
+Q(s, a) \gets Q(s, a) + \alpha \left[ r + \gamma \max_{a'} Q(s', a') - Q(s, a) \right],
 $$
 
 where $r$ is the observed reward and $s'$ is the next observed state.
@@ -22,7 +22,7 @@ $$
 L(\theta) \triangleq \frac{1}{2}\left(r + \gamma \max_{a'} Q_{\theta^-}(s', a') - Q_\theta(s, a) \right)^2,
 $$
 
-where $\theta^-$ is a copy of the parameters $\theta$ that we do not differentiate through (and in the case of DQN, may be many updates old).
+where $\theta^-$ is a copy of the parameters $\theta$ that we do not differentiate through (and in the case of DQN and others, may be many updates old).
 
 Effectively we’re doing a standard supervised regression problem on our function approximation of Q, except instead of having pre-defined labels in a dataset, we compute a “label” on each step with the value:
 
@@ -61,4 +61,4 @@ That’s not to say those approaches can’t be successful, but it’s a fairly 
 
 Personally, I prefer actor-critic methods for continuous actions since they do not suffer this same problem. And if you want an actor-critic method that is quite similar to Q-learning, you may want to consider [DDPG](https://arxiv.org/abs/1509.02971), [TD3](https://arxiv.org/abs/1802.09477v3), or [SAC](https://arxiv.org/abs/1801.01290). If you want to learn more about how DDPG (and largely TD3) works, you may want to see [my post](../ddpg_grad/) on its policy gradient derivation.
 
-[^1]: Okay, _nothing_ is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like float32 to represent a large (but finite!) set of fractional values. But there's still a hell of lot of possible values that you wouldn't want to enumerate! Like, over 4 billion. And that's if you only have _one_ continuous action dimension.
+[^1]: Okay, _nothing_ is actually continuous in computers. Computer numbers are actually discrete and we just use clever discrete encodings like 32-bit [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) to represent a large (but finite!) set of fractional values. But there's still a hell of lot of possible values that you wouldn't want to enumerate! Like, over 4 billion. And that's if you only have _one_ continuous action dimension.
