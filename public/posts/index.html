@@ -53,6 +53,8 @@ window.addEventListener("hashchange", function () {
             
             <a href=" /posts/">Posts</a>
             
+            <a href=" /corrections/">Corrections</a>
+            
         </span>
     </div>
     <div class="main-content">
@@ -67,7 +69,7 @@ window.addEventListener("hashchange", function () {
         <h2>
             <a class="post_link" href="/posts/horizon/">What is the &#34;horizon&#34; in reinforcement learning?</a>
         </h2>
-        <p>In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t actually fully define the goal, because each decision can affect what the agent can do in the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; in RL refers to how far into the future the agent cares about reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p>
+        <p>In reinforcement learning, an agent receives reward on each time step. The goal, loosely speaking, is to maximize the future reward received. But that doesn’t fully define the goal, because each decision can affect what reward the agent can receive the future. Consequently, we’re left with the question &ldquo;how does potential future reward affect our decision right now?&rdquo; The &ldquo;horizon&rdquo; refers to how far into the future the agent will optimize its reward. You can have finite-horizon objectives, or even infinite-horizon objectives.</p>
         <p><a href="/posts/horizon/">[See more]</a></p>
         
         <h2>
@@ -79,7 +81,7 @@ window.addEventListener("hashchange", function () {
         <h2>
             <a class="post_link" href="/posts/ddpg_grad/">Why is the DDPG gradient the product of the Q-function gradient and policy gradient?</a>
         </h2>
-        <p>The DDPG and DPG paper before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
+        <p>The <a href="https://arxiv.org/abs/1509.02971">DDPG</a> and <a href="https://proceedings.mlr.press/v32/silver14.pdf">DPG paper</a> before it express the gradient of the objective $J(\pi)$ as the product of the policy and Q-function gradients:</p>
 <p>$$
 \nabla_\theta J(\pi) = E_{s \sim \rho^\pi} \left[\nabla_\theta \pi_\theta(s) \nabla_a Q(s, a) \rvert_{a \triangleq \pi_\theta(s)} \right].
 $$</p>
@@ -99,7 +101,7 @@ $$</p>
         <p><a href="/posts/q_vs_v/">[See more]</a></p>
         
         <h2>
-            <a class="post_link" href="/posts/why_does_the_policy_gradient_include_log_prob/">Why does the policy gradient include a log probobability term?</a>
+            <a class="post_link" href="/posts/why_does_the_policy_gradient_include_log_prob/">Why does the policy gradient include a log probability term?</a>
         </h2>
         <p>Actually, it doesn&rsquo;t! What you&rsquo;re probably thinking of is the <a href="https://people.cs.umass.edu/~barto/courses/cs687/williams92simple.pdf">REINFORCE</a> <em>estimate</em> of the policy gradient. How we derive the REINFORCE estimate you&rsquo;re familiar with and <em>why</em> we use it is something I found to be poorly explained in literature. Fortunately, it is not a hard concept to learn!</p>
         <p><a href="/posts/why_does_the_policy_gradient_include_log_prob/">[See more]</a></p>
@@ -107,7 +109,7 @@ $$</p>
         <h2>
             <a class="post_link" href="/posts/model_free_vs_model_based/">What is the difference between model-based and model-free RL?</a>
         </h2>
-        <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to predict precisely how the environment will be affected by its actions.</p>
+        <p>In reinforcement learning, the agent is not assumed to know how the environment will be affected by its actions. Model-based and model-free reinforcement learning tackle this problem in different ways. In model-based reinforcement learning, the agent learns a model of how the environment is affected by its actions and uses this model to determine how to act. In model-free reinforcement learning, the agent learns how to act without ever learning to precisely predict how the environment will be affected by its actions.</p>
         <p><a href="/posts/model_free_vs_model_based/">[See more]</a></p>
         
     </div>

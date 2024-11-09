@@ -72,6 +72,13 @@
       <description>Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.&#xA;Unlike other forms of machine learning, we cannot feed an algorithm a well curated dataset.</description>
     </item>
     <item>
+      <title>Corrections</title>
+      <link>http://localhost:1313/corrections/</link>
+      <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>
+      <guid>http://localhost:1313/corrections/</guid>
+      <description>I have a tendency to make a lot of typos. My brain reads what I meant, not what I typed. On an occasion, I may also make an error (:gasp:) or state something too imprecisely.&#xA;I don&amp;rsquo;t have collaborators for this site to check for any kind of errors. Therefore, if you spot an error of any sort, please let me know by reporting it on my Github issues page.</description>
+    </item>
+    <item>
       <title>Math Notation Cheatsheet</title>
       <link>http://localhost:1313/notation/</link>
       <pubDate>Tue, 26 Mar 2024 20:17:59 -0400</pubDate>

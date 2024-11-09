@@ -26,3 +26,9 @@ identifier = "posts"
 name = "Posts"
 url = "/posts/"
 weight = 3
+
+[[menu.nav]]
+identifier = "corrections"
+name = "Corrections"
+url = "/corrections/"
+weight = 4
