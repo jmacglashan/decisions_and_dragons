@@ -32,7 +32,7 @@ on the [Reinforcement Learning Discord server](https://discord.gg/nu3pyBrNpg). (
 I received my PhD in computer science from the University of Maryland, Baltimore County in 2013 where I
 worked on reinforcement learning. I then moved on to a postdoctoral position at Brown University, where I continued to work on reinforcement learning.
 Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and
-continual learning as a service. Cogitai was eventually acquired by Sony and we formed game AI team at [Sony AI](https://ai.sony/), where I
+continual learning as a service. Cogitai was eventually acquired by Sony and we formed the game AI team at [Sony AI](https://ai.sony/), where I
 continue to work on reinforcement learning.
 
 Despite all these years working on reinforcement learning, I have shockingly failed to solve it.

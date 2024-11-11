@@ -40,7 +40,7 @@ The $ith$ element of the indexed set (list) of elements $x$. In python `x[i]`.
 
 #### $\sum_i^N x_i$
 
-The sum of the first $N$ elements of an indexed set (list) of elements $x$. Could also be written as $x_1, + x_2 + ... + x_N$.
+The sum of the first $N$ elements of an indexed set (list) of elements $x$. Could also be written as $x_1 + x_2 + ... + x_N$.
 
 ```python
 sum = 0
