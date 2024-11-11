@@ -31,7 +31,7 @@ First, let's give some definitions to policy evaluation/improvement. These terms
 
 In the first evaluation step, we evaluate the Q-function for the given policy. It is worth noting that we don't have to _explicitly_ model $Q^\pi$. There are other approaches we could take such as explicitly modeling the state value function $V^\pi(s)$, and then _implicitly_ derive $Q^\pi$ with observed transitions. Alternatively, we could explicitly model $V^\pi$ and the environment transition dynamics $T(s' | s, a)$ from which we could derive $Q^\pi$.
 
-Regardless of whether we explicitly or implicitly model $Q^\pi$, "evaluation" refers to estimating a value function for a policy. If you are having difficulty understanding the exaction definition of value functions and difference between $Q$ and $V$, you may want look at my answer to [this question](../q_vs_v).
+Regardless of whether we explicitly or implicitly model $Q^\pi$, "evaluation" refers to estimating a value function for a policy. If you are having difficulty understanding the exact definition of value functions and difference between $Q$ and $V$, you may want look at my answer to [this question](../q_vs_v).
 
 The term "improvement" regards the second step: how you make your policy better maximize the value function. As you might expect, there are many different ways to improve your policy given a value function estimate.
 

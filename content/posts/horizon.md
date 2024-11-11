@@ -30,7 +30,7 @@ A finite horizon, even a long finite horizon, does have its limitations of cours
 
 We might ask ourselves: is there a way to tell the agent to optimize for an _infinite_ horizon?
 
-Optimizing for an infinite horizon might get a little funky, because if we just summed up all rewards into infinity, two policies that both generated small positive rewards indefinitely would have the same total infinite value, even if one policy always received more reward on each time step.
+Optimizing for an infinite horizon can get a little funky. If we summed up all rewards infinitely far into the future, a policy that generates positive reward indefinitely would have have infinite total reward. Infinite values complicate matters because it makes it impossible to compare many policies. That is, if policy $a$ generated more reward on every time step than policy $b$, but both generated infinite total reward, we would be unable to say that policy $a$ was better than $b$.
 
 One solution to this enigma is to use a _discounted_ infinite horizon objective: the most common objective in RL literature. In an infinite horizon discounted objective, we sum up each reward, but discount how much we care about it by how far into the future it is. Using a discount parameter $\gamma \in [0, 1)$, we define the objective to be:
 
@@ -38,7 +38,7 @@ $$
 r_1 + \gamma r_2 + \gamma^2 r_3 + \gamma^3 r_4 + ...
 $$
 
-Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming all rewards are finite). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lot's of reward sooner rather than later.
+Because each possible reward is geometrically decreased, we ensure the total possible value of any future is always finite (assuming all rewards are finite). When comparing two possible futures that have the same undiscounted rewards, the one that achieves reward faster will win out. That is, this discounted objective prefers getting lots of reward sooner rather than later.
 
 Discounting solves the dilemma of missing the opportunity to achieve a big reward just one or a few steps later than a finite horizon limit, because it accounts for all future reward. However, it does impose a kind of "soft horizon." The closer The discount is to zero, the more myopic it will be, with it behaving exactly like a one-step finite horizon when $\gamma = 0$.
 
