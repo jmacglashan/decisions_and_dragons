@@ -8,6 +8,11 @@ layout = "single_no_toc"
 
 I have a tendency to make a lot of typos. My brain reads what I meant, not what I typed. On an occasion, I may also make an error (:gasp:) or state something too imprecisely. 
 
-I don't have collaborators for this site to check for any kind of errors. Therefore, if you spot an error of any sort, please let me know by reporting it on my [Github issues page](https://github.com/jmacglashan/decisions_and_dragons/issues).
+I don't have collaborators for this site to check for any kind of errors. Therefore, if you spot an error of any sort, please let me know by reporting it on my [Github issues page](https://github.com/jmacglashan/decisions_and_dragons/issues) or contact me some other way (see the [about](/about) page).
 
-Below I will list corrections others have pointed out. As of now, there are no user-submitted corrections because the site is too new, too unpopular, or because I've been uncharacteristically error-free. Feel free to remedy that!
+To encourage people to let me know about errors, I will list user-submitted corrections below. As of now, there are not many user-submitted corrections because the site is too new, too unpopular, or because I've been uncharacteristically error-free. Feel free to remedy that!
+
+## User submitted corrections by date
+
+* Nov 11, Bram Grooten (offline report): typo corrections for "About" and "Notation" pages.
+* Nov 10, Craig Sherstan (offline report): typo correction for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"
