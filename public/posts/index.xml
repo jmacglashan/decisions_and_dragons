@@ -48,7 +48,7 @@
       <link>http://localhost:1313/posts/q_vs_v/</link>
       <pubDate>Sat, 30 Mar 2024 23:24:52 -0400</pubDate>
       <guid>http://localhost:1313/posts/q_vs_v/</guid>
-      <description>&lt;p&gt;State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.&lt;/p&gt;</description>
+      <description>&lt;p&gt;State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if it first takes some potentially alternative action before acting normally.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why does the policy gradient include a log probability term?</title>

@@ -14,5 +14,6 @@ To encourage people to let me know about errors, I will list user-submitted corr
 
 ## User submitted corrections by date
 
+* Nov 13, Craig Sherstan (offline report): typo corrections for "What is the difference between V(s) and Q(s,a)?" and "Why does the policy gradient include a log probability term?"
 * Nov 11, Bram Grooten (offline report): typo corrections for "About" and "Notation" pages.
 * Nov 10, Craig Sherstan (offline report): typo correction for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"

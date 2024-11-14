@@ -71,7 +71,7 @@ window.addEventListener("hashchange", function () {
     </div>
     <div class="main-content">
         <h1>What is the difference between V(s) and Q(s,a)?</h1>
-        <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if first takes some potentially alternative action before acting normally.</p>
+        <p>State value function $V(s)$ expresses how well the agent expects to do when it acts normally. $Q(s, a)$ is a counterfactual function that expresses how well the agent expects to do if it first takes some potentially alternative action before acting normally.</p>
 <h2 id="a-more-precise-definition">A more precise definition</h2>
 <p>Before making that more precise, let&rsquo;s add a point of clarity. Value functions (both V and Q) are always with respect to some policy $\pi$.
 To indicate that they are with respect to policy $\pi$, we often write them as $V^\pi(s)$ and $Q^\pi(s)$.
@@ -91,7 +91,7 @@ In the case when we’re talking about the value functions for the optimal polic
 
 <p>The state value for any of the states can be easily determined by counting the number of blue arrows until the goal is reached. E.g., $V^\pi(B) = -1\ $ because it is just one step away from the goal. Similarly, the Q-value $Q^\pi(B, \mathrm{right}) = -1$, because the right action is the same action our policy selects. However, we can also evaluate the Q-value for the alternative left action. In this case, $Q^\pi(B, \mathrm{left}) = -3$, because first the agent will go left (following the off-policy orange arc) to state $A$, and then after that step it will follow the blue arcs of our policy back to state $B$ and then to final state $C$.</p>
 <h2 id="why-q-is-useful">Why Q is useful</h2>
-<p>The above example illustrates the difference between Q and V. However, in that example, knowing the Q-value for the bad action wasn&rsquo;t especially useful, so you may be wondering why we care about Q-values. The reason, of course, is that when the agent starts learning, it will not know the optimal policy. When the policy is suboptimal some of those counterfactual off-policy actions will have higher Q-values then the state value of the current suboptimal policy. When that is the case, knowing which actions have higher Q-values let&rsquo;s you identify how you can improve you policy.</p>
+<p>The above example illustrates the difference between Q and V. However, in that example, knowing the Q-value for the bad action wasn&rsquo;t especially useful, so you may be wondering why we care about Q-values. The reason, of course, is that when the agent starts learning, it will not know the optimal policy. When the policy is suboptimal some of those counterfactual off-policy actions will have higher Q-values then the state value of the current suboptimal policy. When that is the case, knowing which actions have higher Q-values let&rsquo;s you identify how you can improve your policy.</p>
 <p>To illustrate that, let&rsquo;s have a slightly more complex MDP with a suboptimal policy shown below.</p>
 <figure><img src="/posts/q_vs_v/6state.png"><figcaption>
       <h4>A six-state MDP to illustrate how the Q-function can be used to improve the policy.</h4>

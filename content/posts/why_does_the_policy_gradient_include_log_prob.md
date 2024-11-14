@@ -41,7 +41,7 @@ We do of course need an estimate of our Q-values too, and we need to take the av
 Unfortunately, no, on its own that will not work.
 
 ## No takesies backsies
-To see the problem, let's ignore the state distribution part of the objective on focus on the last part:
+To see the problem, let's ignore the state distribution part of the objective and focus on the last part:
 $$
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$

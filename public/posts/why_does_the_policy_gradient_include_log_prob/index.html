@@ -99,7 +99,7 @@ $$</p>
 <p>We do of course need an estimate of our Q-values too, and we need to take the average over our states. The tempting approach is to use samples for these remaining bits. I.e., maybe we could execute our policy in our environment a bunch of times, estimate Q-values with observed returns, multiply them by the gradient of the action probabilities, and average over the visited states?</p>
 <p>Unfortunately, no, on its own that will not work.</p>
 <h2 id="no-takesies-backsies">No takesies backsies</h2>
-<p>To see the problem, let&rsquo;s ignore the state distribution part of the objective on focus on the last part:
+<p>To see the problem, let&rsquo;s ignore the state distribution part of the objective and focus on the last part:
 $$
 \sum_a \frac{d \pi(a | s)}{d\theta} Q^\pi(s, a)
 $$
