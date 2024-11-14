@@ -26,10 +26,10 @@ special hugo codes can be included in the markdown for figures. It follows the f
 ```
 
 ### Building
-You must have [Hugo](https://gohugo.io/) installed on your system. From the repository root, then run:
+You must have [Hugo](https://gohugo.io/) installed on your system. From the repository root, run:
 ```bash
 hugo server
 ```
-which will both compile the website and start a local webserver running it.
+which will both compile the website (creating a `public` directory containing the static html) and start a local webserver hosting it.
 
-Deployment is handled by github actions whenever `main` is updated.
+Deployment is handled by Github actions whenever `main` is updated on Github.
