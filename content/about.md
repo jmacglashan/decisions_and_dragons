@@ -8,7 +8,7 @@ layout = "about"
 
 Reinforcement learning (RL) is an elegant problem definition for autonomous agents that learn from their own interactions with an environment. But the methods to solve this simple problem definition are not so simple. To solve this problem you must simultaneously tackle many subproblems that are all complex enough to warrant their own subfields in AI, such as perception, prediction, planning, and memory.
 
-Unlike other forms of machine learning, we cannot feed an algorithm a well curated dataset. An agent must form its own data from interactions. Even worse, this data is temporally correlated and does not explicitly include the correct response. The agent must reason about its data to determine the correct response and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough, it must do all this even when the it doesn't have much data to go on. The world waits for no ~~man~~ agent, and it must make do with what it has.
+Unlike other forms of machine learning, we cannot feed an algorithm a well curated dataset. An agent must form its own data from interactions. Even worse, this data is temporally correlated and does not explicitly include the correct response. The agent must reason about its data to determine the correct response and it must actively explore the environment to ensure it has good data coverage. If that wasn't hard enough, it must do all this even when it doesn't have much data to go on. The world waits for no ~~man~~ agent, and it must make do with what it has.
 
 The RL problem is _hard_ and if you feel lost, you're not alone.
 
@@ -30,7 +30,7 @@ I'm James MacGlashan. If you want to ask me RL questions, the best place is eith
 on the [Reinforcement Learning Discord server](https://discord.gg/nu3pyBrNpg). (See my other social links at the top of this page.)
 
 I received my PhD in computer science from the University of Maryland, Baltimore County in 2013 where I
-worked on reinforcement learning. I then moved on to a postdoctoral position at Brown University, where I continued to work on reinforcement learning.
+worked on reinforcement learning with Marie desJardins. I then moved on to a postdoctoral position at Brown University, where I continued to work on reinforcement learning with Michael Littman as my advisor and (subsequently) Stefanie Tellex as my co-advisor.
 Following my postdoc, I joined the startup Cogitai, where we worked to build reinforcement learning and
 continual learning as a service. Cogitai was eventually acquired by Sony and we formed the game AI team at [Sony AI](https://ai.sony/), where I
 continue to work on reinforcement learning.
