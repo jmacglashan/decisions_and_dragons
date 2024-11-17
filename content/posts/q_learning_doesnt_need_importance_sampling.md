@@ -87,7 +87,7 @@ $$
 \end{align*}
 $$
 
-Ahah! We turned our expected value of Bob's distribution $\pi$ into an expected value of Alice's distribution $\mu$! We just had to weigh our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we're back to an expected values of a joint distribution and we can approximate it with the mean of our samples:
+Ahah! We turned our expected value of Bob's distribution $\pi$ into an expected value of Alice's distribution $\mu$! We just had to weigh our payout values $r$ by $\frac{\pi(a)}{\mu(a)}$. Now we're back to an expected value of a joint distribution and we can approximate it with the mean of our samples:
 
 $$
 E_{a \sim \mu} \left [ E_{r \sim p} \left[ \frac{\pi(a)}{\mu(a)} r \right] \right]
