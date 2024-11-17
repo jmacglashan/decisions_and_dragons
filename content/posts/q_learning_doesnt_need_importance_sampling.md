@@ -4,7 +4,7 @@ date = 2024-04-02T23:43:37-04:00
 draft = false
 +++
 
-In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning, does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let's make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.<!--more-->
+In off-policy learning, we evaluate the value function for a policy other than the one we are following in the environment. This difference creates a mismatch in state-action distributions. To account for this difference, some actor-critic methods use importance sampling. However, Q-learning does not. There is a simple reason for that: In Q-learning, we only use samples to tell us about the effect of actions on the environment, not to estimate how good the policy action selection is. Let's make that more concrete with a simple example and re-derive the Q-learning and importance sampling approaches.<!--more-->
 
 ## Backseat gambling
 
