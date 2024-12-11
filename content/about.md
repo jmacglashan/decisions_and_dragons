@@ -26,7 +26,7 @@ I trust you understand that there were no other motivations for this name and an
 
 ## About me
 
-I'm James MacGlashan. If you want to ask me RL questions, the best place is either on [Twitter](https://twitter.com/jmac_ai), or
+I'm James MacGlashan. If you want to ask me RL questions, the best place is either on [Bluesky](https://bsky.app/profile/jmac-ai.bsky.social), or
 on the [Reinforcement Learning Discord server](https://discord.gg/nu3pyBrNpg). (See my other social links at the top of this page.)
 
 I received my PhD in computer science from the University of Maryland, Baltimore County in 2013 where I
