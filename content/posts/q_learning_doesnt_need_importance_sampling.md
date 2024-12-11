@@ -100,9 +100,9 @@ Armed with this expression, we can approximate Bob's expected payout using our o
 
 ## Where's the expected value under the policy in $Q^*$?
 
-We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that $\pi$. We also understand that if we didn't keep separate estimates for each action that importance sampling would be useful to correct for the mismatch in sampling distributions.
+We now understand why Q-learning for simple bandits does not require importance sampling: we maintain separate expected value estimates for each action. For any given policy $\pi$ we can estimate the expected payout by taking a weighted average of the Q-values under that policy $\pi$. We also understand that if we didn't keep separate estimates for each action that importance sampling would be useful to correct for the mismatch in sampling distributions.
 
-But what about more general MDPs where there are sequential states and your value depends on what the expected value of your policy is for each subsequent state? Well, we now know how to solve that exact problem. Since Q-learning keeps separate estimates for each action from each state, we can the take a weighted average of future Q-values under the policy we care about (for Q-learning, the optimal policy) and never have to worry about importance sampling.
+But what about more general MDPs where there are sequential states and your value depends on what the expected value of your policy is for each subsequent state? Well, we now know how to solve that exact problem. Since Q-learning keeps separate estimates for each action from each state, we can take a weighted average of future Q-values under the policy we care about (for Q-learning, the optimal policy) and never have to worry about importance sampling.
 
 To illustrate that, recall that the recursive definition of the optimal Q-function is
 
