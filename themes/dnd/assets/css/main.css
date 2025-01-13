@@ -185,7 +185,7 @@ a {
 }
 
 /* Mobile-specific style */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     body {
         font-size: small;
     }
@@ -204,6 +204,10 @@ a {
 
     .nav {
         font-size: 80%;
+    }
+
+    .nav a {
+        margin-right: 0.5em;
     }
 
     h1 {
