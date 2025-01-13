@@ -28,7 +28,7 @@ url = "/posts/"
 weight = 3
 
 [[menu.nav]]
-identifier = "corrections"
-name = "Corrections"
-url = "/corrections/"
+identifier = "revisions"
+name = "Revisions"
+url = "/revisions/"
 weight = 4
