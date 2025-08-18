@@ -48,7 +48,7 @@ So when we want to act in the world, here too does the curse of the max operator
 
 ## Alternatives
 
-Taking a step back, we _mostly_ already know how to solve this problem in AI: finding the the max is just an optimization problem! Therefore, you can just replace the max operator with your favorite optimization algorithm. For example [QT-OPT](https://arxiv.org/abs/1806.10293), uses the cross entropy method to approximate the max. Or you could use SGD on the Q-function to find the maximum action.
+Taking a step back, we _mostly_ already know how to solve this problem in AI: finding the max is just an optimization problem! Therefore, you can just replace the max operator with your favorite optimization algorithm. For example [QT-OPT](https://arxiv.org/abs/1806.10293), uses the cross entropy method to approximate the max. Or you could use SGD on the Q-function to find the maximum action.
 
 However, if you’re going to replace the exact max with the result of some optimization algorithm you’re
 

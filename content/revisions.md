@@ -14,9 +14,10 @@ To encourage people to let me know about issues, I will list user-submitted revi
 
 ## User submitted revisions by date
 
-* Jan 12, Cedric Brendel (offline report): suggestion to change "finite" to "bounded" in "What is the "horizon" in reinforcement learning?"
-* Nov 17, Michael Littman (offline report): typo correction for "If Q-learning is off-policy, why doesn't it require importance sampling?".
-* [Nov 13, araffin](https://github.com/jmacglashan/decisions_and_dragons/pull/2): typo/phrasing corrections for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"
-* Nov 13, Craig Sherstan (offline report): typo corrections for "What is the difference between V(s) and Q(s,a)?" and "Why does the policy gradient include a log probability term?"
-* Nov 11, Bram Grooten (offline report): typo corrections for "About" and "Notation" pages.
-* Nov 10, Craig Sherstan (offline report): typo correction for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"
+* Aug 18 2025, Kaushik Subramanian (offline report): typo corrections in "Should we abandon RL" and "Why doesn't Q-learning work with continuous actions?"
+* Jan 12 2024, Cedric Brendel (offline report): suggestion to change "finite" to "bounded" in "What is the "horizon" in reinforcement learning?"
+* Nov 17 2024, Michael Littman (offline report): typo correction for "If Q-learning is off-policy, why doesn't it require importance sampling?".
+* [Nov 13 2024, araffin](https://github.com/jmacglashan/decisions_and_dragons/pull/2): typo/phrasing corrections for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"
+* Nov 13 2024, Craig Sherstan (offline report): typo corrections for "What is the difference between V(s) and Q(s,a)?" and "Why does the policy gradient include a log probability term?"
+* Nov 11 2024, Bram Grooten (offline report): typo corrections for "About" and "Notation" pages.
+* Nov 10 2024, Craig Sherstan (offline report): typo correction for "Why does experience replay require off-policy learning and how is it different from on-policy learning?"

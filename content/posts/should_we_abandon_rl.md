@@ -86,7 +86,7 @@ I'm not going to tell you that no one from the control theory community ever wor
 
 The point is there wasn't a _focus_ on the RL problem in control theory communities. If you want people to focus on a problem, you're going to need to first name it and define it.
 
-To give an analogy, Yann LeCun popularized the term "self-superivsed learning." You can make a case that the term is just a rebranding of "unsupervised learning." However, the point of introducing the term was to highlight a particular kind of learning problem that Yann thought was important enough to be called out and focused on.
+To give an analogy, Yann LeCun popularized the term "self-supervised learning." You can make a case that the term is just a rebranding of "unsupervised learning." However, the point of introducing the term was to highlight a particular kind of learning problem that Yann thought was important enough to be called out and focused on.
 
 Similarly, the goal of the term RL is to call out an important problem. Once called out, academic communities will form to work on it.
 
