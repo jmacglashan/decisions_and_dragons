@@ -15,13 +15,56 @@
         {{ .Content }}
         <h2>Recent posts</h2>
 
-        {{ range first 8 (where .Site.RegularPages "Type" "posts") }}
-        <h3>
-            <a class="post_link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        </h3>
-        {{ .Summary }}
-        <p><a href="{{ .RelPermalink }}">[Show full answer]</a></p>
-        {{ end }}
+        {{ $posts := where .Site.RegularPages "Type" "posts" }} {{ $first :=
+        first 8 $posts }} {{ $rest := after 8 $posts }}
+
+        <div class="post-list">
+            {{ range $first }}
+            <h3>
+                <a class="post_link" href="{{ .RelPermalink }}"
+                    >{{ .LinkTitle }}</a
+                >
+            </h3>
+            {{ .Summary }}
+            <p><a href="{{ .RelPermalink }}">[Show full answer]</a></p>
+            {{ end }}
+        </div>
+
+        <!-- Hidden section for remaining posts -->
+        <div id="more-posts" style="display: none">
+            {{ range $rest }}
+            <h3>
+                <a class="post_link" href="{{ .RelPermalink }}"
+                    >{{ .LinkTitle }}</a
+                >
+            </h3>
+            {{ .Summary }}
+            <p><a href="{{ .RelPermalink }}">[Show full answer]</a></p>
+            {{ end }}
+        </div>
+
+        <!-- "Show more" link -->
+        <center>
+            <p id="show-more-wrapper" , style="padding-top: 3em">
+                <a href="#" id="show-more-link">Show more posts</a>
+            </p>
+        </center>
+        <br /><br /><br /><br /><br /><br />
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const morePosts = document.getElementById("more-posts");
+                const showMoreLink = document.getElementById("show-more-link");
+                const showMoreWrapper =
+                    document.getElementById("show-more-wrapper");
+
+                showMoreLink.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    morePosts.style.display = "block"; // reveal posts
+                    showMoreWrapper.style.display = "none"; // hide the link
+                });
+            });
+        </script>
     </div>
 </div>
 {{ end }}
